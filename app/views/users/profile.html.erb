@@ -1,9 +1,0 @@
-<ul class="timeline">
-  <% current_user.facebook_authentication.profile.home.each do |post| %>
-    <li class="post">
-      <%= post.message || post.caption || post.description %>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to 'log out', session_path, :method => :delete %>

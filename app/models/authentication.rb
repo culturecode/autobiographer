@@ -10,4 +10,8 @@ class Authentication < ActiveRecord::Base
     
     return authentication.user
   end
+  
+  def sync_events
+    raise NotImplementedError
+  end
 end

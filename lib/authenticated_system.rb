@@ -34,7 +34,6 @@ module AuthenticatedSystem
     end
 
     def unauthenticate
-      current_user.destroy
       @current_user = session[:current_user] = nil
     end
 

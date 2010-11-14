@@ -8,6 +8,8 @@ Autobiographer::Application.routes.draw do
     get :callback, :to => :create, :on => :collection
   end
 
-  resources :events, :as => 'memoirs'  
+  resources :events do
+    get :sync, :on => :collection
+  end
   root :to => 'events#index'
 end

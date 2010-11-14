@@ -1,6 +1,22 @@
-class FacebookAuthentication < Authentication
-  def profile
-    @profile ||= FbGraph::User.me(self.credentials).fetch
+class FacebookAuthentication < Authentication  
+  def sync_events
+    facebook_user.checkins.each do |checkin|
+      Event.find_or_create_by_identifier(:identifier => checkin.id, 
+                                         :authentication_id => self.id,
+                                         :place => checkin.place.name, 
+                                         :comment => checkin.message, 
+                                         :timestamp => checkin.created_time)
+    end
+  end
+  
+  def self.auth
+    FbGraph::Auth.new config[:client_id], config[:client_secret]
+  end
+  
+  private
+  
+  def facebook_user
+    @facebook_user ||= FbGraph::User.me(self.credentials).fetch
   end
   
   def self.config
@@ -16,9 +32,5 @@ class FacebookAuthentication < Authentication
     end
   rescue Errno::ENOENT => e
     raise StandardError.new("config/facebook.yml could not be loaded.")
-  end
-
-  def self.auth
-    FbGraph::Auth.new config[:client_id], config[:client_secret]
   end
 end
