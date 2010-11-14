@@ -7,6 +7,10 @@ Autobiographer::Application.routes.draw do
   resources :facebook_authentications do
     get :callback, :to => :create, :on => :collection
   end
+  resources :foursquare_authentications do
+    get :callback, :to => :create, :on => :collection
+  end
+  resources :twitter_authentications
 
   resources :events do
     get :sync, :on => :collection

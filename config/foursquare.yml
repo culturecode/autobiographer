@@ -1,0 +1,9 @@
+development: &defaults
+  client_token: N2VW4VTB0HGTIHNQXIPPK12U4RKAG2ZVOAGKQMVYT3W4PMEU
+  client_secret: HWJ1DYVKIKMKWFNWANFDYGM1J14UXZ1DER0KH01PZIDTZ35B
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

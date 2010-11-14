@@ -4,7 +4,8 @@ class CreateAuthentications < ActiveRecord::Migration
       t.belongs_to :user
       t.string :type
       t.text :identifier  # Unique identifier for the particular user on the the given service
-      t.text :credentials # Any info used to authenticate the user on the given service (eg. OAuth token)
+      t.text :token       # A token used to authenticate the user on the given service (eg. OAuth token)
+      t.text :secret      # A secret token used by some services (eg. Foursquare OAuth secret token)
       t.datetime :last_sync
     end
     add_index(:authentications, :user_id)

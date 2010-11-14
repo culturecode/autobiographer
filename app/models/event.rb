@@ -3,5 +3,4 @@ class Event < ActiveRecord::Base
   
   scope :ascending, {:order => 'timestamp ASC'}
   scope :descending, {:order => 'timestamp DESC'}
-  
 end
