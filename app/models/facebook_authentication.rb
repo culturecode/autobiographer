@@ -7,6 +7,13 @@ class FacebookAuthentication < Authentication
                                          :comment => checkin.message, 
                                          :timestamp => checkin.created_time)
     end
+    
+    facebook_user.statuses.each do |status|
+      Event.find_or_create_by_identifier(:identifier => status.id, 
+                                         :authentication_id => self.id, 
+                                         :comment => status.message, 
+                                         :timestamp => status.updated_time)
+    end
   end
   
   def self.auth
