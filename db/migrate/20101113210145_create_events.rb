@@ -12,6 +12,9 @@ class CreateEvents < ActiveRecord::Migration
     add_index(:events, :timestamp) # For ordering
     add_index(:events, :authentication_id)
     add_index(:events, :place) # For searching
+    add_index(:events, :authentication_id)
+    add_index(:events, [:authentication_id, :identifier], :unique => true)
+    
   end
 
   def self.down

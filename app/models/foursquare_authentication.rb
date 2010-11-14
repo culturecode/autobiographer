@@ -1,14 +1,11 @@
 class FoursquareAuthentication < Authentication  
-  def sync_events
-    response = access_token.get("http://api.foursquare.com/v1/history.json")
+  def sync_subclass_events
+    sinceid = "?sinceid=#{most_recent_event.identifier}" if most_recent_event.present?
+    response = access_token.get("http://api.foursquare.com/v1/history.json#{sinceid}")
     history = JSON.parse(response.body)
     
     history["checkins"].each do |checkin|
-      Event.find_or_create_by_identifier(:identifier => checkin["id"], 
-                                         :authentication_id => self.id,
-                                         :place => checkin["venue"]["name"], 
-                                         :comment => checkin["shout"], 
-                                         :timestamp => checkin["created"])
+      Event.create(:identifier => checkin["id"], :authentication_id => self.id, :place => checkin["venue"]["name"], :comment => checkin["shout"], :timestamp => checkin["created"])
     end
   end
   

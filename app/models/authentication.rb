@@ -27,6 +27,15 @@ class Authentication < ActiveRecord::Base
   end
   
   def sync_events
+    sync_subclass_events
+    update_attributes(:last_sync => Time.now)
+  end
+  
+  def sync_subclass_events
     raise NotImplementedError
+  end
+  
+  def most_recent_event
+    events.order('timestamp DESC').first
   end
 end

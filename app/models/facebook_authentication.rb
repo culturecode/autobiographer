@@ -1,18 +1,14 @@
 class FacebookAuthentication < Authentication  
-  def sync_events
-    facebook_user.checkins.each do |checkin|
-      Event.find_or_create_by_identifier(:identifier => checkin.identifier, 
-                                         :authentication_id => self.id,
-                                         :place => checkin.place.name, 
-                                         :comment => checkin.message, 
-                                         :timestamp => checkin.created_time)
+  def sync_subclass_events
+    options = {}
+    options[:since] = most_recent_event.timestamp if most_recent_event.present?
+    
+    facebook_user.checkins(options).each do |checkin|
+      Event.create(:identifier => checkin.identifier, :authentication_id => self.id, :place => checkin.place.name, :comment => checkin.message, :timestamp => checkin.created_time)
     end
     
-    facebook_user.statuses.each do |status|
-      Event.find_or_create_by_identifier(:identifier => status.identifier, 
-                                         :authentication_id => self.id, 
-                                         :comment => status.message, 
-                                         :timestamp => status.updated_time)
+    facebook_user.statuses(options).each do |status|
+      Event.create(:identifier => status.identifier, :authentication_id => self.id, :comment => status.message, :timestamp => status.updated_time)
     end
   end
   

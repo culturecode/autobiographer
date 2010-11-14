@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20101114021849) do
     t.text     "identifier"
   end
 
+  add_index "events", ["authentication_id", "identifier"], :name => "index_events_on_authentication_id_and_identifier", :unique => true
   add_index "events", ["authentication_id"], :name => "index_events_on_authentication_id"
   add_index "events", ["place"], :name => "index_events_on_place"
   add_index "events", ["timestamp"], :name => "index_events_on_timestamp"
