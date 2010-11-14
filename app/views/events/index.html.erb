@@ -1,5 +1,10 @@
 <%= link_to "Refresh", sync_events_path %>
 <%= link_to 'Sign Out', session_path, :method => :delete %>
+
+<%= link_to 'Add Facebook Account', new_facebook_authentication_path if current_user.facebook_authentication.blank? %>
+<%= link_to 'Add Twitter Account', new_twitter_authentication_path if current_user.twitter_authentication.blank? %>
+<%= link_to 'Add Foursquare Account', new_foursquare_authentication_path if current_user.foursquare_authentication.blank? %>
+
 <ul class='chapters'>
 <% for chapter in @chapters.ascending %>
     <%= content_tag :li, :class => :chapter, :id => dom_id(chapter) do %>

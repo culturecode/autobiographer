@@ -16,7 +16,8 @@ ActiveRecord::Schema.define(:version => 20101114021849) do
     t.integer  "user_id"
     t.string   "type"
     t.text     "identifier"
-    t.text     "credentials"
+    t.text     "token"
+    t.text     "secret"
     t.datetime "last_sync"
   end
 
