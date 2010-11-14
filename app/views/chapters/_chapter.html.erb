@@ -1,0 +1,7 @@
+<%= content_tag :li, :class => :chapter_spacer do %>
+    <%= chapter_joiner(chapter) unless chapter.first? %>
+<% end %>
+<%= content_tag :li, :class => :chapter, :id => dom_id(chapter) do %>
+<%= chapter_header(chapter) %>
+<%= render :partial => 'events/events', :locals => {:events => chapter.events.ascending} %>
+<% end%>

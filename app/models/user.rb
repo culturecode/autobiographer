@@ -14,6 +14,6 @@ class User < ActiveRecord::Base
   private
   
   def create_initial_chapter
-    chapters.create(:title => "WTF Happened Last Night", :timestamp => DateTime.new)
+    chapters.create(:title => "My life to date", :timestamp => DateTime.new)
   end
 end

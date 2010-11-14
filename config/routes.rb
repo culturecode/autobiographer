@@ -12,4 +12,7 @@ Autobiographer::Application.routes.draw do
     get :sync, :on => :collection
   end
   root :to => 'events#index'
+  
+  resources :chapters
+  match 'split_chapter', :to => 'chapters#create'
 end

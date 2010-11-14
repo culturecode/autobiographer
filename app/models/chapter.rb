@@ -9,13 +9,25 @@ class Chapter < ActiveRecord::Base
 
   # Returns the next Chapter
   def next
-    user.chapters.where("timestamp > ?", self.beginning).first
+    after.ascending.first
   end
 
+  # Returns the previous chapter
   def previous
-    user.chapters.where("timestamp < ?", self.beginning).first
+    before.ascending.last
+  end
+  
+  # Returns all chapters before this one
+  def before
+    user.chapters.where("timestamp < ?", self.beginning)
+  end
+  
+  # Returns all chapters after this one
+  def after
+    user.chapters.where("timestamp > ?", self.beginning)
   end
 
+  # Returns the timestamp of the beginning of this chapter
   def beginning
     self.timestamp
   end
@@ -32,8 +44,23 @@ class Chapter < ActiveRecord::Base
     end
   end
   
+  # Returns true if this is the first chapter
+  def first?
+    user.chapters.ascending.first == self
+  end
+
+  # Returns true if this is the last chapter
+  def last?
+    user.chapters.ascending.last == self
+  end
+  
+  # Returns the chapter number (1 indexed)
+  def number
+    before.count + 1
+  end
+  
   # Returns all events in this chapter
   def events
-    user.events.where(:timestamp => beginning..ending)
+    user.events.where(:timestamp => beginning...ending)
   end
 end

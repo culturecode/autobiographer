@@ -1,0 +1,10 @@
+<ul class='events'>
+<% for event in events %>
+    <% unless events.first == event %>
+        <%= content_tag :li, :class => 'event_spacer' do %>
+            <%= chapter_breaker(event) %>
+        <% end %>
+    <% end %>
+    <%= content_tag :li, render(event) %>
+<% end%>
+</ul>
