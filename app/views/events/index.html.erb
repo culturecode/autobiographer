@@ -1,0 +1,15 @@
+<ul class='chapters'>
+<% for chapter in @chapters.ascending %>
+    <%= content_tag :li, :class => :chapter, :id => dom_id(chapter) do %>
+    <header>
+        <h2><%= chapter.title %></h2>
+        <h3><%= chapter.subtitle %></h3>
+    </header>
+    <ul class='events'>
+    <% for event in chapter.events.ascending %>
+        <%= content_tag :li, render(event) + chapter_inserter %>
+    <% end%>
+    </ul>
+    <% end%>
+<% end %>
+</ul>

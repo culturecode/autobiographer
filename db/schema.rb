@@ -10,22 +10,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101113213803) do
+ActiveRecord::Schema.define(:version => 20101114021849) do
 
   create_table "authentications", :force => true do |t|
-    t.integer "user_id"
-    t.string  "type"
-    t.text    "identifier"
-    t.text    "credentials"
+    t.integer  "user_id"
+    t.string   "type"
+    t.text     "identifier"
+    t.text     "credentials"
+    t.datetime "last_sync"
   end
 
-  create_table "events", :force => true do |t|
+  add_index "authentications", ["identifier"], :name => "index_authentications_on_identifier"
+  add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
+
+  create_table "chapters", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "timestamp",  :null => false
-    t.text     "place",      :null => false
-    t.integer  "service_id"
+    t.string   "title"
+    t.text     "subtitle"
+    t.datetime "timestamp"
+  end
+
+  add_index "chapters", ["timestamp"], :name => "index_chapters_on_timestamp"
+
+  create_table "events", :force => true do |t|
+    t.datetime "timestamp"
+    t.text     "place"
+    t.text     "comment"
+    t.integer  "authentication_id"
     t.text     "identifier"
   end
+
+  add_index "events", ["authentication_id"], :name => "index_events_on_authentication_id"
+  add_index "events", ["place"], :name => "index_events_on_place"
+  add_index "events", ["timestamp"], :name => "index_events_on_timestamp"
 
   create_table "users", :force => true do |t|
     t.datetime "created_at"

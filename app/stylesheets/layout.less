@@ -1,0 +1,100 @@
+@body-width: 800px;
+
+html{
+    background: #f1f0f0;
+    font-family: Helvetica;
+}
+body{
+    margin: 0;
+    padding: 2em 0;
+}
+.site_menu{
+    background:-webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(51,51,49)), color-stop(1, rgb(112,112,112)));
+    background: -moz-linear-gradient(center bottom, rgb(90,90,90) 0%, rgb(51,51,49) 100%);
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    border-bottom: 1px solid black;
+    padding: 0;
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 1;
+
+    .menu_item{
+        padding: 0.5em;
+        color: white;
+        font-size: 1em;
+        display: inline-block;
+        
+        a{
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+    .menu_item + .menu_item{
+        margin-left: 1em;
+    }
+}
+
+.body_content{
+    margin: 0 auto;
+    width: @body-width;
+}
+.chapters{
+    list-style: none;
+    padding: 0;
+
+    .chapter{
+        padding: 0;
+
+        header{
+            font-family: Times;
+            font-size: 1.4em;
+            text-align: center;
+
+            h2{ margin: 0; }
+            h3{
+                margin: 0;
+                font-style: italic;
+            }
+        }
+        .events{
+            padding: 0;
+            list-style: none;        
+
+            .event{
+                margin: 1em 0;
+
+                .place{ font-size: 1.1em; }
+                .timestamp{
+                    color: #888;
+                    font-size: 0.8em;
+                }
+
+            }
+            li{
+                position: relative;
+                                
+                .chapter_inserter{
+                    background:#888;
+                    color:white;
+                    left:0;
+                    line-height:1.5em;
+                    margin-left:-130px;
+                    position:absolute;
+                    top:-0.75em;
+                    width:130px;
+                    text-align: center;
+                    display: none;
+                    cursor: pointer;
+                }                
+                &:hover .chapter_inserter{
+                    display: block;
+                }
+            }
+            
+            li + li{ border-top: 1px solid #aaa; }
+        }   
+    }
+}

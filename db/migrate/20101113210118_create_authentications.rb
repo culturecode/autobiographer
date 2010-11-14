@@ -7,6 +7,8 @@ class CreateAuthentications < ActiveRecord::Migration
       t.text :credentials # Any info used to authenticate the user on the given service (eg. OAuth token)
       t.datetime :last_sync
     end
+    add_index(:authentications, :user_id)
+    add_index(:authentications, :identifier)
   end
 
   def self.down

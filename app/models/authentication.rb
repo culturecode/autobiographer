@@ -1,5 +1,6 @@
 class Authentication < ActiveRecord::Base
   belongs_to :user
+  has_many :events
   
   def self.identify(identifier, token)
     authentication = find_or_initialize_by_identifier(identifier)

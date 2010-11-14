@@ -1,8 +1,13 @@
-Autobiographer::Application.routes.draw do  
+Autobiographer::Application.routes.draw do
+
   resource :session
+  resources :users
+  match 'profile', :to => 'users#profile'
+
   resources :facebook_authentications do
     get :callback, :to => :create, :on => :collection
   end
-  root :to => 'users#profile'
-  match 'profile', :to => 'users#profile'
+
+  resources :events, :as => 'memoirs'  
+  root :to => 'events#index'
 end
