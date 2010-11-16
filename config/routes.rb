@@ -2,7 +2,6 @@ Autobiographer::Application.routes.draw do
 
   resource :session
   resources :users
-  match 'profile', :to => 'users#show'
 
   resources :facebook_authentications do
     get :callback, :to => :create, :on => :collection

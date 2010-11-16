@@ -9,7 +9,7 @@ $(function() {
         runtimes : 'gears,html5,flash,silverlight,browserplus',
         browse_button : 'pickfiles',
         drop_element: 'dropfiles',
-        container : 'container',
+        container : 'upload_link',
         max_file_size : '20mb',
         url : '/uploads/photos',
         flash_swf_url : '/plupload/plupload.flash.swf',
@@ -21,10 +21,6 @@ $(function() {
         multipart: true,  
         multipart_params : multipart_params,
         resize : {width : 320, height : 240, quality : 90}
-    });
-
-    uploader.bind('Init', function(up, params) {
-        $('#filelist').html("<div>Current runtime: " + params.runtime + "</div>");
     });
 
     uploader.init();
