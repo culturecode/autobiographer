@@ -2,7 +2,7 @@ Autobiographer::Application.routes.draw do
 
   resource :session
   resources :users
-  match 'profile', :to => 'users#profile'
+  match 'profile', :to => 'users#show'
 
   resources :facebook_authentications do
     get :callback, :to => :create, :on => :collection
@@ -19,4 +19,8 @@ Autobiographer::Application.routes.draw do
   
   resources :chapters
   match 'split_chapter', :to => 'chapters#create'
+  
+  post 'uploads/photos'
+  
+  match 'pages/:action', :to => 'pages'
 end

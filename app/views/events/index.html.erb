@@ -3,6 +3,13 @@
 <%= link_to 'Add Twitter Account', new_twitter_authentication_path if current_user.twitter_authentication.blank? %>
 <%= link_to 'Add Foursquare Account', new_foursquare_authentication_path if current_user.foursquare_authentication.blank? %>
 
+<h3>Upload Photos</h3>
+<div id="container">
+	<div id="filelist">No runtime found.</div>
+	<a id="pickfiles" href="#">[Select files]</a>
+</div>
+
+
 <ul class='chapters'>
     <%= render @chapters.ascending %>
 </ul>
