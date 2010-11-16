@@ -1,0 +1,9 @@
+development: &defaults
+  client_token: 1YDEp8PFI2DeAc2MGojubw
+  client_secret: GdNttWha4nJPRFqhYmrOEZGn7GrU083uv1Ws21pOo
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
