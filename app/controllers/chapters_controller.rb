@@ -1,6 +1,6 @@
 class ChaptersController < ApplicationController
   def create
-    Chapter.create!(:user_id => current_user.id, :title => 'New Chapter', :timestamp => DateTime.parse(params[:timestamp]))
+    Chapter.create!(:user_id => current_user.id, :title => 'New Chapter', :insert_before_event => params[:event_id])
 
     respond_to do |format|
       format.html{redirect_to :back}

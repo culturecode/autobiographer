@@ -91,59 +91,55 @@ header, nav, section, article{
     .event_spacer{
         position: relative;
         cursor: pointer;
-        padding: 0;
-        border-top: 1px solid #DDD;
+        padding-top: 1px;
         margin: 1em 0;
 
-        .chapter_breaker{
+        // MIXINS
+        .chapter_control{
             height:1.5em;
             position:absolute;
             width:100%;
             top: -0.75em;
             text-decoration: none;
 
-            span{
+            .text{
                 color:white;
                 position: absolute;
                 width: 130px;
                 left: -130px;
                 text-align:center;
-                line-height: 1.5em;
-                background:#8A8;
+                line-height: 1.5em;                
                 display: none;
+            }
+            .line{
+                border-top: 1px solid #DDD;
+                position: absolute;
+                top: 50%;
+                width: 100%;
+            }
+            &:hover .text{
+                        display: block;
+            }            
+        }
+        // SPECIFICS
+
+        .chapter_breaker{
+            .chapter_control;
+            .text{
+                background:#8A8;
+            }
+            &:hover .line{
+                border-color: #8A8;
             }
         }
         .chapter_joiner{
-            height: 1.5em;
-            position: absolute;
-            width: 100%;
-            top: -1px;
-            text-decoration: none;
-
-            span{
-                top: -0.75em;
-                color:white;
-                position: absolute;
-                width: 130px;
-                left: -130px;
-                text-align:center;
-                line-height: 1.5em;
-                background:#A88;
-                visibility: hidden;
+            .chapter_control;
+            .text{
+                background:#A88;    
             }
-            &:hover{
-                border-top: 1px solid #A88;
-                span{
-                    visibility: visible;
-                }
+            &:hover .line{
+                border-color: #A88;
             }
-        }        
-        &:hover{
-            border-top-color: #8A8;
-
-            .chapter_breaker span{
-                display: block;
-            }
-        }                
+        }
     }
 }

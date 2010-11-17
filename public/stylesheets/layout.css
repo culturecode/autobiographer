@@ -83,9 +83,33 @@ article {
 .events .event_spacer {
   position: relative;
   cursor: pointer;
-  padding: 0;
-  border-top: 1px solid #DDD;
+  padding-top: 1px;
   margin: 1em 0;
+}
+.events .event_spacer .chapter_control {
+  height: 1.5em;
+  position: absolute;
+  width: 100%;
+  top: -0.75em;
+  text-decoration: none;
+}
+.events .event_spacer .chapter_control .text {
+  color: white;
+  position: absolute;
+  width: 130px;
+  left: -130px;
+  text-align: center;
+  line-height: 1.5em;
+  display: none;
+}
+.events .event_spacer .chapter_control .line {
+  border-top: 1px solid #DDD;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+.events .event_spacer .chapter_control:hover .text {
+  display: block;
 }
 .events .event_spacer .chapter_breaker {
   height: 1.5em;
@@ -94,43 +118,58 @@ article {
   top: -0.75em;
   text-decoration: none;
 }
-.events .event_spacer .chapter_breaker span {
+.events .event_spacer .chapter_breaker .text {
   color: white;
   position: absolute;
   width: 130px;
   left: -130px;
   text-align: center;
   line-height: 1.5em;
-  background: #8A8;
   display: none;
+}
+.events .event_spacer .chapter_breaker .line {
+  border-top: 1px solid #DDD;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+.events .event_spacer .chapter_breaker:hover .text {
+  display: block;
+}
+.events .event_spacer .chapter_breaker .text {
+  background: #8A8;
+}
+.events .event_spacer .chapter_breaker:hover .line {
+  border-color: #8A8;
 }
 .events .event_spacer .chapter_joiner {
   height: 1.5em;
   position: absolute;
   width: 100%;
-  top: -1px;
+  top: -0.75em;
   text-decoration: none;
 }
-.events .event_spacer .chapter_joiner span {
-  top: -0.75em;
+.events .event_spacer .chapter_joiner .text {
   color: white;
   position: absolute;
   width: 130px;
   left: -130px;
   text-align: center;
   line-height: 1.5em;
-  background: #A88;
-  visibility: hidden;
+  display: none;
 }
-.events .event_spacer .chapter_joiner:hover {
-  border-top: 1px solid #A88;
+.events .event_spacer .chapter_joiner .line {
+  border-top: 1px solid #DDD;
+  position: absolute;
+  top: 50%;
+  width: 100%;
 }
-.events .event_spacer .chapter_joiner:hover span {
-  visibility: visible;
-}
-.events .event_spacer:hover {
-  border-top-color: #8A8;
-}
-.events .event_spacer:hover .chapter_breaker span {
+.events .event_spacer .chapter_joiner:hover .text {
   display: block;
+}
+.events .event_spacer .chapter_joiner .text {
+  background: #A88;
+}
+.events .event_spacer .chapter_joiner:hover .line {
+  border-color: #A88;
 }

@@ -2,7 +2,7 @@ class CreateEvents < ActiveRecord::Migration
   def self.up
     create_table :events do |t|
       t.datetime :timestamp # When the event took place
-      t.integer :offset # The order the events should appear in if more than one event has the same timestamp
+      t.integer :offset, :null => false, :default => 0 # The order the events should appear in if more than one event has the same timestamp
 
       t.integer :details_id
       t.string :details_type
