@@ -3,10 +3,14 @@ class User < ActiveRecord::Base
   has_one  :facebook_authentication
   has_one  :twitter_authentication
   has_one  :foursquare_authentication
-  has_many :chapters, :dependent => :destroy
-  has_many :events, :through => :authentications, :dependent => :destroy
+  
+  has_many :events, :dependent => :destroy
   
   after_create :create_initial_chapter
+  
+  def chapters
+    Chapter.joins(:event).where(:events => {:details_type => 'Chapter', :user_id => self.id})
+  end
   
   def sync_events
     authentications.each(&:sync_events)
@@ -15,6 +19,6 @@ class User < ActiveRecord::Base
   private
   
   def create_initial_chapter
-    chapters.create(:title => "My life to date", :timestamp => DateTime.new)
+    Chapter.create!(:title => "My life to date", :user_id => self.id, :timestamp => DateTime.parse('January 1, 0001'))
   end
 end

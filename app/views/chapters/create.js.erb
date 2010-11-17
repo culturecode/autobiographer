@@ -1,1 +1,1 @@
-$('.chapters').html("<%= escape_javascript(render(@chapters)) %>")
+$('.events').html("<%= escape_javascript(render(:partial => 'events/events', :locals => {:events => current_user.events.ascending.includes(:details)})) %>")

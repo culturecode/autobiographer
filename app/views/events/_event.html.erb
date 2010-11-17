@@ -1,5 +1,1 @@
-<%= div_for event do %>
-    <%= content_tag :span, event.place, :class => 'place' %>
-    <%= content_tag :span, limited_time_ago_in_words(event.timestamp), :class => 'timestamp' %>
-    <%= content_tag :p, event.comment, :class => 'comment' if event.comment %>
-<% end %>
+<%= render event.details %>

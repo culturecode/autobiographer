@@ -1,5 +1,8 @@
 class Event < ActiveRecord::Base
-  validates_presence_of :timestamp, :authentication_id, :identifier
+  belongs_to :details, :polymorphic => true
+  belongs_to :user
+  
+  validates_presence_of :timestamp, :user_id, :details_id, :details_type
   
   scope :ascending, {:order => 'timestamp ASC'}
   scope :descending, {:order => 'timestamp DESC'}

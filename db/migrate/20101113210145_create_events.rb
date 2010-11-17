@@ -2,18 +2,17 @@ class CreateEvents < ActiveRecord::Migration
   def self.up
     create_table :events do |t|
       t.datetime :timestamp # When the event took place
-      t.text :place # Where the event took place
-      t.text :comment
+      t.integer :offset # The order the events should appear in if more than one event has the same timestamp
 
-      t.belongs_to :authentication # The service the event was grabbed from
-      t.text :identifier # The id of the object on the service
+      t.integer :details_id
+      t.string :details_type
+      
+      t.belongs_to :user
     end
     
     add_index(:events, :timestamp) # For ordering
-    add_index(:events, :authentication_id)
-    add_index(:events, :place) # For searching
-    add_index(:events, :authentication_id)
-    add_index(:events, [:authentication_id, :identifier], :unique => true)
+    add_index(:events, [:details_id, :details_type]) # For lookups from the details object
+    add_index(:events, :user_id) # For grabbing all events for a particular user
     
   end
 

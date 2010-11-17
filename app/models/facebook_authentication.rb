@@ -4,11 +4,15 @@ class FacebookAuthentication < Authentication
     options[:since] = most_recent_event.timestamp if most_recent_event.present?
     
     facebook_user.checkins(options).each do |checkin|
-      Event.create(:identifier => checkin.identifier, :authentication_id => self.id, :place => checkin.place.name, :comment => checkin.message, :timestamp => checkin.created_time)
+      ActiveRecord::Base.transaction do
+        Checkin.create!(:place => checkin.place.name, :comment => checkin.message, :identifier => checkin.identifier, :authentication_id => self.id, :user_id => user.id, :timestamp => checkin.created_time)
+      end
     end
     
     facebook_user.statuses(options).each do |status|
-      Event.create(:identifier => status.identifier, :authentication_id => self.id, :comment => status.message, :timestamp => status.updated_time)
+      ActiveRecord::Base.transaction do
+        Comment.create!(:text => status.message, :identifier => status.identifier, :authentication_id => self.id, :user_id => user.id, :timestamp => status.updated_time)
+      end
     end
   end
   

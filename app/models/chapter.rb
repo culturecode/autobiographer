@@ -1,12 +1,14 @@
 class Chapter < ActiveRecord::Base
 
-  belongs_to :user
+  include TimelineDetails
 
-  scope :ascending, {:order => 'timestamp ASC'}
-  scope :descending, {:order => 'timestamp DESC'}
+  has_one :event, :as => :details
+
+  scope :ascending, {:order => 'timestamp ASC', :joins => :event}
+  scope :descending, {:order => 'timestamp DESC', :joins => :event}
   
-  validates_presence_of :user_id, :title, :timestamp
-
+  validates_presence_of :title
+  
   # Returns the next Chapter
   def next
     after.ascending.first
@@ -19,17 +21,17 @@ class Chapter < ActiveRecord::Base
   
   # Returns all chapters before this one
   def before
-    user.chapters.where("timestamp < ?", self.beginning)
+    event.user.chapters.where("timestamp < ?", beginning).joins(:event)
   end
   
   # Returns all chapters after this one
   def after
-    user.chapters.where("timestamp > ?", self.beginning)
+    event.user.chapters.where("timestamp > ?", beginning).joins(:event)
   end
 
   # Returns the timestamp of the beginning of this chapter
   def beginning
-    self.timestamp
+    event.timestamp
   end
 
   # Returns the timestamp of the end of the chapter
@@ -46,12 +48,12 @@ class Chapter < ActiveRecord::Base
   
   # Returns true if this is the first chapter
   def first?
-    user.chapters.ascending.first == self
+    event.user.chapters.ascending.first == self
   end
 
   # Returns true if this is the last chapter
   def last?
-    user.chapters.ascending.last == self
+    event.user.chapters.ascending.last == self
   end
   
   # Returns the chapter number (1 indexed)
@@ -61,6 +63,6 @@ class Chapter < ActiveRecord::Base
   
   # Returns all events in this chapter
   def events
-    user.events.where(:timestamp => beginning...ending)
+    event.user.events.where(:timestamp => beginning...ending)
   end
 end

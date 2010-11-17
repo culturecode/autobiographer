@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @chapters = current_user.chapters
+    @events = current_user.events
   end
   
   def sync

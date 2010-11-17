@@ -1,6 +1,5 @@
 class Authentication < ActiveRecord::Base
   belongs_to :user
-  has_many :events
   
   validates_presence_of :identifier, :user_id
   
@@ -36,6 +35,6 @@ class Authentication < ActiveRecord::Base
   end
   
   def most_recent_event
-    events.order('timestamp DESC').first
+    user.events.order('timestamp DESC').where('details_type != "Chapter"').first
   end
 end
