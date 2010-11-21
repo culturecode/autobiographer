@@ -9,7 +9,9 @@ Autobiographer::Application.routes.draw do
   resources :foursquare_authentications do
     get :callback, :to => :create, :on => :collection
   end
-  resources :twitter_authentications
+  resources :twitter_authentications do
+    get :callback, :to => :create, :on => :collection
+  end
 
   resources :events do
     get :sync, :on => :collection
