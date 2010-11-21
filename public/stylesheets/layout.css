@@ -84,20 +84,21 @@ article {
   padding: 0;
 }
 .chapter header {
-  font-family: Times;
-  font-variant: small-caps;
   font-size: 1.4em;
   text-align: center;
   position: relative;
-  margin: 4em 0 1em;
+  margin: 4em 0 2em;
+  font-family: Times;
 }
 .chapter header .chapter_number {
-  margin: 2em 0 1em;
+  margin-bottom: 0.5em;
   display: block;
+  font-variant: small-caps;
 }
 .chapter header h2 {
-  margin: 0;
+  margin: 0.5em 0 0.5em;
   color: #195ec4;
+  font-variant: small-caps;
 }
 .chapter header h2 input {
   width: 100%;
@@ -117,8 +118,9 @@ article {
   text-decoration: underline;
 }
 .chapter header h3 {
-  margin-top: 0;
+  margin-top: 0.5em;
   font-style: italic;
+  font-weight: normal;
   display: none;
 }
 .chapter header h3 input {
@@ -137,9 +139,6 @@ article {
 }
 .chapter header h3 input:hover {
   text-decoration: underline;
-}
-.chapter header:focus h3 {
-  display: inherit;
 }
 .events {
   padding: 0;
