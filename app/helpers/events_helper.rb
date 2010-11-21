@@ -11,13 +11,13 @@ module EventsHelper
   
   def chapter_joiner(chapter)
     link_to chapter_path(chapter), :method => :delete, :class => 'chapter_joiner', :remote => true do
-      content_tag(:span, 'Join Chapters', :class => :text) + content_tag(:div, '', :class => :line)
+      content_tag(:div, '', :class => :line) + content_tag(:span, 'Join Chapters', :class => :text)
     end
   end
 
   def chapter_breaker(event)
     link_to split_chapter_path(:event_id => event.id), :class => 'chapter_breaker', :remote => true do
-      content_tag(:span, 'Split Chapter', :class => :text) + content_tag(:div, '', :class => :line)
+      content_tag(:div, '', :class => :line) + content_tag(:span, 'Split Chapter', :class => :text)
     end
   end
 end

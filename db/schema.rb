@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20101116193252) do
 
   create_table "events", :force => true do |t|
     t.datetime "timestamp"
-    t.integer  "offset"
+    t.integer  "offset",       :default => 0, :null => false
     t.integer  "details_id"
     t.string   "details_type"
     t.integer  "user_id"

@@ -1,7 +1,8 @@
+@import 'helper_functions';
+
 @body-width: 800px;
 
 html{
-    background: #f1f0f0;
     font-family: Helvetica;
 }
 body{
@@ -41,6 +42,10 @@ header, nav, section, article{
                 color: #EEE;
             } 
         }
+        img{
+            vertical-align: text-bottom;
+            border: none;
+        }
     }
     .menu_item + .menu_item{
         margin-left: 1em;
@@ -56,20 +61,69 @@ header, nav, section, article{
     width: @body-width;
 }
 
+#drop_indicator{
+    color:#AAA;
+    font-size:1em;
+    text-align: center;
+}
+.editable_text{
+    border-bottom: 1px solid transparent;
+    
+    &:hover{
+        border-bottom: 1px solid black;
+    }
+}
+.editable_text_input{
+    background: transparent;
+    border: 0px;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    margin:-0.1em;
+    padding:0.1em;
+    color: inherit;
+    font-variant: inherit;
+    
+    &:hover{
+        text-decoration: underline;        
+    } 
+}
+
 @event-spacer-height: 1em;
 .chapter{
     padding: 0;
 
     header{
-        font-family: Times;
         font-size: 1.4em;
         text-align: center;
         position: relative;
+        margin: 4em 0 1em;
+        font-family: Times;
 
-        h2{ margin-bottom: 0; }
+        .chapter_number{
+            margin: 2em 0 1em;
+            display: block;
+            font-variant: small-caps;
+        }
+        h2{
+            margin: 0;
+            color: rgb(25,94,196);
+            input{
+                width: 100%;
+                text-align:center;
+                .editable_text_input;
+            }
+        }
         h3{
             margin-top: 0;
             font-style: italic;
+            display: none;
+            input{
+                width: 100%;
+                text-align:center;
+                .editable_text_input;
+            }
         }
     }
 }
@@ -80,8 +134,8 @@ header, nav, section, article{
 
     .event{
         margin: 1em 0;
-
-        .place{ font-size: 1.1em; }
+        font-family: 'Day Roman', Times, serif;
+        
         .timestamp{
             color: #888;
             font-size: 0.8em;
@@ -95,6 +149,7 @@ header, nav, section, article{
         margin: 1em 0;
 
         // MIXINS
+        @text-line-spacing: 3%;
         .chapter_control{
             height:1.5em;
             position:absolute;
@@ -107,9 +162,11 @@ header, nav, section, article{
                 position: absolute;
                 width: 130px;
                 left: -130px;
+                margin-left: @text-line-spacing * -1;
                 text-align:center;
                 line-height: 1.5em;                
                 display: none;
+                .rounded-corners(2px);
             }
             .line{
                 border-top: 1px solid #DDD;
@@ -117,8 +174,14 @@ header, nav, section, article{
                 top: 50%;
                 width: 100%;
             }
-            &:hover .text{
-                        display: block;
+            &:hover{
+                .text{
+                    display: block;
+                }
+                .line{
+                    width: 100% + @text-line-spacing;
+                    left: @text-line-spacing * -1;
+                }  
             }            
         }
         // SPECIFICS

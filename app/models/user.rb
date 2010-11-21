@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   after_create :create_initial_chapter
   
   def chapters
-    Chapter.joins(:event).where(:events => {:details_type => 'Chapter', :user_id => self.id})
+    Chapter.select('chapters.*').joins(:event).where(:events => {:details_type => 'Chapter', :user_id => self.id})
   end
   
   def sync_events

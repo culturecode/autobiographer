@@ -1,5 +1,5 @@
+/* Rounded Corners */
 html {
-  background: #f1f0f0;
   font-family: Helvetica;
 }
 body {
@@ -40,6 +40,10 @@ article {
 .site_menu .menu_item a:hover {
   color: #EEE;
 }
+.site_menu .menu_item img {
+  vertical-align: text-bottom;
+  border: none;
+}
 .site_menu .menu_item + .menu_item {
   margin-left: 1em;
 }
@@ -50,21 +54,92 @@ article {
   margin: 0 auto;
   width: 800px;
 }
+#drop_indicator {
+  color: #AAA;
+  font-size: 1em;
+  text-align: center;
+}
+.editable_text {
+  border-bottom: 1px solid transparent;
+}
+.editable_text:hover {
+  border-bottom: 1px solid black;
+}
+.editable_text_input {
+  background: transparent;
+  border: 0px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  margin: -0.1em;
+  padding: 0.1em;
+  color: inherit;
+  font-variant: inherit;
+}
+.editable_text_input:hover {
+  text-decoration: underline;
+}
 .chapter {
   padding: 0;
 }
 .chapter header {
   font-family: Times;
+  font-variant: small-caps;
   font-size: 1.4em;
   text-align: center;
   position: relative;
+  margin: 4em 0 1em;
+}
+.chapter header .chapter_number {
+  margin: 2em 0 1em;
+  display: block;
 }
 .chapter header h2 {
-  margin-bottom: 0;
+  margin: 0;
+  color: #195ec4;
+}
+.chapter header h2 input {
+  width: 100%;
+  text-align: center;
+  background: transparent;
+  border: 0px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  margin: -0.1em;
+  padding: 0.1em;
+  color: inherit;
+  font-variant: inherit;
+}
+.chapter header h2 input:hover {
+  text-decoration: underline;
 }
 .chapter header h3 {
   margin-top: 0;
   font-style: italic;
+  display: none;
+}
+.chapter header h3 input {
+  width: 100%;
+  text-align: center;
+  background: transparent;
+  border: 0px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  margin: -0.1em;
+  padding: 0.1em;
+  color: inherit;
+  font-variant: inherit;
+}
+.chapter header h3 input:hover {
+  text-decoration: underline;
+}
+.chapter header:focus h3 {
+  display: inherit;
 }
 .events {
   padding: 0;
@@ -72,9 +147,7 @@ article {
 }
 .events .event {
   margin: 1em 0;
-}
-.events .event .place {
-  font-size: 1.1em;
+  font-family: 'Day Roman', Times, serif;
 }
 .events .event .timestamp {
   color: #888;
@@ -98,9 +171,13 @@ article {
   position: absolute;
   width: 130px;
   left: -130px;
+  margin-left: -3%;
   text-align: center;
   line-height: 1.5em;
   display: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }
 .events .event_spacer .chapter_control .line {
   border-top: 1px solid #DDD;
@@ -110,6 +187,10 @@ article {
 }
 .events .event_spacer .chapter_control:hover .text {
   display: block;
+}
+.events .event_spacer .chapter_control:hover .line {
+  width: 103%;
+  left: -3%;
 }
 .events .event_spacer .chapter_breaker {
   height: 1.5em;
@@ -123,9 +204,13 @@ article {
   position: absolute;
   width: 130px;
   left: -130px;
+  margin-left: -3%;
   text-align: center;
   line-height: 1.5em;
   display: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }
 .events .event_spacer .chapter_breaker .line {
   border-top: 1px solid #DDD;
@@ -135,6 +220,10 @@ article {
 }
 .events .event_spacer .chapter_breaker:hover .text {
   display: block;
+}
+.events .event_spacer .chapter_breaker:hover .line {
+  width: 103%;
+  left: -3%;
 }
 .events .event_spacer .chapter_breaker .text {
   background: #8A8;
@@ -154,9 +243,13 @@ article {
   position: absolute;
   width: 130px;
   left: -130px;
+  margin-left: -3%;
   text-align: center;
   line-height: 1.5em;
   display: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }
 .events .event_spacer .chapter_joiner .line {
   border-top: 1px solid #DDD;
@@ -166,6 +259,10 @@ article {
 }
 .events .event_spacer .chapter_joiner:hover .text {
   display: block;
+}
+.events .event_spacer .chapter_joiner:hover .line {
+  width: 103%;
+  left: -3%;
 }
 .events .event_spacer .chapter_joiner .text {
   background: #A88;

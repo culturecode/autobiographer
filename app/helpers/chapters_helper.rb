@@ -1,10 +1,8 @@
-module ChaptersHelper  
-  def chapter_header(chapter)
-    content_tag :header do
-      "".html_safe.tap do |output|
-        output << content_tag(:h2, "Chapter #{chapter.number}: #{chapter.title}")
-        output << content_tag(:h3, chapter.subtitle) if chapter.subtitle
-      end
-    end
+module ChaptersHelper
+  def editable_chapter_title(chapter)
+    text_field_tag 'chapter[title]', chapter.title, 'data-chapter-id' => chapter.id, :class => :editable_chapter_heading, :id => nil, :placeholder => 'Chapter Title Required'
   end
+  def editable_chapter_subtitle(chapter)
+    text_field_tag 'chapter[subtitle]', chapter.subtitle, 'data-chapter-id' => chapter.id, :class => :editable_chapter_heading, :id => nil, :placeholder => 'Subtitle'
+  end  
 end

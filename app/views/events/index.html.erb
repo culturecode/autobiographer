@@ -1,3 +1,4 @@
 <ol class='events'>
     <%= render :partial => 'events/events', :locals => {:events => @events.ascending.includes(:details)} %>
 </ol>
+<div id='drop_indicator'>Drag and drop photos onto the page</div>

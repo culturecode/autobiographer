@@ -1,6 +1,6 @@
 class FoursquareAuthentication < Authentication  
   def sync_subclass_events
-    sinceid = "?sinceid=#{most_recent_event.identifier}" if most_recent_event.present?
+    sinceid = "?sinceid=#{most_recent_event.details.identifier}" if most_recent_event.present?
     response = access_token.get("http://api.foursquare.com/v1/history.json#{sinceid}")
     history = JSON.parse(response.body)
     
