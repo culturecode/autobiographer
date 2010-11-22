@@ -10,11 +10,13 @@
     <header>
         <nav class='site_menu'>
             <ul>
-                <li class='menu_item'>Autobiographer</li>
-                <% if current_user.present? %>
-                <li class='menu_item' id='refresh_link'><%= link_to "Refresh", sync_events_path %></li> 
-                <li class='menu_item' id='account_links'><%= facebook_link %> <%= twitter_link %> <%= foursquare_link %></li>                
+                <li class='menu_item' id='chapters_link'>
+                    <%= link_to 'Chapters', chapters_path, :id => 'chapter_index' %>
+                    <%= render :partial => '/chapters/chapter_menu', :locals => {:chapters => current_user.chapters} %>
+                </li>
+                <% if current_user.present? %>                 
                 <li class='menu_item' id='upload_link'><a id="pickfiles" href="#">Upload Photos</a></li>
+                <li class='menu_item' id='account_links'><%= facebook_link %> <%= twitter_link %> <%= foursquare_link %> <%= link_to "Refresh", sync_events_path %></li>
                 <li class='menu_item' id='sign_out_link'><%= link_to 'Sign Out', session_path, :method => :delete %></li>
                 <% end %>
             </ul>

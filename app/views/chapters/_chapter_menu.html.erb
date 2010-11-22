@@ -1,0 +1,5 @@
+<ol id='chapter_menu'>
+<% for chapter in chapters.ascending %>
+    <li><%= link_to chapter.title, events_path(:anchor => "chapter_#{chapter.id}") %></li>
+<% end%>
+</ol>

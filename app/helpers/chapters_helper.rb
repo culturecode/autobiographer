@@ -4,5 +4,5 @@ module ChaptersHelper
   end
   def editable_chapter_subtitle(chapter)
     text_field_tag 'chapter[subtitle]', chapter.subtitle, 'data-chapter-id' => chapter.id, :class => :editable_chapter_heading, :id => nil, :placeholder => 'Subtitle'
-  end  
+  end
 end

@@ -1,4 +1,10 @@
 @import 'helper_functions';
+@import 'dropdown_menu';
+
+@font-face {
+  font-family: "Day Roman";
+  src: local("Day Roman"), url("/fonts/DAYROM.ttf");
+}
 
 @body-width: 800px;
 
@@ -7,14 +13,16 @@ html{
 }
 body{
     margin: 0;
-    padding: 2em 0;
+    margin: 3em 0;
 }
 header, nav, section, article{
     display:block;
 }
 .site_menu{
+    // ELEMENTS
     background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(90,90,90)), color-stop(1, rgb(51,51,51)));
     background: -moz-linear-gradient(center bottom, rgb(90,90,90) 0%, rgb(51,51,51) 100%);
+    border-bottom: 1px solid black;
     position: fixed;
     top:0;
     width: 100%;
@@ -24,27 +32,28 @@ header, nav, section, article{
         width: @body-width;
         margin: 0 auto;
         list-style: none;
-        line-height: 2em;
-        border-bottom: 1px solid black;
         padding: 0;
     }
-
     .menu_item{
-        color: white;
-        font-size: 1em;
         display: inline-block;
+        position: relative;        
+
+        img{
+            vertical-align: middle;
+            border: none;
+        }
 
         a{
-            color: inherit;
+            display: inline-block;
+            color: white;
+            font-size: 1em;
+            padding: 0.5em;
+            line-height: 22px;
             text-decoration: none;
 
             &:hover{
                 color: #EEE;
             } 
-        }
-        img{
-            vertical-align: text-bottom;
-            border: none;
         }
     }
     .menu_item + .menu_item{
@@ -54,6 +63,14 @@ header, nav, section, article{
     #sign_out_link{
         float:right;
     }
+
+    #chapters_link a{
+        .dropdown_menu_trigger;
+    }
+    #chapter_menu{
+        .dropdown_menu;
+        a{ .dropdown_menu_item; }
+    }
 }
 
 .body_content{
@@ -61,14 +78,9 @@ header, nav, section, article{
     width: @body-width;
 }
 
-#drop_indicator{
-    color:#AAA;
-    font-size:1em;
-    text-align: center;
-}
 .editable_text{
     border-bottom: 1px solid transparent;
-    
+
     &:hover{
         border-bottom: 1px solid black;
     }
@@ -84,7 +96,7 @@ header, nav, section, article{
     padding:0.1em;
     color: inherit;
     font-variant: inherit;
-    
+
     &:hover{
         text-decoration: underline;        
     } 
@@ -98,7 +110,8 @@ header, nav, section, article{
         font-size: 1.4em;
         text-align: center;
         position: relative;
-        margin: 4em 0 2em;
+        margin: 1em 0 2em;
+        padding-top: 3em; // Use padding instead of margin to give anchor links a nice amount space above the chapter number
         font-family: Times;
 
         .chapter_number{
@@ -137,7 +150,7 @@ header, nav, section, article{
     .event{
         margin: 1em 0;
         font-family: 'Day Roman', Times, serif;
-        
+
         .timestamp{
             color: #888;
             font-size: 0.8em;
