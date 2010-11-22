@@ -73,6 +73,16 @@ section,
 article {
   display: block;
 }
+#site_title {
+  font-family: 'AquilineTwo';
+  display: block;
+  font-size: 3em;
+  text-align: center;
+}
+#login_options {
+  margin: 2em 0;
+  text-align: center;
+}
 .site_menu {
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #5a5a5a), color-stop(1, #333333));
   background: -moz-linear-gradient(center bottom, #5a5a5a 0%, #333333 100%);
