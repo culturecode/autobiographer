@@ -56,6 +56,12 @@
   color: white;
   background: #195ec4;
 }
+.delete_button {
+  background: url("/images/buttons/buttons.png") -40px 0;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+}
 @font-face {
   font-family: "Day Roman";
   src: local("Day Roman"), url("/fonts/DAYROM.ttf");
@@ -196,9 +202,7 @@ article {
   padding: 0.1em;
   color: inherit;
   font-variant: inherit;
-}
-.editable_text_input:hover {
-  text-decoration: underline;
+  width: 100%;
 }
 .chapter {
   padding: 0;
@@ -222,7 +226,6 @@ article {
   font-variant: small-caps;
 }
 .chapter header h2 input {
-  width: 100%;
   text-align: center;
   background: transparent;
   border: 0px;
@@ -234,6 +237,7 @@ article {
   padding: 0.1em;
   color: inherit;
   font-variant: inherit;
+  width: 100%;
 }
 .chapter header h2 input:hover {
   text-decoration: underline;
@@ -245,7 +249,6 @@ article {
   display: none;
 }
 .chapter header h3 input {
-  width: 100%;
   text-align: center;
   background: transparent;
   border: 0px;
@@ -257,9 +260,54 @@ article {
   padding: 0.1em;
   color: inherit;
   font-variant: inherit;
+  width: 100%;
 }
 .chapter header h3 input:hover {
   text-decoration: underline;
+}
+.note {
+  position: relative;
+}
+.note .editable_note {
+  background: transparent;
+  border: 0px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  margin: -0.1em;
+  padding: 0.1em;
+  color: inherit;
+  font-variant: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  background: #FFD;
+  border: 1px solid #EEC;
+  padding: 0.5em;
+  font-family: 'Day Roman', Times, serif;
+}
+.delete_event_link {
+  visibility: hidden;
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  padding: 5px;
+}
+.delete_event_link img {
+  background: url("/images/buttons/buttons.png") -40px 0;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+}
+*:hover > .delete_event_link {
+  visibility: visible;
 }
 .events {
   padding: 0;
@@ -282,7 +330,7 @@ article {
 .events .event_spacer .chapter_control {
   height: 1.5em;
   position: absolute;
-  width: 100%;
+  width: 47.5%;
   top: -0.75em;
   text-decoration: none;
 }
@@ -290,8 +338,6 @@ article {
   color: white;
   position: absolute;
   width: 130px;
-  left: -130px;
-  margin-left: -3%;
   text-align: center;
   line-height: 1.5em;
   display: none;
@@ -303,31 +349,118 @@ article {
   border-radius: 2px;
 }
 .events .event_spacer .chapter_control .line {
-  border-top: 1px solid #DDD;
+  border-top: 1px dotted #CCC;
   position: absolute;
   top: 50%;
   width: 100%;
 }
+.events .event_spacer .chapter_control:hover {
+  padding-right: 1em;
+}
 .events .event_spacer .chapter_control:hover .text {
-  display: block;
+  display: inherit;
 }
 .events .event_spacer .chapter_control:hover .line {
-  width: 103%;
-  left: -3%;
+  border-top-style: solid;
+}
+.events .event_spacer .chapter_control_left {
+  height: 1.5em;
+  position: absolute;
+  width: 47.5%;
+  top: -0.75em;
+  text-decoration: none;
+  left: 0;
+}
+.events .event_spacer .chapter_control_left .text {
+  color: white;
+  position: absolute;
+  width: 130px;
+  text-align: center;
+  line-height: 1.5em;
+  display: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.events .event_spacer .chapter_control_left .line {
+  border-top: 1px dotted #CCC;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+.events .event_spacer .chapter_control_left:hover {
+  padding-right: 1em;
+}
+.events .event_spacer .chapter_control_left:hover .text {
+  display: inherit;
+}
+.events .event_spacer .chapter_control_left:hover .line {
+  border-top-style: solid;
+}
+.events .event_spacer .chapter_control_left .text {
+  left: -130px;
+}
+.events .event_spacer .chapter_control_left:hover {
+  left: -1em;
+}
+.events .event_spacer .chapter_control_right {
+  height: 1.5em;
+  position: absolute;
+  width: 47.5%;
+  top: -0.75em;
+  text-decoration: none;
+  right: 0;
+}
+.events .event_spacer .chapter_control_right .text {
+  color: white;
+  position: absolute;
+  width: 130px;
+  text-align: center;
+  line-height: 1.5em;
+  display: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.events .event_spacer .chapter_control_right .line {
+  border-top: 1px dotted #CCC;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+.events .event_spacer .chapter_control_right:hover {
+  padding-right: 1em;
+}
+.events .event_spacer .chapter_control_right:hover .text {
+  display: inherit;
+}
+.events .event_spacer .chapter_control_right:hover .line {
+  border-top-style: solid;
+}
+.events .event_spacer .chapter_control_right .text {
+  right: -130px;
+}
+.events .event_spacer .chapter_control_right:hover {
+  right: -1em;
 }
 .events .event_spacer .chapter_breaker {
   height: 1.5em;
   position: absolute;
-  width: 100%;
+  width: 47.5%;
   top: -0.75em;
   text-decoration: none;
+  left: 0;
 }
 .events .event_spacer .chapter_breaker .text {
   color: white;
   position: absolute;
   width: 130px;
-  left: -130px;
-  margin-left: -3%;
   text-align: center;
   line-height: 1.5em;
   display: none;
@@ -339,17 +472,25 @@ article {
   border-radius: 2px;
 }
 .events .event_spacer .chapter_breaker .line {
-  border-top: 1px solid #DDD;
+  border-top: 1px dotted #CCC;
   position: absolute;
   top: 50%;
   width: 100%;
 }
+.events .event_spacer .chapter_breaker:hover {
+  padding-right: 1em;
+}
 .events .event_spacer .chapter_breaker:hover .text {
-  display: block;
+  display: inherit;
 }
 .events .event_spacer .chapter_breaker:hover .line {
-  width: 103%;
-  left: -3%;
+  border-top-style: solid;
+}
+.events .event_spacer .chapter_breaker .text {
+  left: -130px;
+}
+.events .event_spacer .chapter_breaker:hover {
+  left: -1em;
 }
 .events .event_spacer .chapter_breaker .text {
   background: #8A8;
@@ -357,19 +498,18 @@ article {
 .events .event_spacer .chapter_breaker:hover .line {
   border-color: #8A8;
 }
-.events .event_spacer .chapter_joiner {
+.events .event_spacer .annotation_inserter {
   height: 1.5em;
   position: absolute;
-  width: 100%;
+  width: 47.5%;
   top: -0.75em;
   text-decoration: none;
+  right: 0;
 }
-.events .event_spacer .chapter_joiner .text {
+.events .event_spacer .annotation_inserter .text {
   color: white;
   position: absolute;
   width: 130px;
-  left: -130px;
-  margin-left: -3%;
   text-align: center;
   line-height: 1.5em;
   display: none;
@@ -380,22 +520,30 @@ article {
   -moz-border-radius: 2px;
   border-radius: 2px;
 }
-.events .event_spacer .chapter_joiner .line {
-  border-top: 1px solid #DDD;
+.events .event_spacer .annotation_inserter .line {
+  border-top: 1px dotted #CCC;
   position: absolute;
   top: 50%;
   width: 100%;
 }
-.events .event_spacer .chapter_joiner:hover .text {
-  display: block;
+.events .event_spacer .annotation_inserter:hover {
+  padding-right: 1em;
 }
-.events .event_spacer .chapter_joiner:hover .line {
-  width: 103%;
-  left: -3%;
+.events .event_spacer .annotation_inserter:hover .text {
+  display: inherit;
 }
-.events .event_spacer .chapter_joiner .text {
-  background: #A88;
+.events .event_spacer .annotation_inserter:hover .line {
+  border-top-style: solid;
 }
-.events .event_spacer .chapter_joiner:hover .line {
-  border-color: #A88;
+.events .event_spacer .annotation_inserter .text {
+  right: -130px;
+}
+.events .event_spacer .annotation_inserter:hover {
+  right: -1em;
+}
+.events .event_spacer .annotation_inserter .text {
+  background: #888;
+}
+.events .event_spacer .annotation_inserter:hover .line {
+  border-color: #888;
 }

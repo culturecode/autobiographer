@@ -1,9 +1,10 @@
 @import 'helper_functions';
 @import 'dropdown_menu';
+@import 'buttons';
 
 @font-face {
-  font-family: "Day Roman";
-  src: local("Day Roman"), url("/fonts/DAYROM.ttf");
+    font-family: "Day Roman";
+    src: local("Day Roman"), url("/fonts/DAYROM.ttf");
 }
 
 @body-width: 800px;
@@ -108,10 +109,7 @@ header, nav, section, article{
     padding:0.1em;
     color: inherit;
     font-variant: inherit;
-
-    &:hover{
-        text-decoration: underline;        
-    } 
+    width: 100%;    
 }
 
 @event-spacer-height: 1em;
@@ -136,9 +134,11 @@ header, nav, section, article{
             color: rgb(25,94,196);
             font-variant: small-caps;
             input{
-                width: 100%;
                 text-align:center;
                 .editable_text_input;
+                &:hover{
+                    text-decoration: underline;        
+                } 
             }
         }
         h3{
@@ -147,12 +147,42 @@ header, nav, section, article{
             font-weight: normal;
             display: none;
             input{
-                width: 100%;
                 text-align:center;
                 .editable_text_input;
+                &:hover{
+                    text-decoration: underline;        
+                } 
             }
         }
     }
+}
+
+.note{
+    position: relative;
+    
+    .editable_note{
+        .editable_text_input;
+        .border-box;
+        background: #FFD;
+        border: 1px solid #EEC;
+        padding: 0.5em;    
+        font-family: 'Day Roman', Times, serif;
+    }
+} 
+
+// Delete Link
+.delete_event_link{
+    visibility: hidden;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    padding: 5px;
+    img{
+        .delete_button;            
+    }
+}
+*:hover > .delete_event_link{
+    visibility: visible;
 }
 
 .events{
@@ -167,7 +197,6 @@ header, nav, section, article{
             color: #888;
             font-size: 0.8em;
         }
-
     }
     .event_spacer{
         position: relative;
@@ -176,45 +205,64 @@ header, nav, section, article{
         margin: 1em 0;
 
         // MIXINS
-        @text-line-spacing: 3%;
+        @text-line-spacing: 1em;
+        @text-width: 130px;
+        @control-column-spacing: 5%;
         .chapter_control{
             height:1.5em;
             position:absolute;
-            width:100%;
+            width: 50% - @control-column-spacing / 2;
             top: -0.75em;
             text-decoration: none;
+
 
             .text{
                 color:white;
                 position: absolute;
-                width: 130px;
-                left: -130px;
-                margin-left: @text-line-spacing * -1;
+                width: @text-width;
                 text-align:center;
                 line-height: 1.5em;                
                 display: none;
                 .rounded-corners(2px);
             }
             .line{
-                border-top: 1px solid #DDD;
+                border-top: 1px dotted #CCC;
                 position: absolute;
                 top: 50%;
                 width: 100%;
             }
             &:hover{
+                padding-right: @text-line-spacing; // Extend the line to the text
                 .text{
-                    display: block;
+                    display: inherit;
                 }
                 .line{
-                    width: 100% + @text-line-spacing;
-                    left: @text-line-spacing * -1;
+                    border-top-style: solid;
                 }  
+            }
+        }
+        .chapter_control_left{
+            .chapter_control;
+            .text{left: @text-width * -1;}
+            left: 0;
+
+            &:hover{
+                left: @text-line-spacing * -1; // Extend the line to the text
             }            
         }
-        // SPECIFICS
-
-        .chapter_breaker{
+        .chapter_control_right{
             .chapter_control;
+            .text{right: @text-width * -1;}
+            right: 0;
+
+            &:hover{
+                right: @text-line-spacing * -1; // Extend the line to the text
+            }                        
+        }
+
+        // SPECIFICS
+        .chapter_breaker{
+            .chapter_control_left;
             .text{
                 background:#8A8;
             }
@@ -222,14 +270,14 @@ header, nav, section, article{
                 border-color: #8A8;
             }
         }
-        .chapter_joiner{
-            .chapter_control;
+        .annotation_inserter{
+            .chapter_control_right;
             .text{
-                background:#A88;    
+                background:#888;
             }
             &:hover .line{
-                border-color: #A88;
+                border-color: #888;
             }
-        }
-    }
+        }        
+    }    
 }

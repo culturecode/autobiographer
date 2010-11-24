@@ -1,11 +1,13 @@
 class Event < ActiveRecord::Base
-  belongs_to :details, :polymorphic => true
   belongs_to :user
+  belongs_to :details, :polymorphic => true  
+  belongs_to :note, :class_name => "Note", :foreign_key => "details_id"
+  belongs_to :chapter, :class_name => "Chapter", :foreign_key => "details_id"
   
   validates_presence_of :timestamp, :user_id, :details_id, :details_type
   
-  scope :ascending, {:order => 'timestamp ASC, offset ASC'}
-  scope :descending, {:order => 'timestamp DESC, offset DESC'}
+  scope :ascending, {:order => 'events.timestamp ASC, events.offset ASC'}
+  scope :descending, {:order => 'events.timestamp DESC, events.offset DESC'}
   
   def self.increment_offsets(events)
     update_all("offset = offset + 1", events)
@@ -39,11 +41,11 @@ class Event < ActiveRecord::Base
     
   # Returns all events at this timestamp with an earlier offset
   def earlier_offset_events
-    Event.where(["timestamp = ? AND offset < ?", self.timestamp, self.offset])
+    Event.where(["events.timestamp = ? AND events.offset < ?", self.timestamp, self.offset])
   end
   
   # Returns all events at this timestamp with a later offset
   def later_offset_events
-    Event.where(["timestamp = ? AND offset > ?", self.timestamp, self.offset])
+    Event.where(["events.timestamp = ? AND events.offset > ?", self.timestamp, self.offset])
   end
 end

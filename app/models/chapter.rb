@@ -4,8 +4,8 @@ class Chapter < ActiveRecord::Base
 
   has_one :event, :as => :details
 
-  scope :ascending, {:order => 'timestamp ASC', :joins => :event}
-  scope :descending, {:order => 'timestamp DESC', :joins => :event}
+  scope :ascending, {:order => 'events.timestamp ASC', :joins => :event}
+  scope :descending, {:order => 'events.timestamp DESC', :joins => :event}
   
   validates_presence_of :title
   
@@ -21,12 +21,12 @@ class Chapter < ActiveRecord::Base
   
   # Returns all chapters before this one
   def before
-    event.user.chapters.where("timestamp < ?", beginning).joins(:event)
+    event.user.chapters.where("events.timestamp < ?", beginning).joins(:event)
   end
   
   # Returns all chapters after this one
   def after
-    event.user.chapters.where("timestamp > ?", beginning).joins(:event)
+    event.user.chapters.where("events.timestamp > ?", beginning).joins(:event)
   end
 
   # Returns the timestamp of the beginning of this chapter

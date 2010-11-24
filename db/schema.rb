@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101116193252) do
+ActiveRecord::Schema.define(:version => 20101124041314) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -61,6 +61,10 @@ ActiveRecord::Schema.define(:version => 20101116193252) do
   add_index "events", ["details_id", "details_type"], :name => "index_events_on_details_id_and_details_type"
   add_index "events", ["timestamp"], :name => "index_events_on_timestamp"
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
+
+  create_table "notes", :force => true do |t|
+    t.text "text"
+  end
 
   create_table "photo_groups", :force => true do |t|
     t.datetime "created_at"

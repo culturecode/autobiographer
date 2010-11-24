@@ -20,6 +20,9 @@ Autobiographer::Application.routes.draw do
   
   resources :chapters
   match 'split_chapter', :to => 'chapters#create'
+
+  resources :notes
+  match 'create_note', :to => 'notes#create'
   
   post 'uploads/photos'
   

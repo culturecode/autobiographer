@@ -1,0 +1,2 @@
+$('.events').html("<%= escape_javascript(render(:partial => 'events/events', :locals => {:events => current_user.events.ascending.includes(:details)})) %>")
+$('#chapter_menu').replaceWith("<%= escape_javascript(render(:partial => 'chapters/chapter_menu', :locals => {:chapters => current_user.chapters.ascending})) %>")

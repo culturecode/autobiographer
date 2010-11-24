@@ -86,3 +86,14 @@ $(window.document.body).click(function(event){
         $('#chapter_menu').hide();
     }
 });
+
+// NOTES
+$(".editable_note").live('change', function(event){
+    var data = {}
+    data[this.name] = this.value
+    $.ajax({
+        url: "notes/" + this.getAttribute('data-note-id'),
+        data: data,
+        type: 'PUT'
+    });
+});
