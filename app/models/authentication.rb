@@ -35,6 +35,6 @@ class Authentication < ActiveRecord::Base
   end
   
   def most_recent_event
-    user.events.order('timestamp DESC').where('details_type != "Chapter"').first
+    user.events.order('timestamp DESC').where("details_type != 'Chapter'").first
   end
 end
