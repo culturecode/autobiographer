@@ -8,3 +8,5 @@ gem 'oauth'
 gem 'fb_graph'
 gem 'twitter', :git => "https://github.com/jnunemaker/twitter.git"
 gem 'linguistics'
+
+gem 'heroku'
