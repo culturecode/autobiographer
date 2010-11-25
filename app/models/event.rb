@@ -10,11 +10,11 @@ class Event < ActiveRecord::Base
   scope :descending, {:order => 'events.timestamp DESC, events.offset DESC'}
   
   def self.increment_offsets(events)
-    update_all("offset = offset + 1", events)
+    update_all("'offset' = 'offset' + 1", events)
   end
 
   def self.decrement_offsets(events)
-    update_all("offset = offset - 1", events)
+    update_all("'offset' = 'offset' - 1", events)
   end
   
   # Inserts the current event before the given event
