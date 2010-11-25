@@ -1,4 +1,4 @@
 <% events.each_with_index do |event, index| %>
     <%= event_spacer(event, events[index-1]) %>
-    <%= content_tag :li, render(event), :class => :event %>
+    <%= content_tag :li, render(event), :class => :event, :id => dom_id(event) %>
 <% end%>    

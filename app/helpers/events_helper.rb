@@ -11,7 +11,7 @@ module EventsHelper
       end
     end
 
-    content_tag :li, content, :class => 'event_spacer' if content
+    content_tag :li, content, :class => 'event_spacer', :id => "event_#{event.id}_spacer" if content.present?
   end
 
   def chapter_breaker(event)
