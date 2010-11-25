@@ -10,10 +10,12 @@ class Event < ActiveRecord::Base
   scope :descending, {:order => 'events.timestamp DESC, events.offset DESC'}
   
   def self.increment_offsets(events)
+    return if events.empty?
     update_all("offset = events.offset + 1", events)
   end
 
   def self.decrement_offsets(events)
+    return if events.empty?
     update_all("offset = events.offset - 1", events)
   end
   
