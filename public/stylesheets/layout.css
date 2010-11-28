@@ -1,67 +1,3 @@
-/* Rounded Corners */
-/* Rounded Corners */
-.dropdown_menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 15em;
-  overflow: hidden;
-  white-space: nowrap;
-  background-color: white;
-  padding: 0.5em 0;
-  -webkit-border-bottom-right-radius: 3px;
-  -webkit-border-bottom-left-radius: 3px;
-  -moz-border-radius-bottomright: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  -webkit-border-bottom-right-radius: 3px;
-  -webkit-border-bottom-left-radius: 3px;
-  -moz-border-radius-bottomright: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  border: solid #bbbbbb;
-  border-width: 0 1px 1px;
-}
-.dropdown_menu_trigger {
-  border: solid transparent;
-  border-width: 0 1px;
-}
-.dropdown_menu_trigger.open {
-  color: black;
-  z-index: 1;
-  position: relative;
-  background-color: white;
-  border-color: #bbbbbb;
-}
-.dropdown_menu_item {
-  display: block;
-  padding: 0.25em 0.5em;
-  color: black;
-}
-.dropdown_menu_item:hover {
-  color: white;
-  color: white;
-  background: #195ec4;
-}
-.dropdown_menu_item_hover {
-  color: white;
-  background: #195ec4;
-}
-.delete_button {
-  background: url("/images/buttons/buttons.png") -40px 0;
-  cursor: pointer;
-  height: 30px;
-  width: 30px;
-}
 @font-face {
   font-family: "Day Roman";
   src: local("Day Roman"), url("/fonts/DAYROM.ttf");
@@ -207,6 +143,16 @@ img {
   font-variant: inherit;
   width: 100%;
 }
+.autogrow_sizer {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
 .chapter {
   padding: 0;
 }
@@ -298,10 +244,10 @@ img {
 }
 .delete_event_link {
   visibility: hidden;
+  padding: 5px;
   position: absolute;
   right: -15px;
   top: -15px;
-  padding: 5px;
 }
 .delete_event_link img {
   background: url("/images/buttons/buttons.png") -40px 0;
