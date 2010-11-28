@@ -3,7 +3,7 @@ module TimelineDetails
     base.class_eval do
       attr_accessor :timestamp, :user_id, :insert_before_event, :insert_after_event
       after_create :insert_into_timeline
-      after_destroy :remove_from_timeline
+      has_one :event, :as => :details, :dependent => :destroy
     end
   end
 
@@ -19,9 +19,5 @@ module TimelineDetails
       event.timestamp = timestamp
       event.save!
     end
-  end
-
-  def remove_from_timeline
-    self.event.destroy
   end
 end
