@@ -2,8 +2,6 @@ class Chapter < ActiveRecord::Base
 
   include TimelineDetails
 
-  has_one :event, :as => :details
-
   scope :ascending, {:order => 'events.timestamp ASC', :joins => :event}
   scope :descending, {:order => 'events.timestamp DESC', :joins => :event}
   

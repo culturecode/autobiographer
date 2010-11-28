@@ -33,6 +33,7 @@ class ChaptersController < ApplicationController
   private
   
   def find_chapter
+    # HACK: Polymorphic through relations returns readonly records...
     @chapter = current_user.chapters.find(params[:id], :readonly => false)
   end
 end

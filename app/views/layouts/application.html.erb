@@ -25,6 +25,6 @@
     <div class='body_content'>
         <%= yield %>
     </div>
-    <%= javascript_include_tag 'jquery', 'rails', 'application', '/plupload/gears_init.js', 'http://bp.yahooapis.com/2.4.21/browserplus-min.js', '/plupload/plupload.full.min.js', 'uploader' %>
+    <%= javascript_include_tag :defaults, '/plupload/gears_init.js', 'http://bp.yahooapis.com/2.4.21/browserplus-min.js', '/plupload/plupload.full.min.js', 'uploader' %>
 </body>
 </html>

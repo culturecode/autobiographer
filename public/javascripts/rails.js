@@ -41,7 +41,7 @@ jQuery(function ($) {
             var el      = this,
                 method  = el.attr('method') || el.attr('data-method') || 'GET',
                 url     = el.attr('action') || el.attr('href'),
-                dataType  = el.attr('data-type')  || 'script';
+                dataType  = el.attr('data-type')  || ($.ajaxSettings && $.ajaxSettings.dataType);
 
             if (url === undefined) {
                 throw "No URL specified for remote call (action or href must be present).";
@@ -54,6 +54,7 @@ jQuery(function ($) {
                         dataType: dataType,
                         type: method.toUpperCase(),
                         beforeSend: function (xhr) {
+                            xhr.setRequestHeader("Accept", "text/javascript");
                             el.trigger('ajax:loading', xhr);
                         },
                         success: function (data, status, xhr) {
@@ -77,7 +78,7 @@ jQuery(function ($) {
      *  confirmation handler
      */
 
-    $('body').delegate('a[data-confirm], button[data-confirm], input[data-confirm]', 'click', function () {
+    $('body').delegate('a[data-confirm], button[data-confirm], input[data-confirm]', 'click.rails', function () {
         var el = $(this);
         if (el.triggerAndReturn('confirm')) {
             if (!confirm(el.attr('data-confirm'))) {
@@ -91,17 +92,22 @@ jQuery(function ($) {
     /**
      * remote handlers
      */
-    $('form[data-remote]').live('submit', function (e) {
+    $('form[data-remote]').live('submit.rails', function (e) {
         $(this).callRemote();
         e.preventDefault();
     });
 
-    $('a[data-remote],input[data-remote]').live('click', function (e) {
+    $('a[data-remote],input[data-remote]').live('click.rails', function (e) {
         $(this).callRemote();
         e.preventDefault();
     });
 
-    $('a[data-method]:not([data-remote])').live('click', function (e){
+    /**
+     * <%= link_to "Delete", user_path(@user), :method => :delete, :confirm => "Are you sure?" %>
+     *
+     * <a href="/users/5" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+     */
+    $('a[data-method]:not([data-remote])').live('click.rails', function (e){
         var link = $(this),
             href = link.attr('href'),
             method = link.attr('data-method'),
@@ -136,10 +142,10 @@ jQuery(function ($) {
         });
     };
 
-    $(disable_with_form_remote_selector).live('ajax:before', disable_with_input_function);
-    $(disable_with_form_not_remote_selector).live('submit', disable_with_input_function);
+    $(disable_with_form_remote_selector).live('ajax:before.rails', disable_with_input_function);
+    $(disable_with_form_not_remote_selector).live('submit.rails', disable_with_input_function);
 
-    $(disable_with_form_remote_selector).live('ajax:complete', function () {
+    $(disable_with_form_remote_selector).live('ajax:complete.rails', function () {
         $(this).find(disable_with_input_selector).each(function () {
             var input = $(this);
             input.removeAttr('disabled')

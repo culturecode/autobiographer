@@ -71,6 +71,13 @@ ActiveRecord::Schema.define(:version => 20101124041314) do
     t.datetime "updated_at"
   end
 
+  create_table "photos", :force => true do |t|
+    t.string   "file"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,5 +1,5 @@
 class UploadsController < ApplicationController
   def photos
-    render :text => "photos biotch!"
+    current_user.photos << Photo.new(:file => params[:file])
   end
 end
