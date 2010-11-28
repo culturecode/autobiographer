@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :notes, :through => :events, :source => :note, :conditions => "events.details_type = 'Note'"
   has_many :chapters, :through => :events, :source => :chapter, :conditions => "events.details_type = 'Chapter'"
   has_many :events, :dependent => :destroy
+  has_many :photos, :dependent => :destroy
   
   after_create :create_initial_chapter
   

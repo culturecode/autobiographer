@@ -25,8 +25,8 @@ class Event < ActiveRecord::Base
     self.offset = event.offset - 1
     
     transaction do
+      Event.decrement_offsets(event.earlier_offset_events)
       save!
-      Event.decrement_offsets(earlier_offset_events)
     end
   end
   
@@ -36,8 +36,8 @@ class Event < ActiveRecord::Base
     self.offset = event.offset + 1
     
     transaction do
+      Event.increment_offsets(event.later_offset_events)
       save!
-      Event.increment_offsets(later_offset_events)
     end
   end
     

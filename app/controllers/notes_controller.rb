@@ -34,6 +34,7 @@ class NotesController < ApplicationController
   private
   
   def find_note
+    # HACK: Polymorphic through relations returns readonly records...
     @note = current_user.notes.find(params[:id], :readonly => false)
   end
 end
