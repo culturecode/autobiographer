@@ -24,7 +24,6 @@ $('a[href*="#"]').live('click', function(event){
     }
 });
 
-
 //CHAPTERS
 // Make all chapter headings editable
 $(".editable_chapter_heading").live('change', function(event){
