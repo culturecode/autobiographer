@@ -7,9 +7,11 @@ gem 'oauth'
 gem 'fb_graph'
 gem 'twitter', :git => "https://github.com/jnunemaker/twitter.git"
 gem 'linguistics' # Converts numbers to words 1 => "one"
-gem 'exifr'
+
 gem 'carrierwave'
+gem 'exifr'
 gem 'mini_magick'
+gem 'fog'
 
 group :development do
 	gem 'heroku'
