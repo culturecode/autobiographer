@@ -12,6 +12,7 @@ gem 'carrierwave'
 gem 'exifr'
 gem 'mini_magick'
 gem 'fog'
+gem 'aws-s3'
 
 group :development do
 	gem 'heroku'
