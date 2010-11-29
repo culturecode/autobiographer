@@ -4,13 +4,10 @@ class CreateCheckins < ActiveRecord::Migration
         t.text :place # Where the event took place
         t.text :comment
         
-        t.belongs_to :authentication # The service the event was grabbed from
-        t.text :identifier # The id of the object on the service        
-    end
-    
-    add_index(:checkins, :authentication_id)
-    add_index(:checkins, [:authentication_id, :identifier], :unique => true)
-    
+        t.text :identifier # The id of the object on the service
+        
+        t.timestamps 
+    end    
   end
 
   def self.down

@@ -153,6 +153,9 @@ img {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
 }
+#upload_progress {
+  text-align: center;
+}
 .chapter {
   padding: 0;
 }
@@ -304,6 +307,10 @@ img {
   position: absolute;
   margin-left: -130px;
   width: 130px;
+}
+.events .event .service_icon {
+  display: block;
+  margin-top: 0.5em;
 }
 .events .event_spacer {
   position: relative;

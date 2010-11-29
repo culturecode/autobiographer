@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
+  belongs_to :authentication
   belongs_to :user
+  
   belongs_to :details, :polymorphic => true  
   belongs_to :note, :class_name => "Note", :foreign_key => "details_id"
   belongs_to :chapter, :class_name => "Chapter", :foreign_key => "details_id"

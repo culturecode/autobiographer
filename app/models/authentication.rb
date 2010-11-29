@@ -25,6 +25,10 @@ class Authentication < ActiveRecord::Base
     nil
   end
   
+  def service_name
+    self.class.to_s.underscore.gsub(/_authentication/, '')
+  end
+  
   def sync_events
     sync_subclass_events
     update_attributes(:last_sync => Time.now)
@@ -35,6 +39,6 @@ class Authentication < ActiveRecord::Base
   end
   
   def most_recent_event
-    user.events.order('timestamp DESC').where("details_type != 'Chapter'").first
+    user.events.order('timestamp DESC').where(:authentication_id => self.id).first
   end
 end
