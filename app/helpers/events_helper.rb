@@ -27,4 +27,12 @@ module EventsHelper
   def delete_event_link(event_details)
     link_to image_tag('blank.gif'), polymorphic_path(event_details), :method => :delete, :class => :delete_event_link, :remote => true
   end
+  
+  def event_timestamp(event)
+    case event.details
+    when Chapter, Note
+    else
+      content_tag(:span, event.timestamp.strftime('%B %d, %Y'), :class => :timestamp)
+    end
+  end
 end

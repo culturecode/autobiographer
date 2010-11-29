@@ -175,7 +175,17 @@ img{
         padding: 0.5em;    
         font-family: 'Day Roman', Times, serif;
     }
-} 
+}
+
+.photo{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    .delete_event_link{
+        z-index: 1;
+    }
+    > img{.thumbnail-border;}
+}
 
 // Delete Link
 .delete_event_link{
@@ -203,6 +213,9 @@ img{
         .timestamp{
             color: #888;
             font-size: 0.8em;
+            position: absolute;
+            margin-left: -130px;
+            width: 130px;
         }
     }
     .event_spacer{
@@ -215,11 +228,12 @@ img{
         @text-line-spacing: 1em;
         @text-width: 130px;
         @control-column-spacing: 5%;
+        @control-line-height: 1.5em;
         .chapter_control{
-            height:1.5em;
+            height:@control-line-height;
             position:absolute;
             width: 50% - @control-column-spacing / 2;
-            top: -0.75em;
+            top: @control-line-height / -2;
             text-decoration: none;
 
 
@@ -228,7 +242,7 @@ img{
                 position: absolute;
                 width: @text-width;
                 text-align:center;
-                line-height: 1.5em;                
+                line-height: @control-line-height;
                 display: none;
                 .rounded-corners(2px);
             }

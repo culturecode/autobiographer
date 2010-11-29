@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20101124041314) do
   end
 
   create_table "photo_groups", :force => true do |t|
+    t.text     "identifier"
     t.integer  "authentication_id"
     t.datetime "created_at"
     t.datetime "updated_at"

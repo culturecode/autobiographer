@@ -24,6 +24,8 @@ Autobiographer::Application.routes.draw do
   resources :notes
   match 'create_note', :to => 'notes#create'
   
+  resources :photos
+  
   post 'uploads/photos'
   
   match 'pages/:action', :to => 'pages'

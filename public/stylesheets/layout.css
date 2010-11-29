@@ -242,6 +242,38 @@ img {
   padding: 0.5em;
   font-family: 'Day Roman', Times, serif;
 }
+.photo {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+.photo .delete_event_link {
+  z-index: 1;
+}
+.photo > img {
+  padding: 2px;
+  background: white;
+  margin: 2px;
+  border: 1px solid #E0E0E0;
+  border-bottom-color: #AAAAAA;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  padding: 2px;
+  background: white;
+  margin: 2px;
+  border: 1px solid #E0E0E0;
+  border-bottom-color: #AAAAAA;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
 .delete_event_link {
   visibility: hidden;
   padding: 5px;
@@ -269,6 +301,9 @@ img {
 .events .event .timestamp {
   color: #888;
   font-size: 0.8em;
+  position: absolute;
+  margin-left: -130px;
+  width: 130px;
 }
 .events .event_spacer {
   position: relative;
