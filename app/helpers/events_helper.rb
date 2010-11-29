@@ -2,12 +2,10 @@ module EventsHelper
   def event_spacer(event, previous_event = nil)
     content = "".html_safe.tap do |output|    
       case event.details
-      when Chapter
-      when Note
-        output << chapter_breaker(event) unless previous_event.details.is_a?(Chapter)
+      when Chapter, Note
       else
         output << chapter_breaker(event) unless previous_event.details.is_a?(Chapter)
-        output << annotation_inserter(event)
+        output << annotation_inserter(event) unless previous_event.details.is_a?(Note)
       end
     end
 

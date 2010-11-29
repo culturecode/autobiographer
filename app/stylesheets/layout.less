@@ -114,6 +114,10 @@ img{
     font-variant: inherit;
     width: 100%;    
 }
+// Element that is used to calculate the autogrow size of textareas
+.autogrow_sizer{
+    .border-box;
+}
 
 @event-spacer-height: 1em;
 .chapter{
@@ -176,10 +180,10 @@ img{
 // Delete Link
 .delete_event_link{
     visibility: hidden;
-    position: absolute;
+    padding: 5px;
+    position:absolute;
     right: -15px;
     top: -15px;
-    padding: 5px;
     img{
         .delete_button;            
     }
