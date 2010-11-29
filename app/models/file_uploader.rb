@@ -1,5 +1,5 @@
 class FileUploader < CarrierWave::Uploader::Base
-  if Rails.env == :production
+  if Rails.env == "production"
     storage :s3
   else
     storage :file
