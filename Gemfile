@@ -9,6 +9,7 @@ gem 'twitter', :git => "https://github.com/jnunemaker/twitter.git"
 gem 'linguistics' # Converts numbers to words 1 => "one"
 gem 'exifr'
 gem 'carrierwave'
+gem 'mini_magick'
 
 group :development do
 	gem 'heroku'

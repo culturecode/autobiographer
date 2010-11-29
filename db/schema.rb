@@ -67,13 +67,14 @@ ActiveRecord::Schema.define(:version => 20101124041314) do
   end
 
   create_table "photo_groups", :force => true do |t|
+    t.integer  "authentication_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "photos", :force => true do |t|
     t.string   "file"
-    t.integer  "user_id"
+    t.integer  "photo_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

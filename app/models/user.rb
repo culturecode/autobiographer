@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :authentications
+  has_one  :autobiographer_authentication
   has_one  :facebook_authentication
   has_one  :twitter_authentication
   has_one  :foursquare_authentication
@@ -9,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :events, :dependent => :destroy
   has_many :photos, :dependent => :destroy
   
-  after_create :create_initial_chapter
+  after_create :create_initial_chapter, :create_autobiographer_authentication
   
   def sync_events
     authentications.each(&:sync_events)
@@ -19,5 +20,9 @@ class User < ActiveRecord::Base
   
   def create_initial_chapter
     Chapter.create!(:title => "My life to date", :user_id => self.id, :timestamp => DateTime.parse('January 1, 0001'))
+  end
+  
+  def create_autobiographer_authentication
+    AutobiographerAuthentication.create!(:identifier => self.id, :user_id => self.id)
   end
 end

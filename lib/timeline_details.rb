@@ -10,7 +10,10 @@ module TimelineDetails
   private
 
   def insert_into_timeline
-    event = Event.new(:details_type => self.class.name, :details_id => self.id, :user_id => user_id)
+    # Try to grab the user_id from the authentication if the object has one
+    uid = user_id || (authentication.user_id if uid.blank? && respond_to?(:authentication))
+    
+    event = Event.new(:details_type => self.class.name, :details_id => self.id, :user_id => uid)
     if insert_before_event
       event.insert_before(Event.find(insert_before_event))
     elsif insert_after_event
