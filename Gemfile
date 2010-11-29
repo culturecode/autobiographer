@@ -5,7 +5,7 @@ gem 'will_paginate', '>= 3.0.pre'
 gem 'jquery-rails'
 gem 'oauth'
 gem 'fb_graph'
-gem 'twitter', :git => "https://github.com/jnunemaker/twitter.git"
+gem 'twitter'
 gem 'linguistics' # Converts numbers to words 1 => "one"
 
 gem 'carrierwave'
