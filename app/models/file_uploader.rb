@@ -17,6 +17,10 @@ class FileUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg)
   end
   
+  def cache_dir
+    "#{Rails.root}/tmp/uploads"
+  end
+  
   def store_dir
     "#{model.class.to_s.tableize}/#{model.id}"
   end
