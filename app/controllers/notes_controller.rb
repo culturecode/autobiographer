@@ -5,7 +5,7 @@ class NotesController < ApplicationController
     Note.create!(:user_id => current_user.id, :insert_before_event => params[:event_id])
 
     respond_to do |format|
-      format.html{redirect_to :back}
+      format.html{ redirect_to :back }
       format.js{ render 'events/index.js.erb' }
     end
 
@@ -15,7 +15,7 @@ class NotesController < ApplicationController
     @note.destroy
     
     respond_to do |format|
-      format.html{redirect_to :back}
+      format.html{ redirect_to :back }
       format.js{ render 'events/index.js.erb' }
     end
     
@@ -25,7 +25,7 @@ class NotesController < ApplicationController
     @note.update_attributes!(params[:note])
 
     respond_to do |format|
-      format.html{redirect_to :back}
+      format.html{ redirect_to :back }
       format.js{ render :nothing => true }
     end
 

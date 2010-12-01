@@ -4,12 +4,11 @@ module EventsHelper
       case event.details
       when Chapter, Note
       else
-        output << chapter_breaker(event) unless previous_event.details.is_a?(Chapter)
-        output << annotation_inserter(event) unless previous_event.details.is_a?(Note)
+        output << chapter_breaker(event) unless previous_event.details.is_a?(Chapter) || event.happened_same_day_as(previous_event)
       end
     end
 
-    content_tag :li, content, :class => 'event_spacer', :id => "event_#{event.id}_spacer" if content.present?
+    content_tag :li, content, :class => 'event_spacer', :id => "event_#{event.id}_spacer" unless content.blank?
   end
 
   def chapter_breaker(event)
@@ -28,11 +27,34 @@ module EventsHelper
     link_to image_tag('blank.gif'), polymorphic_path(event_details), :method => :delete, :class => :delete_event_link, :remote => true
   end
   
+  def event_list_timestamp(event, previous_event)
+    if event.happened_same_day_as(previous_event) && !previous_event.details.is_a?(Chapter)
+      if (event.timestamp - previous_event.timestamp) < 3.hours
+        content_tag(:span, "#{distance_of_time_in_words(previous_event.timestamp, event.timestamp)} later...", :class => 'timestamp later_that_day')
+      elsif event.afternoon? && !previous_event.afternoon?
+        content_tag(:span, "Later that afternoon...", :class => 'timestamp later_that_day')
+      elsif event.evening? && !previous_event.evening?
+        content_tag(:span, "That evening...", :class => 'timestamp later_that_day')
+      end
+    else
+      event_timestamp(event)
+    end
+  end
+  
   def event_timestamp(event)
     case event.details
     when Chapter, Note
     else
       content_tag(:span, event.timestamp.strftime('%B %d, %Y'), :class => :timestamp)
+    end
+  end
+  
+  def event_controls(event)
+    case event.details
+    when Chapter
+      # do nothing
+    else
+      content_tag(:span, 'controls!!!', :class => :controls)
     end
   end
 end

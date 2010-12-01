@@ -97,7 +97,7 @@ Helpers = {
 //CHAPTERS
 (function(){
     // A function to select a chapter subtitle when the focus is in the chapter title input
-    var getSubtitle = function(titleInput){
+    var getSubtitleInput = function(titleInput){
         return $(titleInput).closest('header').find('h3 .editable_chapter_heading')[0]
     }
 
@@ -109,7 +109,7 @@ Helpers = {
         var data = {}
         data[this.name] = this.value
         $.ajax({
-            url: "chapters/" + this.getAttribute('data-chapter-id'),
+            url: "chapters/" + this.getAttribute('data-chapter-id') + ".js",
             data: data,
             type: 'PUT'
         });
@@ -122,9 +122,10 @@ Helpers = {
 
     // Make the chapter subtitle disappear if it is blank when we finish editing the chapter title, unless it has focus
     $("h2 .editable_chapter_heading").live('blur', function(event){
+        var input = this;
         // Wait a moment in case the user has clicked on the subtitle (we don't want to hide the subtitle in that case)
         setTimeout(function(){
-            var subtitle = getSubtitle(this);
+            var subtitle = getSubtitleInput(input);
             if (subtitle.value == '' && !$(subtitle).hasClass('focused')){
                 $(subtitle).parent().hide();
             }
@@ -147,7 +148,7 @@ Helpers = {
     // Make the subtitle focused when the user presses enter within a title
     $("h2 .editable_chapter_heading").live('keypress', function(event){
         if (event.keyCode == "13") {
-            getSubtitle(this).focus();
+            getSubtitleInput(this).focus();
         } 
     });
 
@@ -157,7 +158,6 @@ Helpers = {
             this.blur();
         } 
     });
-
 
     // Open the chapters menu when the user clicks the chapters link
     $('#chapter_index').click(function(event){

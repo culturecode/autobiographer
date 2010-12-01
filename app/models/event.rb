@@ -51,4 +51,24 @@ class Event < ActiveRecord::Base
   def later_offset_events
     Event.where(["events.timestamp = ? AND events.offset > ?", self.timestamp, self.offset])
   end
+  
+  # Returns true if this event happened on the same day as +other_event+
+  def happened_same_day_as(other_event)
+    self.timestamp.to_date === other_event.timestamp.to_date
+  end
+  
+  # Returns true if the event occurred between midnight and noon
+  def morning?
+    0 <= self.timestamp.localtime.hour && self.timestamp.localtime.hour < 12
+  end
+  
+  # Returns true if the event occurred between noon and 5pm
+  def afternoon?
+    12 <= self.timestamp.localtime.hour && self.timestamp.localtime.hour < 17
+  end
+
+  # Returns true if the event occurred between 6pm and midnight
+  def evening?
+    17 <= self.timestamp.localtime.hour && self.timestamp.localtime.hour < 24
+  end
 end
