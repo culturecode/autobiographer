@@ -45,7 +45,7 @@ module EventsHelper
     case event.details
     when Chapter, Note
     else
-      content_tag(:span, event.timestamp.strftime('%B %d, %Y'), :class => :timestamp)
+      content_tag(:span, event.timestamp.strftime('%B %e, %Y'), :class => :timestamp)
     end
   end
   
@@ -54,7 +54,7 @@ module EventsHelper
     when Chapter
       # do nothing
     else
-      content_tag(:span, 'controls!!!', :class => :controls)
+      render :partial => '/events/event_controls', :locals => {:event => event}
     end
   end
 end

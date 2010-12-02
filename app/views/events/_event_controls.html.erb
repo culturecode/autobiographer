@@ -1,0 +1,4 @@
+<%= content_tag :ul, :class => :controls do %>
+  <%= content_tag :li, link_to('Add a note', create_note_path, :remote => true) %>
+  <%= content_tag :li, link_to('Start a new chapter', create_note_path, :remote => true) %>
+<% end %>

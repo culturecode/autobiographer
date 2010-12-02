@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/jnunemaker/twitter.git
-  revision: ef122bbb280e229ed34347c235c68aa9349d0d8e
+  revision: 59cf052ca646a2b79446f4adadc284d2ded5c992
   specs:
     twitter (1.0.0)
       faraday (~> 0.5.3)
@@ -8,7 +8,7 @@ GIT
       hashie (~> 0.4.0)
       multi_json (~> 0.0.5)
       multi_xml (~> 0.2.0)
-      simple_oauth (~> 0.1.2)
+      simple_oauth (~> 0.1.3)
 
 GEM
   remote: http://rubygems.org/
@@ -41,10 +41,10 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     addressable (2.2.2)
-    arel (2.0.4)
+    arel (2.0.6)
     builder (2.1.2)
-    carrierwave (0.5.0)
-      activesupport (~> 3.0.0)
+    carrierwave (0.5.1)
+      activesupport (~> 3.0)
     configuration (1.2.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -53,19 +53,19 @@ GEM
       addressable (~> 2.2.2)
       multipart-post (~> 1.0.1)
       rack (>= 1.1.0, < 2)
-    faraday_middleware (0.3.0)
+    faraday_middleware (0.3.1)
       faraday (~> 0.5.3)
-    fb_graph (1.0.7)
+    fb_graph (1.1.0)
       activesupport
       json
       oauth2 (>= 0.1.0)
       rest-client (>= 1.4)
     hashie (0.4.0)
-    heroku (1.14.4)
+    heroku (1.14.6)
       json_pure (>= 1.2.0, < 1.5.0)
       launchy (~> 0.3.2)
       rest-client (>= 1.4.0, < 1.7.0)
-    i18n (0.4.2)
+    i18n (0.5.0)
     jquery-rails (0.2.5)
       rails (~> 3.0)
       thor (~> 0.14.4)
@@ -75,9 +75,9 @@ GEM
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
     linguistics (1.0.8)
-    mail (2.2.10)
+    mail (2.2.11)
       activesupport (>= 2.3.6)
-      i18n (~> 0.4.1)
+      i18n (~> 0.5.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
@@ -112,7 +112,7 @@ GEM
     rake (0.8.7)
     rest-client (1.6.1)
       mime-types (>= 1.16)
-    simple_oauth (0.1.2)
+    simple_oauth (0.1.3)
     sqlite3-ruby (1.3.2)
     subexec (0.0.4)
     thor (0.14.6)

@@ -94,6 +94,36 @@ Helpers = {
         }
     });
 
+// EVENTS
+(function(){
+    var overlay;
+    var currentlySelected;
+        
+    var showOverlay = function(){
+        overlay.show();
+    }
+
+    var hideOverlay = function(){
+        overlay.hide();
+        $(currentlySelected).removeClass('selected');
+        currentlySelected = null;
+        
+    }
+    
+    $(document).ready(function(){
+        overlay = $("<div/>", {'class':'event_overlay', style:'display:none'});
+        $(window.document.body).append(overlay);
+        overlay.click(hideOverlay);
+    });
+    
+    $('.event').live('click', function(event){
+        $(this).addClass('selected');
+        showOverlay();
+        currentlySelected = this;
+    });
+}());
+
+
 //CHAPTERS
 (function(){
     // A function to select a chapter subtitle when the focus is in the chapter title input
@@ -166,15 +196,6 @@ Helpers = {
         $('#chapter_menu').toggle();
 
     });
-
-    // OUTSIDE CLICKS
-    $(window.document.body).click(function(event){
-        // Close the chapters menu when the user clicks outside of the menu
-        if ($(event.target).closest('#chapter_index').length == 0){
-            $('#chapter_index').removeClass('open');
-            $('#chapter_menu').hide();
-        }
-    });
 }());
 
 // NOTES
@@ -188,4 +209,15 @@ Helpers = {
             type: 'PUT'
         });
     });    
+}());
+
+// OUTSIDE CLICKS
+(function(){
+    $(window.document.body).click(function(event){
+        // Close the chapters menu when the user clicks outside of the menu
+        if ($(event.target).closest('#chapter_index').length == 0){
+            $('#chapter_index').removeClass('open');
+            $('#chapter_menu').hide();
+        }
+    });
 }());

@@ -1,5 +1,5 @@
 <% events.each_with_index do |event, index| %>
     <% previous_event = events[index-1] %>
-    <%= event_spacer(event, previous_event) %>
+    <%#= event_spacer(event, previous_event) %>
     <%= content_tag :li, render(:partial => 'events/event', :locals => {:event => event, :timestamp => event_list_timestamp(event, previous_event)}), :class => :event, :id => dom_id(event) %>
 <% end%>    
