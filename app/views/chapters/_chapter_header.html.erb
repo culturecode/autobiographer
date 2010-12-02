@@ -1,5 +1,5 @@
 <%= content_tag :header, :name => "chapter_#{chapter.id}" do %>
-    <%= delete_event_link(chapter) unless chapter.first? %>
+    <%= link_to 'x', chapter_path(chapter), :method => :delete, :remote => true unless chapter.first? %>
     <%= content_tag :span, "Chapter #{chapter.number.en.numwords}", :class => 'chapter_number' %>
     <%= content_tag :h2, editable_chapter_title(chapter) %>
     <%= content_tag :h3, editable_chapter_subtitle(chapter), :style => ('display: inherit' if chapter.subtitle) %>

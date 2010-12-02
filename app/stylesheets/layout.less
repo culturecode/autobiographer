@@ -2,13 +2,8 @@
 @import 'dropdown_menu';
 @import 'buttons';
 
-@font-face {
-    font-family: "Day Roman";
-    src: local("Day Roman"), url("/fonts/DAYROM.ttf");
-}
-
 .body-width(){
-    width: 50%;
+    width: 65%;
     min-width: 600px;
 }
 
@@ -126,9 +121,9 @@ img{
     text-align: center;
 }
 
-@event-spacer-height: 1em;
+
 .chapter{
-    padding: 0;
+    .event_like_block;
 
     header{
         font-size: 1.4em;
@@ -180,7 +175,7 @@ img{
         background: #FFD;
         border: 1px solid #EEC;
         padding: 0.5em;    
-        font-family: 'Day Roman', Times, serif;
+        font-family: 'Georgia', Times, serif;
     }
 }
 
@@ -194,23 +189,65 @@ img{
     > img{.thumbnail-border;}
 }
 
+@event-corner-radius: 3px;
+@timestamp-width: 150px;
+.event_like_block(){
+    font-family: 'Georgia', Times, serif;
+    position: relative;
+    background: white;
+    padding: 0 1em;
+    .rounded-corners(@event-corner-radius);
+    
+    .body{
+        margin-left: @timestamp-width;
+        .border-box;            
+        .content{
+            padding: 1em 0;                
+            border-bottom: 1px dotted #CCC;                
+        }
+    }
+}
+.event_top_tab(){
+        top: -2em;
+        font-size: 0.8em;
+        background: white;
+        color: black;
+        padding: 0.5em 1em;
+        position: absolute;
+        text-decoration: none;
+        .border-box;
+        .rounded-top-corners(@event-corner-radius);            
+}
+
 .events{
     padding: 0;
     list-style: none;        
-
-    @event-corner-radius: 3px;
+    
     .event{
-        font-family: 'Day Roman', Times, serif;
-        position: relative;
-        cursor: pointer;
-        background: white;
-        padding: 0 1em;
-        .rounded-corners(@event-corner-radius);
-
-        .contents{
-            padding: 1em 0;
-            border-bottom: 1px dotted #CCC;
-            .rounded-corners(@event-corner-radius);
+        .event_like_block;
+        cursor: pointer;        
+        
+        // SPECIFICS
+        .timestamp{
+            color: #888;
+            font-size: 0.8em;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 130px;
+            height: 100%;
+            display: block;
+            padding: 1em;
+            .border-box;
+            .rounded-left-corners(@event-corner-radius);
+        }
+        .service_icon {
+            float:right;
+            margin-left: 10px;
+        }
+        .new_chapter_link{
+            .event_top_tab;
+            display:none;
         }
         &:hover{
             background: #F7F7F7;
@@ -218,36 +255,14 @@ img{
         &.selected {
             cursor: default;
             z-index: @event-overlay-z-index + 1;
-        }        
+            .box-shadow;
+            .new_chapter_link{
+                display:block;
+            }
+        }
         &.selected:hover{
             background: white;
-        }
-        .timestamp{
-            color: #888;
-            font-size: 0.8em;
-            position: absolute;
-            left: -130px + @event-corner-radius;
-            top: 0;
-            width: 130px;
-            height: 100%;
-            display: block;
-            padding: 1em;
-            background: white;
-            .border-box;
-            .rounded-left-corners(@event-corner-radius);
-        }
-        .controls{
-            padding: 1em 0;
-            color: #888;
-            font-size: 0.8em;
-            display: none;
-        }
-        &.selected .controls{
-            display: block;
-        }
-        .service_icon {
-            float:right;
-        }
+        }        
     }
 }
 @event-overlay-z-index: 2;
@@ -259,5 +274,4 @@ img{
     width: 100%;
     top:0;
     left:0;
-    cursor: pointer;
 } 

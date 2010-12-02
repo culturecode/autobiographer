@@ -1,5 +1,6 @@
 <%= timestamp %>
-<div class='contents'>
-    <%= event_service_icon(event) %><%= render event.details %>
+<div class='body'>
+    <%= event_new_chapter_link(event) unless event.details.is_a?(Chapter) %>
+    <div class='content'><%= event_service_icon(event) %><%= render event.details %></div>
+    <%= event_controls(event) %>
 </div>
-<%= event_controls(event) %>
