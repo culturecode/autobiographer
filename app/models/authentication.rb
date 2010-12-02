@@ -4,8 +4,7 @@ class Authentication < ActiveRecord::Base
   validates_presence_of :identifier, :user_id
   
   def self.add_to_user(user, token_object)
-    # Make sure returned identifier is a string since postgresql won't cast it automatically
-    authentication = find_or_initialize_by_identifier identifier(token_object).to_s
+    authentication = find_or_initialize_by_identifier identifier(token_object)
     authentication.token = token(token_object)
     authentication.secret = secret(token_object)
     authentication.user ||= user || User.create

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20101124041314) do
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "type"
-    t.text     "identifier"
+    t.integer  "identifier"
     t.text     "token"
     t.text     "secret"
     t.datetime "last_sync"

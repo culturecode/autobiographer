@@ -8,11 +8,6 @@ class TwitterAuthentication < Authentication
     end
   end
   
-  # Make sure identifier is an integer, since the twitter gem requires it
-  def identifier
-    self['identifier'].to_i
-  end
-  
   def access_token
     @access_token ||= OAuth::AccessToken.new(self.class.consumer, self.token, self.secret)
   end
