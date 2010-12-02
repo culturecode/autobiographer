@@ -1,7 +1,7 @@
 class PhotoGroup < ActiveRecord::Base
   include TimelineDetails
   
-  has_many :photos, :after_remove => :destroy_if_empty
+  has_many :photos, :after_remove => :destroy_if_empty, :dependent => :destroy
   
   private
   
