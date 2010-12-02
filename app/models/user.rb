@@ -20,10 +20,10 @@ class User < ActiveRecord::Base
   private
   
   def create_initial_chapter
-    Chapter.create!(:title => "My life to date", :user_id => self.id, :timestamp => DateTime.parse('January 1, 0001'))
+    Chapter.create!(:title => "My life to date", :user => self, :timestamp => DateTime.parse('January 1, 0001'))
   end
   
   def create_autobiographer_authentication
-    AutobiographerAuthentication.create!(:identifier => self.id, :user_id => self.id)
+    AutobiographerAuthentication.create!(:identifier => self.id, :user => self)
   end
 end

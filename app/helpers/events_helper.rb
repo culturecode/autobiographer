@@ -57,4 +57,11 @@ module EventsHelper
       render :partial => '/events/event_controls', :locals => {:event => event}
     end
   end
+  
+  def event_service_icon(event)
+    if event.authentication.present?
+      service_name = event.authentication.service_name
+      image_tag("services/#{service_name}_tiny.png", :title => service_name.titleize, :class => "service_icon")
+    end
+  end
 end

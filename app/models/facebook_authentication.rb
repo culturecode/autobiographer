@@ -5,13 +5,13 @@ class FacebookAuthentication < Authentication
     
     facebook_user.checkins(options).each do |checkin|
       ActiveRecord::Base.transaction do
-        Checkin.create!(:place => checkin.place.name, :comment => checkin.message, :identifier => checkin.identifier, :authentication_id => self.id, :timestamp => checkin.created_time)
+        Checkin.create!(:place => checkin.place.name, :comment => checkin.message, :identifier => checkin.identifier, :authentication => self, :timestamp => checkin.created_time)
       end
     end
     
     facebook_user.statuses(options).each do |status|
       ActiveRecord::Base.transaction do
-        Comment.create!(:text => status.message, :identifier => status.identifier, :authentication_id => self.id, :timestamp => status.updated_time)
+        Comment.create!(:text => status.message, :identifier => status.identifier, :authentication => self, :timestamp => status.updated_time)
       end
     end
   end

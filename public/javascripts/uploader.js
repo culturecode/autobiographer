@@ -4,7 +4,7 @@ $(function() {
 
     var multipart_params = {"format" : "js"};
     multipart_params[csrf_param] = csrf_token;
-    
+
     var uploader = new plupload.Uploader({
         runtimes : 'gears,html5,flash,silverlight,browserplus',
         browse_button : 'pickfiles',
@@ -26,33 +26,36 @@ $(function() {
     uploader.init();
 
     uploader.bind('FilesAdded', function(up, files) {
-        $.each(files, function(i, file) {
-            $('#filelist').append(
-                '<div id="' + file.id + '">' +
-                file.name + ' (' + plupload.formatSize(file.size) + ') <b></b>' +
-                '</div>');
-            });
+        var file_count = $('#upload_progress').data('file_count') || 0 + files.length;
+        var current_file = $('#upload_progress').data('current_file') || 1;
+        
+        $('#upload_progress').data('file_count', file_count);
+        $('#upload_progress').data('current_file', current_file);
+        
+        $('#upload_text').text("Uploading photo " + current_file + " of " + file_count + "...");
+        up.refresh(); // Reposition Flash/Silverlight
+        up.start();
+    });
 
-            up.refresh(); // Reposition Flash/Silverlight
-            up.start();
-        });
+    uploader.bind('UploadProgress', function(up, file) {
+        $('#upload_percent').text(file.percent + "%");
+    });
 
-        uploader.bind('UploadProgress', function(up, file) {
-            $('#' + file.id + " b").html(file.percent + "%");
-        });
-
-        uploader.bind('Error', function(up, err) {
-            $('#filelist').append("<div>Error: " + err.code +
-            ", Message: " + err.message +
-            (err.file ? ", File: " + err.file.name : "") +
-            "</div>"
-        );
-
+    uploader.bind('Error', function(up, err) {
+        console.log("Error: " + err.code + ", Message: " + err.message + (err.file ? ", File: " + err.file.name : ""));
         up.refresh(); // Reposition Flash/Silverlight
     });
 
     uploader.bind('FileUploaded', function(up, file, response) {
-        console.log(response.response);
-        $('#' + file.id + " b").html("100%");
+        var file_count = $('#upload_progress').data('file_count');
+        var current_file = $('#upload_progress').data('current_file') + 1;
+        
+        if (current_file > file_count) {
+            window.location.reload();   
+        } else {
+            $('#upload_progress').data('current_file', current_file);
+            $('#upload_text').text("Uploading photo " + current_file + " of " + file_count + "...");
+            $('#upload_percent').text("0%");
+        }
     });
 });

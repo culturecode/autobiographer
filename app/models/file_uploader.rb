@@ -1,5 +1,9 @@
 class FileUploader < CarrierWave::Uploader::Base
-  storage :file
+  if Rails.env == "production"
+    storage :s3
+  else
+    storage :file
+  end
 
   include CarrierWave::MiniMagick
 
@@ -11,6 +15,14 @@ class FileUploader < CarrierWave::Uploader::Base
         
   def extension_white_list
     %w(jpg jpeg)
+  end
+  
+  def cache_dir
+    "#{Rails.root}/tmp/uploads"
+  end
+  
+  def store_dir
+    "#{model.class.to_s.tableize}/#{model.id}"
   end
   
   def resize_and_orient(width, height)

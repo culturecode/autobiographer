@@ -155,6 +155,9 @@ img {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
 }
+#upload_progress {
+  text-align: center;
+}
 .chapter {
   padding: 0;
 }
@@ -306,6 +309,10 @@ img {
 .events .event:hover {
   background: #F7F7F7;
 }
+.events .event.selected {
+  cursor: default;
+  z-index: 3;
+}
 .events .event.selected:hover {
   background: white;
 }
@@ -350,9 +357,8 @@ img {
 .events .event.selected .controls {
   display: block;
 }
-.events .event.selected {
-  cursor: default;
-  z-index: 3;
+.events .event .service_icon {
+  float: right;
 }
 .event_overlay {
   position: fixed;

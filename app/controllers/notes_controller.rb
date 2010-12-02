@@ -2,7 +2,7 @@ class NotesController < ApplicationController
   before_filter :find_note, :only => [:update, :destroy]
   
   def create
-    Note.create!(:user_id => current_user.id, :insert_before_event => params[:event_id])
+    Note.create!(:user => current_user, :insert_before_event => params[:event_id])
 
     respond_to do |format|
       format.html{ redirect_to :back }

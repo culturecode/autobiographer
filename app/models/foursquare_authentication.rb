@@ -5,7 +5,7 @@ class FoursquareAuthentication < Authentication
     history = JSON.parse(response.body)
     
     history["checkins"].each do |checkin|
-      Checkin.create!(:place => checkin["venue"]["name"], :comment => checkin["shout"], :identifier => checkin["id"], :authentication_id => self.id)
+      Checkin.create!(:place => checkin["venue"]["name"], :comment => checkin["shout"], :identifier => checkin["id"], :authentication => self, :timestamp => checkin["created"])
     end    
   end
   

@@ -4,7 +4,7 @@ class TwitterAuthentication < Authentication
     options[:since_id] = most_recent_event.details.identifier if most_recent_event.present?
             
     Twitter.user_timeline(self.identifier, options).each do |tweet|
-      Comment.create!(:text => tweet.text, :identifier => tweet.id, :authentication_id => self.id, :timestamp => tweet.created_at)
+      Comment.create!(:text => tweet.text, :identifier => tweet.id, :authentication => self, :timestamp => tweet.created_at)
     end
   end
   
@@ -23,7 +23,7 @@ class TwitterAuthentication < Authentication
   
   def self.identifier(access_token)
     user_info = access_token.get("http://api.twitter.com/1/account/verify_credentials.json")
-    JSON.parse(user_info.body)["name"]  
+    JSON.parse(user_info.body)["id"]
   end
   
   def self.token(access_token)

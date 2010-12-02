@@ -122,6 +122,10 @@ img{
     .border-box;
 }
 
+#upload_progress {
+    text-align: center;
+}
+
 @event-spacer-height: 1em;
 .chapter{
     padding: 0;
@@ -180,7 +184,7 @@ img{
     }
 }
 
-.photo{
+.photo {
     position: relative;
     display: inline-block;
     vertical-align: middle;
@@ -211,6 +215,10 @@ img{
         &:hover{
             background: #F7F7F7;
         }
+        &.selected {
+            cursor: default;
+            z-index: @event-overlay-z-index + 1;
+        }        
         &.selected:hover{
             background: white;
         }
@@ -237,10 +245,9 @@ img{
         &.selected .controls{
             display: block;
         }
-        &.selected {
-            cursor: default;
-            z-index: @event-overlay-z-index + 1;
-        }                        
+        .service_icon {
+            float:right;
+        }
     }
 }
 @event-overlay-z-index: 2;

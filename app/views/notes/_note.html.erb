@@ -1,4 +1,4 @@
-<%= content_tag :li, :class => :note, :id => dom_id(note) do %>
+<%= content_tag :div, :class => :note, :id => dom_id(note) do %>
     <%= delete_event_link(note) %>
-    <%= text_area_tag 'note[text]', note.text, 'data-note-id' => note.id, :class => :editable_note, :id => nil, :placeholder => 'Write your notes here' %>    
+    <%= text_area_tag 'note[text]', note.text, 'data-note-id' => note.id, :class => :editable_note, :id => nil, :placeholder => 'Write your notes here' %>
 <% end %>

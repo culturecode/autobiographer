@@ -8,9 +8,11 @@ class CreateEvents < ActiveRecord::Migration
       t.string :details_type
       
       t.belongs_to :user
+      t.belongs_to :authentication # The service the event was grabbed from
     end
     
     add_index(:events, :timestamp) # For ordering
+    add_index(:events, :authentication_id) # Find all events from a particular service
     add_index(:events, [:details_id, :details_type]) # For lookups from the details object
     add_index(:events, :user_id) # For grabbing all events for a particular user
     

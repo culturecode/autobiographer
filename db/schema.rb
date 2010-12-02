@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20101124041314) do
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "type"
-    t.text     "identifier"
+    t.integer  "identifier"
     t.text     "token"
     t.text     "secret"
     t.datetime "last_sync"
@@ -30,34 +30,30 @@ ActiveRecord::Schema.define(:version => 20101124041314) do
   end
 
   create_table "checkins", :force => true do |t|
-    t.text    "place"
-    t.text    "comment"
-    t.integer "authentication_id"
-    t.text    "identifier"
+    t.text     "place"
+    t.text     "comment"
+    t.text     "identifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "checkins", ["authentication_id", "identifier"], :name => "index_checkins_on_authentication_id_and_identifier", :unique => true
-  add_index "checkins", ["authentication_id"], :name => "index_checkins_on_authentication_id"
 
   create_table "comments", :force => true do |t|
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "authentication_id"
     t.text     "identifier"
   end
 
-  add_index "comments", ["authentication_id", "identifier"], :name => "index_comments_on_authentication_id_and_identifier", :unique => true
-  add_index "comments", ["authentication_id"], :name => "index_comments_on_authentication_id"
-
   create_table "events", :force => true do |t|
     t.datetime "timestamp"
-    t.integer  "offset",       :default => 0, :null => false
+    t.integer  "offset",            :default => 0, :null => false
     t.integer  "details_id"
     t.string   "details_type"
     t.integer  "user_id"
+    t.integer  "authentication_id"
   end
 
+  add_index "events", ["authentication_id"], :name => "index_events_on_authentication_id"
   add_index "events", ["details_id", "details_type"], :name => "index_events_on_details_id_and_details_type"
   add_index "events", ["timestamp"], :name => "index_events_on_timestamp"
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
@@ -68,7 +64,6 @@ ActiveRecord::Schema.define(:version => 20101124041314) do
 
   create_table "photo_groups", :force => true do |t|
     t.text     "identifier"
-    t.integer  "authentication_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
