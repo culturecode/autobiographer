@@ -1,4 +1,16 @@
 class PhotosController < ApplicationController
+  def create
+    photo = Photo.new(:file => params[:file])
+    photo_timestamp = EXIFR::JPEG.new(photo.file.path).date_time_original
+    
+    photo_group = Event.where(:details_type => "PhotoGroup", :authentication_id => current_user.autobiographer_authentication.id, :timestamp => (photo_timestamp - 1.hour)..(photo_timestamp + 1.hour)).first.try(:details)
+    photo_group ||= PhotoGroup.create(:authentication => current_user.autobiographer_authentication, :timestamp => photo_timestamp)
+    
+    photo_group.photos << photo
+    
+    render :nothing => true
+  end
+  
   def destroy
     photo = Photo.find(params[:id])
 
@@ -7,8 +19,8 @@ class PhotosController < ApplicationController
     end
 
     respond_to do |format|
-      format.html{redirect_to :back}
-      format.js{ render 'events/index.js.erb' }
+      format.html { redirect_to :back }
+      format.js { render 'events/index.js.erb' }
     end
   end
 end

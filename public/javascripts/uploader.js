@@ -11,7 +11,7 @@ $(function() {
         drop_element: 'dropfiles',
         container : 'upload_link',
         max_file_size : '20mb',
-        url : '/uploads/photos',
+        url : '/photos/create',
         flash_swf_url : '/plupload/plupload.flash.swf',
         silverlight_xap_url : '/plupload/plupload.silverlight.xap',
         filters : [

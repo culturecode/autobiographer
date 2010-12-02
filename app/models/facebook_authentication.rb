@@ -14,6 +14,12 @@ class FacebookAuthentication < Authentication
         Comment.create!(:text => status.message, :identifier => status.identifier, :authentication => self, :timestamp => status.updated_time)
       end
     end
+    
+    facebook_user.events(options).each do |event|
+      ActiveRecord::Base.transaction do
+        Activity.create!(:name => event.name, :place => event.place, :start_time => event.start_time, :end_time => event.end_time, :rsvp_status => event.rsvp_status, :identifier => event.identifier, :authentication => self, :timestamp => event.start_time)
+      end
+    end
   end
   
   def self.authorize_url(*args)

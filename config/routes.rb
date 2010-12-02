@@ -1,5 +1,4 @@
 Autobiographer::Application.routes.draw do
-
   resource :session
   resources :users
 
@@ -25,8 +24,6 @@ Autobiographer::Application.routes.draw do
   match 'create_note', :to => 'notes#create'
   
   resources :photos
-  
-  post 'uploads/photos'
   
   match 'pages/:action', :to => 'pages'
 end

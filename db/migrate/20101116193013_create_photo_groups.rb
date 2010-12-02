@@ -1,7 +1,7 @@
 class CreatePhotoGroups < ActiveRecord::Migration
   def self.up
     create_table :photo_groups do |t|
-      t.text :identifier # The id of the object on the service
+      t.integer :identifier, :limit => 8
       
       t.timestamps
     end

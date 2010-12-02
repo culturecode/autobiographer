@@ -2,9 +2,10 @@ class CreateComments < ActiveRecord::Migration
   def self.up
     create_table :comments do |t|
       t.text :text
+      
       t.timestamps
       
-      t.text :identifier # The id of the object on the service      
+      t.integer :identifier, :limit => 8
     end
   end
 
