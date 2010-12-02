@@ -1,9 +1,10 @@
 development: &defaults
-  client_token: 1YDEp8PFI2DeAc2MGojubw
-  client_secret: GdNttWha4nJPRFqhYmrOEZGn7GrU083uv1Ws21pOo
+  client_token: icutAepU7WKSlMxdHVFmeg
+  client_secret: 3aZ4HaYmqwxhGYEyIcPNNfj0U1H0mGxk93xekGbsrQ
 
 test:
   <<: *defaults
 
 production:
-  <<: *defaults
+  client_token: TJukfSBdpE8IArYifBwTQ
+  client_secret: 92CcBJjoGg0MnGdVaQL0UKSzi4YuqfbglGJtrmR8PRU
