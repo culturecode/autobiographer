@@ -15,6 +15,7 @@ gem 'fog'
 gem 'aws-s3'
 
 group :development do
+	gem 'pg'
 	gem 'heroku'
 	gem 'sqlite3-ruby'
 end
