@@ -4,7 +4,7 @@ class CreateCheckins < ActiveRecord::Migration
         t.text :place # Where the event took place
         t.text :comment
         
-        t.text :identifier # The id of the object on the service
+        t.integer :identifier, :limit => 8
         
         t.timestamps 
     end    
