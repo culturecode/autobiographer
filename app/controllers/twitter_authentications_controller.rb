@@ -18,4 +18,10 @@ class TwitterAuthenticationsController < ApplicationController
     
     redirect_to root_url
   end
+  
+  def destroy
+    current_user.twitter_authentication.destroy
+    
+    redirect_to :back
+  end
 end

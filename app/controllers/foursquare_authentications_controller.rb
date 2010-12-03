@@ -18,4 +18,10 @@ class FoursquareAuthenticationsController < ApplicationController
     
     redirect_to root_url
   end
+  
+  def destroy
+    current_user.foursquare_authentication.destroy
+    
+    redirect_to :back
+  end
 end

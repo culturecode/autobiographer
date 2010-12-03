@@ -13,4 +13,10 @@ class FacebookAuthenticationsController < ApplicationController
     authenticate FacebookAuthentication.add_to_user(current_user, access_token)
     redirect_to root_url
   end
+  
+  def destroy
+    current_user.facebook_authentication.destroy
+    
+    redirect_to :back
+  end
 end
