@@ -33,16 +33,15 @@ Helpers = {
             'border-color': 'transparent',
             'line-height': source.css('line-height')
         });
-    },    
+    },
+    // AUTOGROW
     // Causes the textarea to grow or shrink with the contents of the textarea
     autoGrowTextAreas: function(selector){
         selector = selector || 'textarea';
         var callback = this._autoGrowGrow;
         $(selector).map(function(index, element){callback(element)});
         $(selector).live('keyup', function(event){callback(this)});
-    },    
-    
-    // PRIVATE FUNCTIONS
+    },
     _autoGrowGrow: function(textarea){
         // Don't do it until we've initialized
         if (!textarea._autogrowSizer){
@@ -78,8 +77,25 @@ Helpers = {
         } else {
             textarea.style.height = '';
         }
-    }    
+    },
+    
+    // EVENT OVERLAY
+    // Makes a lightbox effect when you click on an event
+    overlay: $("<div/>", {'class':'event_overlay', style:'display:none'}),
+    currentlySelected: null,
+    showOverlay: function(){
+        Helpers.overlay.show();
+    },
+    hideOverlay: function(){
+        Helpers.overlay.hide();
+        $(currentlySelected).removeClass('selected');
+        Helpers.currentlySelected = null;
+    }
 }
+$(document).ready(function(){
+    $(window.document.body).append(Helpers.overlay);
+    Helpers.overlay.click(Helpers.hideOverlay);
+});
 
 // EVENT HANDLERS
 
@@ -95,30 +111,10 @@ Helpers = {
     });
 
 // EVENTS
-(function(){
-    var overlay;
-    var currentlySelected;
-        
-    var showOverlay = function(){
-        overlay.show();
-    }
-
-    var hideOverlay = function(){
-        overlay.hide();
-        $(currentlySelected).removeClass('selected');
-        currentlySelected = null;
-        
-    }
-    
-    $(document).ready(function(){
-        overlay = $("<div/>", {'class':'event_overlay', style:'display:none'});
-        $(window.document.body).append(overlay);
-        overlay.click(hideOverlay);
-    });
-    
+(function(){        
     $('.event').live('click', function(event){
         $(this).addClass('selected');
-        showOverlay();
+        Helpers.showOverlay();
         currentlySelected = this;
     });
 }());
