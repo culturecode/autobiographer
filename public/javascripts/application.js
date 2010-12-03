@@ -88,7 +88,7 @@ Helpers = {
     },
     hideOverlay: function(){
         Helpers.overlay.hide();
-        $(currentlySelected).removeClass('selected');
+        Helpers.currentlySelected.removeClass('selected');
         Helpers.currentlySelected = null;
     }
 }
@@ -112,11 +112,15 @@ $(document).ready(function(){
 
 // EVENTS
 (function(){        
-    $('.event').live('click', function(event){
-        $(this).addClass('selected');
+    $('.event .clickable').live('click', function(event){
+        var eventElement = $(this).parent('.event');
+        eventElement.addClass('selected');
         Helpers.showOverlay();
-        currentlySelected = this;
+        Helpers.currentlySelected = eventElement;
     });
+    
+    // Close the overlay when someone clicks the new chapter link
+    $('.new_chapter_link').live('click', Helpers.hideOverlay);
 }());
 
 
