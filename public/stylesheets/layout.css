@@ -34,7 +34,7 @@ img {
   z-index: 500;
 }
 .site_menu ul {
-  width: 70%;
+  width: 65%;
   min-width: 600px;
   margin: 0 auto;
   list-style: none;
@@ -119,7 +119,7 @@ img {
 }
 .body_content {
   margin: 0 auto;
-  width: 70%;
+  width: 65%;
   min-width: 600px;
 }
 .editable_text {
@@ -219,6 +219,9 @@ img {
   z-index: 3;
   display: block;
 }
+.new_chapter_link:hover {
+  background: #EEE;
+}
 .event_overlay {
   position: fixed;
   z-index: event-overlay-z-index;
@@ -299,7 +302,7 @@ img {
   border-radius: 3px;
 }
 .comment .body {
-  margin-left: 180px;
+  margin-left: 250px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -318,7 +321,7 @@ img {
   position: absolute;
   left: 0;
   top: 0;
-  width: 180px;
+  width: 220px;
   height: 100%;
   display: block;
   padding: 2em 1em;
@@ -344,8 +347,8 @@ img {
   border-bottom-left-radius: 3px;
 }
 .comment .service_icon {
-  float: right;
-  margin-left: 10px;
+  position: absolute;
+  left: 220px;
 }
 .checkin {
   font-family: 'Georgia', Times, serif;
@@ -360,7 +363,7 @@ img {
   border-radius: 3px;
 }
 .checkin .body {
-  margin-left: 180px;
+  margin-left: 250px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -379,7 +382,7 @@ img {
   position: absolute;
   left: 0;
   top: 0;
-  width: 180px;
+  width: 220px;
   height: 100%;
   display: block;
   padding: 2em 1em;
@@ -405,8 +408,8 @@ img {
   border-bottom-left-radius: 3px;
 }
 .checkin .service_icon {
-  float: right;
-  margin-left: 10px;
+  position: absolute;
+  left: 220px;
 }
 .note {
   position: relative;

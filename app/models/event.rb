@@ -56,7 +56,7 @@ class Event < ActiveRecord::Base
   
   # Returns true if this event happened on the same day as +other_event+
   def happened_same_day_as(other_event)
-    self.timestamp.to_date === other_event.timestamp.to_date
+    self.timestamp.localtime.day == other_event.timestamp.localtime.day
   end
   
   # Returns true if the event occurred between midnight and noon

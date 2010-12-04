@@ -3,7 +3,7 @@
 @import 'buttons';
 
 .body-width(){
-    width: 70%;
+    width: 65%;
     min-width: 600px;
 }
 
@@ -123,7 +123,8 @@ img{
 
 // EVENTS
 @event-corner-radius: 3px;
-@timestamp-width: 180px;
+@timestamp-width: 220px;
+@service-icon-width: 30px;
 @event-padding: 2em;
 .events{
     padding: 0;
@@ -156,7 +157,7 @@ img{
     .rounded-corners(@event-corner-radius);
 
     .body{
-        margin-left: @timestamp-width;
+        margin-left: @timestamp-width + @service-icon-width;
         .border-box;            
         .content{
             padding: @event-padding 0px;        
@@ -180,8 +181,8 @@ img{
 }
 .event_service_icon(){
     .service_icon {
-        float:right;
-        margin-left: 10px;
+        position: absolute;
+        left: @timestamp-width;
     }    
 }
 
@@ -209,6 +210,10 @@ img{
     z-index: @event-overlay-z-index + 1;
     display:block;
 }
+.new_chapter_link:hover{
+    background: #EEE;
+}
+
 @event-overlay-z-index: 2;
 .event_overlay{
     position: fixed;

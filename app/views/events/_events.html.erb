@@ -1,6 +1,6 @@
 <% events.each_with_index do |event, index| %>
     <%= content_tag :li, :class => :event, :id => dom_id(event) do %>
         <%= event_new_chapter_link(event) unless event.details.is_a?(Chapter) %>
-        <%= render event.details %>
+        <%= render :partial => event.details, :locals => {:timestamp => event_list_timestamp(event, events[index-1])} %>
     <% end %>
 <% end%>    
