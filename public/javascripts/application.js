@@ -84,18 +84,33 @@ Helpers = {
     overlay: $("<div/>", {'class':'event_overlay', style:'display:none'}),
     currentlySelected: null,
     showOverlay: function(){
-        Helpers.overlay.css({'height':$(window.document).height() + 'px'});
+        Helpers._overlayVisible = true;
+        Helpers._resizeOverlay();
         Helpers.overlay.show();
     },
     hideOverlay: function(){
+        Helpers._overlayVisible = false;
         Helpers.overlay.hide();
         Helpers.currentlySelected.removeClass('selected');
         Helpers.currentlySelected = null;
+    },
+    // It's faster to render an absolute positioned div, than a fixed position one,
+    // but we need to keep the div covering the document body even when the browser
+    // window is resized.
+    _resizeOverlay: function(){
+        Helpers.overlay.css({'height':$(window.document.body).outerHeight() + 'px'});
     }
 }
 $(document).ready(function(){
     $(window.document.body).append(Helpers.overlay);
     Helpers.overlay.click(Helpers.hideOverlay);
+    
+    // Keep the Overlay covering the document even if the window is resized
+    $(window).resize(function(){
+        if (Helpers._overlayVisible){
+            Helpers._resizeOverlay();
+        }
+    })
 });
 
 // EVENT HANDLERS
