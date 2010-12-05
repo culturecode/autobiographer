@@ -1,3 +1,3 @@
-<%= content_tag :div, :class => :chapter, :id => dom_id(chapter) do %>
+<%= content_tag :div, :class => 'chapter clickable', :id => dom_id(chapter) do %>
     <%= render :partial => '/chapters/chapter_header', :locals => {:chapter => chapter} %>
 <% end %>

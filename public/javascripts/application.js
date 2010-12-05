@@ -117,10 +117,7 @@ $(document).ready(function(){
         eventElement.addClass('selected');
         Helpers.showOverlay();
         Helpers.currentlySelected = eventElement;
-    });
-    
-    // Close the overlay when someone clicks the new chapter link
-    $('.new_chapter_link').live('click', Helpers.hideOverlay);
+    });    
 }());
 
 
@@ -145,23 +142,6 @@ $(document).ready(function(){
         });
     });
 
-    // Make the chapter subtitle appear when editing the chapter title
-    $("h2 .editable_chapter_heading").live('focus', function(event){
-        $(this).closest('header').children('h3').show();
-    });
-
-    // Make the chapter subtitle disappear if it is blank when we finish editing the chapter title, unless it has focus
-    $("h2 .editable_chapter_heading").live('blur', function(event){
-        var input = this;
-        // Wait a moment in case the user has clicked on the subtitle (we don't want to hide the subtitle in that case)
-        setTimeout(function(){
-            var subtitle = getSubtitleInput(input);
-            if (subtitle.value == '' && !$(subtitle).hasClass('focused')){
-                $(subtitle).parent().hide();
-            }
-        }, 100);
-    });
-
     // Track when the subtitle gains focus
     $("h3 .editable_chapter_heading").live('focus', function(event){
         $(this).addClass('focused');
@@ -171,7 +151,9 @@ $(document).ready(function(){
     $("h3 .editable_chapter_heading").live('blur', function(event){
         $(this).removeClass('focused');
         if (this.value == ''){
-            $(this).parent().hide();
+            $(this).parent().addClass('empty');
+        } else {
+            $(this).parent().removeClass('empty');
         }
     });
 

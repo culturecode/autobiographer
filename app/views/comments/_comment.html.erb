@@ -1,7 +1,9 @@
 <%= content_tag :div, :class => 'comment clickable', :id => dom_id(comment) do %>
     <%= timestamp = timestamp %>
     <div class='body'>
-        <div class='content'><%= event_service_icon(comment.event) %><%= comment.text %></div>
-        <div class='controls'><%= render comment.note || comment.build_note %></div>
+        <div class='content'>
+            <%= event_service_icon(comment.event) %><%= comment.text %>
+            <%= render comment.note || comment.build_note %>
+        </div>
     </div>
 <% end %>

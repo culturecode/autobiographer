@@ -34,7 +34,7 @@ img {
   z-index: 500;
 }
 .site_menu ul {
-  width: 65%;
+  width: 70%;
   min-width: 600px;
   margin: 0 auto;
   list-style: none;
@@ -119,7 +119,7 @@ img {
 }
 .body_content {
   margin: 0 auto;
-  width: 65%;
+  width: 70%;
   min-width: 600px;
 }
 .editable_text {
@@ -164,6 +164,9 @@ img {
 .event .clickable {
   cursor: pointer;
 }
+.event .clickable .controls {
+  display: none;
+}
 .event .clickable:hover {
   background: #F7F7F7;
 }
@@ -177,50 +180,51 @@ img {
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px;
 }
+.event.selected .clickable .controls {
+  display: block;
+}
 .event.selected .clickable:hover {
   background: white;
 }
-.new_chapter_link {
+.event .new_chapter_link, .event .delete_chapter_link {
   top: -2em;
   font-size: 0.8em;
-  background: white;
-  color: black;
   padding: 0.5em 1em;
   position: absolute;
   text-decoration: none;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -webkit-border-top-left-radius: 3px;
-  -webkit-border-top-right-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  -webkit-border-top-left-radius: 3px;
-  -webkit-border-top-right-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
   text-shadow: 0 1px 1px white;
   font-weight: bold;
   color: #333;
   background: #DDD;
-  display: none;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
   margin-left: 10em;
+  display: none;
 }
-.event.selected .new_chapter_link {
+.event .new_chapter_link:hover, .event .delete_chapter_link:hover {
+  background: #EEE;
+}
+.event.selected .new_chapter_link, .event.selected .delete_chapter_link {
   z-index: 3;
   display: block;
-}
-.new_chapter_link:hover {
-  background: #EEE;
 }
 .event_overlay {
   position: fixed;
@@ -231,12 +235,35 @@ img {
   top: 0;
   left: 0;
 }
+.chapter {
+  font-family: 'Georgia', Times, serif;
+  position: relative;
+  background: white;
+  padding: 2em;
+  border-bottom: 1px solid #CCC;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.chapter .body {
+  margin-left: 250px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
 .chapter header {
   font-size: 1.4em;
   text-align: center;
   position: relative;
-  margin: 1em 0 2em;
-  padding-top: 3em;
+  padding: 4em 0 1em;
   font-family: Times;
 }
 .chapter header .chapter_number {
@@ -268,9 +295,9 @@ img {
 }
 .chapter header h3 {
   margin-top: 0.5em;
+  margin-bottom: 0;
   font-style: italic;
   font-weight: normal;
-  display: none;
 }
 .chapter header h3 input {
   text-align: center;
@@ -289,40 +316,18 @@ img {
 .chapter header h3 input:hover {
   text-decoration: underline;
 }
-.chapter header .chapter_delete_link {
-  background-color: #E7585B;
-  border: 1px solid #BB3B3E;
-  color: white;
-  cursor: pointer;
-  display: none;
-  font-family: Helvetica;
-  font-size: 14px;
-  font-weight: normal;
-  height: 20px;
-  right: -1em;
-  line-height: 20px;
-  position: absolute;
-  text-decoration: none;
-  width: 20px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
+.chapter header h3.empty {
   display: none;
 }
-.chapter header .chapter_delete_link:hover {
-  background: #BB3B3E;
-}
-.chapter header:hover .chapter_delete_link {
-  display: inline-block;
+.event.selected .chapter header h3 {
+  display: block;
 }
 .comment {
   font-family: 'Georgia', Times, serif;
   position: relative;
   background: white;
-  padding: 0 1em;
+  padding: 2em;
+  border-bottom: 1px solid #CCC;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -341,10 +346,6 @@ img {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
 }
-.comment .body .content {
-  padding: 2em 0px;
-  border-bottom: 1px dotted #CCC;
-}
 .comment .timestamp {
   color: #888;
   position: absolute;
@@ -353,7 +354,7 @@ img {
   width: 220px;
   height: 100%;
   display: block;
-  padding: 2em 1em;
+  padding: 2em 1em 2em 2em;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -383,7 +384,8 @@ img {
   font-family: 'Georgia', Times, serif;
   position: relative;
   background: white;
-  padding: 0 1em;
+  padding: 2em;
+  border-bottom: 1px solid #CCC;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -402,10 +404,6 @@ img {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
 }
-.checkin .body .content {
-  padding: 2em 0px;
-  border-bottom: 1px dotted #CCC;
-}
 .checkin .timestamp {
   color: #888;
   position: absolute;
@@ -414,7 +412,7 @@ img {
   width: 220px;
   height: 100%;
   display: block;
-  padding: 2em 1em;
+  padding: 2em 1em 2em 2em;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -468,23 +466,35 @@ img {
   padding: 0.5em;
   font-family: 'Georgia', Times, serif;
 }
-.event .controls .note {
-  padding: 1em 0;
+.event .note {
+  padding-top: 1em;
+  margin-top: 1em;
+  border-top: 1px dotted #CCC;
   display: block;
 }
-.event .controls .note.empty {
+.event .note.empty {
   display: none;
 }
-.event.selected .controls .note {
+.event.selected .note {
   display: block;
 }
 .photo {
+  width: 210px;
+  text-align: center;
   position: relative;
   display: inline-block;
-  vertical-align: middle;
 }
-.photo .delete_event_link {
+.photo .delete_photo_link {
+  background: url("/images/buttons/buttons.png") -40px 0;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
   z-index: 1;
+  position: absolute;
+  top: -5px;
+  margin-left: -20px;
+  visibility: hidden;
 }
 .photo > img {
   padding: 2px;
@@ -509,4 +519,8 @@ img {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
+  vertical-align: middle;
+}
+.event.selected .photo .delete_photo_link {
+  visibility: visible;
 }

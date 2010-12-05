@@ -3,7 +3,7 @@
 @import 'buttons';
 
 .body-width(){
-    width: 65%;
+    width: 70%;
     min-width: 600px;
 }
 
@@ -135,6 +135,10 @@ img{
 
     .clickable{
         cursor: pointer;
+
+        .controls{
+            display: none;
+        }                
     }
     // Event Hovered
     .clickable:hover{
@@ -145,6 +149,10 @@ img{
         cursor: default;
         z-index: @event-overlay-z-index + 2;
         .box-shadow(rgba(0, 0, 0, 0.5) 0px 0px 20px);
+
+        .controls{
+            display: block;
+        }        
     }
     // Event Selected and hovered    
     &.selected .clickable:hover{
@@ -156,16 +164,13 @@ img{
     font-family: 'Georgia', Times, serif;
     position: relative;
     background: white;
-    padding: 0 1em;
+    padding: @event-padding;
+    border-bottom: 1px solid #CCC;
     .rounded-corners(@event-corner-radius);
 
     .body{
         margin-left: @timestamp-width + @service-icon-width;
-        .border-box;            
-        .content{
-            padding: @event-padding 0px;        
-            border-bottom: 1px dotted #CCC;                
-        }
+        .border-box;
     }
 }
 .event_timestamp(){
@@ -177,10 +182,11 @@ img{
         width: @timestamp-width;
         height: 100%;
         display: block;
-        padding: @event-padding 1em;
+        padding: @event-padding 1em @event-padding @event-padding;
         .border-box;
         .rounded-left-corners(@event-corner-radius);
-    }    
+    }
+    .timestamp.same_day{}
 }
 .event_service_icon(){
     .service_icon {
@@ -192,29 +198,32 @@ img{
 .event_top_tab(){
     top: -2em;
     font-size: 0.8em;
-    background: white;
-    color: black;
     padding: 0.5em 1em;
     position: absolute;
     text-decoration: none;
-    .border-box;
-    .rounded-top-corners(@event-corner-radius);            
-}
-.new_chapter_link{
-    .event_top_tab;
     text-shadow: 0 1px 1px white;
     font-weight: bold;
     color: #333;
     background: #DDD;
-    display:none;
-    margin-left: 10em;    
+    .border-box;
+    .rounded-top-corners(@event-corner-radius);
+    &:hover{
+        background: #EEE;
+    }    
 }
-.event.selected .new_chapter_link{
-    z-index: @event-overlay-z-index + 1;
-    display:block;
-}
-.new_chapter_link:hover{
-    background: #EEE;
+.event{
+    .new_chapter_link, .delete_chapter_link{
+        .event_top_tab;
+        margin-left: 10em;
+        display: none;
+    }
+    // Make the top tabs appear
+    &.selected{
+        .new_chapter_link, .delete_chapter_link{
+            z-index: @event-overlay-z-index + 1;
+            display:block;
+        }
+    }   
 }
 
 @event-overlay-z-index: 2;
@@ -230,12 +239,13 @@ img{
 // DETAILS
 
 .chapter{
+    .event_block;
+
     header{
         font-size: 1.4em;
         text-align: center;
         position: relative;
-        margin: 1em 0 2em;
-        padding-top: 3em; // Use padding instead of margin to give anchor links a nice amount space above the chapter number
+        padding: 4em 0 1em; // Use padding instead of margin to give anchor links a nice amount space above the chapter number
         font-family: Times;
 
         .chapter_number{
@@ -257,9 +267,9 @@ img{
         }
         h3{
             margin-top: 0.5em;
+            margin-bottom: 0;
             font-style: italic;
             font-weight: normal;
-            display: none;
             input{
                 text-align:center;
                 .editable_text_input;
@@ -268,40 +278,25 @@ img{
                 } 
             }
         }
-        .chapter_delete_link{
-            background-color: #E7585B;
-            border: 1px solid #BB3B3E;
-            color: white;
-            cursor: pointer;
-            display: none;
-            font-family: Helvetica;
-            font-size: 14px;
-            font-weight: normal;
-            height: 20px;
-            right: -1em;
-            line-height: 20px;
-            position: absolute;
-            text-decoration: none;
-            width: 20px;
-            .rounded-corners(2px);
-            display: none;
-
-            &:hover{
-                background: #BB3B3E;
-            }
-        }
-        &:hover .chapter_delete_link{
-            display: inline-block;
-        }
     }
 }
+// Hide empty notes unless the event is selected
+.chapter header h3.empty{
+    display:none;
+}
+.event.selected .chapter header h3{
+    display:block;
+}
 
+
+// COMMENT
 .comment{
     .event_block;
     .event_timestamp;
     .event_service_icon;
 }
 
+// CHECKIN
 .checkin{
     .event_block;
     .event_timestamp;
@@ -324,24 +319,38 @@ img{
 }
 
 // Hide empty notes unless the event is selected
-.event .controls .note{
-    padding: 1em 0;
+.event .note{
+    padding-top: @event-padding / 2;
+    margin-top: @event-padding / 2;
+    border-top: 1px dotted #CCC; 
     display:block;
 }
-.event .controls .note.empty{
+.event .note.empty{
     display:none;
 }
-.event.selected .controls .note{
+.event.selected .note{
     display:block;
 }
 
 // PHOTO
 .photo {
+    width: 210px;
+    text-align: center;
     position: relative;
     display: inline-block;
-    vertical-align: middle;
-    .delete_event_link{
+    .delete_photo_link{
+        .delete_button;
         z-index: 1;
+        position: absolute;
+        top: -5px;
+        margin-left: -20px;        
+        visibility:hidden;
     }
-    > img{.thumbnail-border;}
+    > img{
+        .thumbnail-border;
+        vertical-align: middle;
+    }
+}
+.event.selected .photo .delete_photo_link{
+    visibility:visible;
 }

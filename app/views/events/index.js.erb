@@ -1,2 +1,3 @@
 $('.events').html("<%= escape_javascript(render(:partial => 'events/events', :locals => {:events => current_user.events.ascending.includes(:details)})) %>")
 <%= render :template => 'chapters/index' %>
+Helpers.hideOverlay();
