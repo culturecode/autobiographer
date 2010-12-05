@@ -3,7 +3,7 @@
 
 // DOM READY FUNCTION CALLS
 $(document).ready(function(){
-    Helpers.autoGrowTextAreas();
+//    Helpers.autoGrowTextAreas();
 });
 
 // HELPERS
@@ -201,12 +201,18 @@ $(document).ready(function(){
 // NOTES
 (function(){
     $(".editable_note").live('change', function(event){
-        var data = {}
-        data[this.name] = this.value
+        var form = $(this).parents('form');
+        var note = $(this).parents('.note');
+        if (this.value === ''){
+            note.addClass('empty');
+        } else {
+            note.removeClass('empty');
+        }
+        
         $.ajax({
-            url: "notes/" + this.getAttribute('data-note-id'),
-            data: data,
-            type: 'PUT'
+            url: form[0].getAttribute('action'),
+            data: form.serialize(),
+            type: form[0].getAttribute('method')
         });
     });    
 }());

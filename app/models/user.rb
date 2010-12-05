@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   has_one  :twitter_authentication
   has_one  :foursquare_authentication
 
-  has_many :notes, :through => :events, :source => :note, :conditions => "events.details_type = 'Note'", :dependent => :destroy
   has_many :chapters, :through => :events, :source => :chapter, :conditions => "events.details_type = 'Chapter'", :dependent => :destroy
   has_many :photo_groups, :through => :events, :source => :photo_group, :conditions => "events.details_type = 'PhotoGroup'", :dependent => :destroy
 

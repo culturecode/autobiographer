@@ -289,6 +289,35 @@ img {
 .chapter header h3 input:hover {
   text-decoration: underline;
 }
+.chapter header .chapter_delete_link {
+  background-color: #E7585B;
+  border: 1px solid #BB3B3E;
+  color: white;
+  cursor: pointer;
+  display: none;
+  font-family: Helvetica;
+  font-size: 14px;
+  font-weight: normal;
+  height: 20px;
+  right: -1em;
+  line-height: 20px;
+  position: absolute;
+  text-decoration: none;
+  width: 20px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  display: none;
+}
+.chapter header .chapter_delete_link:hover {
+  background: #BB3B3E;
+}
+.chapter header:hover .chapter_delete_link {
+  display: inline-block;
+}
 .comment {
   font-family: 'Georgia', Times, serif;
   position: relative;
@@ -438,6 +467,16 @@ img {
   border: 1px solid #EEC;
   padding: 0.5em;
   font-family: 'Georgia', Times, serif;
+}
+.event .controls .note {
+  padding: 1em 0;
+  display: block;
+}
+.event .controls .note.empty {
+  display: none;
+}
+.event.selected .controls .note {
+  display: block;
 }
 .photo {
   position: relative;

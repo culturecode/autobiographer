@@ -136,14 +136,17 @@ img{
     .clickable{
         cursor: pointer;
     }
+    // Event Hovered
     .clickable:hover{
         background: #F7F7F7;
     }
+    // Event Selected
     &.selected .clickable{
         cursor: default;
         z-index: @event-overlay-z-index + 2;
         .box-shadow(rgba(0, 0, 0, 0.5) 0px 0px 20px);
     }
+    // Event Selected and hovered    
     &.selected .clickable:hover{
         background: white;
     }
@@ -265,6 +268,31 @@ img{
                 } 
             }
         }
+        .chapter_delete_link{
+            background-color: #E7585B;
+            border: 1px solid #BB3B3E;
+            color: white;
+            cursor: pointer;
+            display: none;
+            font-family: Helvetica;
+            font-size: 14px;
+            font-weight: normal;
+            height: 20px;
+            right: -1em;
+            line-height: 20px;
+            position: absolute;
+            text-decoration: none;
+            width: 20px;
+            .rounded-corners(2px);
+            display: none;
+
+            &:hover{
+                background: #BB3B3E;
+            }
+        }
+        &:hover .chapter_delete_link{
+            display: inline-block;
+        }
     }
 }
 
@@ -280,6 +308,8 @@ img{
     .event_service_icon;
 }
 
+// NOTE
+
 .note{
     position: relative;
 
@@ -293,6 +323,19 @@ img{
     }
 }
 
+// Hide empty notes unless the event is selected
+.event .controls .note{
+    padding: 1em 0;
+    display:block;
+}
+.event .controls .note.empty{
+    display:none;
+}
+.event.selected .controls .note{
+    display:block;
+}
+
+// PHOTO
 .photo {
     position: relative;
     display: inline-block;

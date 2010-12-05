@@ -1,7 +1,7 @@
 module EventsHelper
 
   def event_list_timestamp(event, previous_event)
-    if event.happened_same_day_as(previous_event) && !previous_event.details.is_a?(Chapter)
+    if !previous_event.details.is_a?(Chapter) && event.happened_same_day_as(previous_event)
       if (event.timestamp - previous_event.timestamp) < 1.hour
         content_tag(:span, "#{distance_of_time_in_words(previous_event.timestamp, event.timestamp)} later...", :class => 'timestamp later_that_day')
       else

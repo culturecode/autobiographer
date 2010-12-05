@@ -3,10 +3,9 @@ class Event < ActiveRecord::Base
   belongs_to :user
   
   belongs_to :details, :polymorphic => true, :dependent => :destroy  
-  belongs_to :note, :class_name => "Note", :foreign_key => "details_id"
   belongs_to :chapter, :class_name => "Chapter", :foreign_key => "details_id"
   belongs_to :photo_group, :class_name => "PhotoGroup", :foreign_key => "details_id"
-  
+    
   validates_presence_of :timestamp, :user_id, :details_id, :details_type
   
   scope :ascending, {:order => 'events.timestamp ASC, events.offset ASC'}
