@@ -1,13 +1,11 @@
 module EventsHelper
 
   def event_list_timestamp(event, previous_event)
-    if event.happened_same_day_as(previous_event) && !previous_event.details.is_a?(Chapter)
-      if (event.timestamp - previous_event.timestamp) < 3.hours
+    if !previous_event.details.is_a?(Chapter) && event.happened_same_day_as(previous_event)
+      if (event.timestamp - previous_event.timestamp) < 1.hour
         content_tag(:span, "#{distance_of_time_in_words(previous_event.timestamp, event.timestamp)} later...", :class => 'timestamp later_that_day')
-      elsif event.afternoon? && !previous_event.afternoon?
-        content_tag(:span, "Later that afternoon...", :class => 'timestamp later_that_day')
-      elsif event.evening? && !previous_event.evening?
-        content_tag(:span, "That evening...", :class => 'timestamp later_that_day')
+      else
+        content_tag(:span, event.timestamp.localtime.strftime('then at %I:%M%p').gsub('at 0', 'at '), :class => 'timestamp')
       end
     else
       event_timestamp(event)
@@ -18,7 +16,7 @@ module EventsHelper
     case event.details
     when Chapter, Note
     else
-      content_tag(:span, event.timestamp.strftime('%B %e, %Y'), :class => :timestamp)
+      content_tag(:span, event.timestamp.localtime.strftime('%B %e, %Y'), :class => :timestamp)
     end
   end
   
@@ -34,7 +32,7 @@ module EventsHelper
   def event_service_icon(event)
     if event.authentication.present?
       service_name = event.authentication.service_name
-      image_tag("services/#{service_name}_tiny.png", :title => service_name.titleize, :class => "service_icon")
+      image_tag("services/#{service_name}.png", :title => service_name.titleize, :class => "service_icon")
     end
   end
   

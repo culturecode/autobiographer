@@ -3,10 +3,9 @@ class Event < ActiveRecord::Base
   belongs_to :user
   
   belongs_to :details, :polymorphic => true, :dependent => :destroy  
-  belongs_to :note, :class_name => "Note", :foreign_key => "details_id"
   belongs_to :chapter, :class_name => "Chapter", :foreign_key => "details_id"
   belongs_to :photo_group, :class_name => "PhotoGroup", :foreign_key => "details_id"
-  
+    
   validates_presence_of :timestamp, :user_id, :details_id, :details_type
   
   scope :ascending, {:order => 'events.timestamp ASC, events.offset ASC'}
@@ -56,7 +55,7 @@ class Event < ActiveRecord::Base
   
   # Returns true if this event happened on the same day as +other_event+
   def happened_same_day_as(other_event)
-    self.timestamp.to_date === other_event.timestamp.to_date
+    self.timestamp.localtime.day == other_event.timestamp.localtime.day
   end
   
   # Returns true if the event occurred between midnight and noon

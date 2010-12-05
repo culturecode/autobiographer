@@ -3,7 +3,7 @@
 
 // DOM READY FUNCTION CALLS
 $(document).ready(function(){
-    Helpers.autoGrowTextAreas();
+//    Helpers.autoGrowTextAreas();
 });
 
 // HELPERS
@@ -33,16 +33,15 @@ Helpers = {
             'border-color': 'transparent',
             'line-height': source.css('line-height')
         });
-    },    
+    },
+    // AUTOGROW
     // Causes the textarea to grow or shrink with the contents of the textarea
     autoGrowTextAreas: function(selector){
         selector = selector || 'textarea';
         var callback = this._autoGrowGrow;
         $(selector).map(function(index, element){callback(element)});
         $(selector).live('keyup', function(event){callback(this)});
-    },    
-    
-    // PRIVATE FUNCTIONS
+    },
     _autoGrowGrow: function(textarea){
         // Don't do it until we've initialized
         if (!textarea._autogrowSizer){
@@ -78,8 +77,25 @@ Helpers = {
         } else {
             textarea.style.height = '';
         }
-    }    
+    },
+    
+    // EVENT OVERLAY
+    // Makes a lightbox effect when you click on an event
+    overlay: $("<div/>", {'class':'event_overlay', style:'display:none'}),
+    currentlySelected: null,
+    showOverlay: function(){
+        Helpers.overlay.show();
+    },
+    hideOverlay: function(){
+        Helpers.overlay.hide();
+        Helpers.currentlySelected.removeClass('selected');
+        Helpers.currentlySelected = null;
+    }
 }
+$(document).ready(function(){
+    $(window.document.body).append(Helpers.overlay);
+    Helpers.overlay.click(Helpers.hideOverlay);
+});
 
 // EVENT HANDLERS
 
@@ -95,32 +111,16 @@ Helpers = {
     });
 
 // EVENTS
-(function(){
-    var overlay;
-    var currentlySelected;
-        
-    var showOverlay = function(){
-        overlay.show();
-    }
-
-    var hideOverlay = function(){
-        overlay.hide();
-        $(currentlySelected).removeClass('selected');
-        currentlySelected = null;
-        
-    }
-    
-    $(document).ready(function(){
-        overlay = $("<div/>", {'class':'event_overlay', style:'display:none'});
-        $(window.document.body).append(overlay);
-        overlay.click(hideOverlay);
+(function(){        
+    $('.event .clickable').live('click', function(event){
+        var eventElement = $(this).parent('.event');
+        eventElement.addClass('selected');
+        Helpers.showOverlay();
+        Helpers.currentlySelected = eventElement;
     });
     
-    $('.event').live('click', function(event){
-        $(this).addClass('selected');
-        showOverlay();
-        currentlySelected = this;
-    });
+    // Close the overlay when someone clicks the new chapter link
+    $('.new_chapter_link').live('click', Helpers.hideOverlay);
 }());
 
 
@@ -201,12 +201,18 @@ Helpers = {
 // NOTES
 (function(){
     $(".editable_note").live('change', function(event){
-        var data = {}
-        data[this.name] = this.value
+        var form = $(this).parents('form');
+        var note = $(this).parents('.note');
+        if (this.value === ''){
+            note.addClass('empty');
+        } else {
+            note.removeClass('empty');
+        }
+        
         $.ajax({
-            url: "notes/" + this.getAttribute('data-note-id'),
-            data: data,
-            type: 'PUT'
+            url: form[0].getAttribute('action'),
+            data: form.serialize(),
+            type: form[0].getAttribute('method')
         });
     });    
 }());

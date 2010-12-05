@@ -1,3 +1,3 @@
 class Note < ActiveRecord::Base
-  include TimelineDetails
+  belongs_to :notable, :polymorphic => true
 end

@@ -1,3 +1,5 @@
-<%= form_for :note, :html => {:class => 'note empty'} do |f| %>
-    <%= f.text_area :text, :placeholder => 'Add a note', :style => 'width: 100%;', :class => :editable_note %>
+<%= form_for note do |f| %>
+    <%= f.text_area :text, :placeholder => 'Add a note', :style => 'width: 100%;', :class => :editable_note, :rows => 3 %>
+    <%= f.hidden_field :notable_type %>
+    <%= f.hidden_field :notable_id %>
 <% end %>

@@ -1,1 +1,7 @@
-<%= checkin.place %>
+<%= content_tag :div, :class => 'checkin clickable', :id => dom_id(checkin) do %>
+    <%= timestamp = timestamp %>
+    <div class='body'>
+        <div class='content'><%= event_service_icon(checkin.event) %><%= checkin.place %></div>
+        <div class='controls'><%= render checkin.note || checkin.build_note %></div>        
+    </div>
+<% end %>
