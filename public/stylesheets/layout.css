@@ -227,10 +227,9 @@ img {
   display: block;
 }
 .event_overlay {
-  position: fixed;
+  position: absolute;
   z-index: event-overlay-z-index;
   background-color: rgba(0, 0, 0, 0.5);
-  height: 100%;
   width: 100%;
   top: 0;
   left: 0;
@@ -485,16 +484,22 @@ img {
   display: inline-block;
 }
 .photo .delete_photo_link {
+  display: inline-block;
+  vertical-align: top;
+  left: -20px;
+  position: relative;
+  top: -5px;
+  height: 0;
+  width: 0;
+  z-index: 1;
+  visibility: hidden;
+}
+.photo .delete_photo_link > img {
   background: url("/images/buttons/buttons.png") -40px 0;
   cursor: pointer;
   height: 30px;
   width: 30px;
   display: inline-block;
-  z-index: 1;
-  position: absolute;
-  top: -5px;
-  margin-left: -20px;
-  visibility: hidden;
 }
 .photo > img {
   padding: 2px;

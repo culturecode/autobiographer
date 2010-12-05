@@ -84,6 +84,7 @@ Helpers = {
     overlay: $("<div/>", {'class':'event_overlay', style:'display:none'}),
     currentlySelected: null,
     showOverlay: function(){
+        Helpers.overlay.css({'height':$(window.document).height() + 'px'});
         Helpers.overlay.show();
     },
     hideOverlay: function(){
