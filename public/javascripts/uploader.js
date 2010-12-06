@@ -28,7 +28,7 @@ $(function() {
     uploader.init();
 
     uploader.bind('FilesAdded', function(up, files) {
-        var file_count = $('#upload_progress').data('file_count') || 0 + files.length;
+        var file_count = ($('#upload_progress').data('file_count') || 0) + files.length;
         var current_file = $('#upload_progress').data('current_file') || 1;
         
         $('#upload_progress').data('file_count', file_count);

@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20101205014714) do
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "type"
-    t.integer  "identifier"
+    t.integer  "identifier", :limit => 8
     t.text     "token"
     t.text     "secret"
     t.datetime "last_sync"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20101205014714) do
   create_table "checkins", :force => true do |t|
     t.text     "place"
     t.text     "comment"
-    t.text     "identifier"
+    t.integer  "identifier", :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20101205014714) do
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "identifier"
+    t.integer  "identifier", :limit => 8
   end
 
   create_table "events", :force => true do |t|
@@ -76,12 +76,13 @@ ActiveRecord::Schema.define(:version => 20101205014714) do
   end
 
   create_table "photo_groups", :force => true do |t|
-    t.text     "identifier"
+    t.integer  "identifier", :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "photos", :force => true do |t|
+    t.integer  "identifier",     :limit => 8
     t.string   "file"
     t.integer  "photo_group_id"
     t.datetime "created_at"
