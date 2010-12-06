@@ -1,6 +1,6 @@
 <%= content_tag :span, 'Autobiographer', :id => 'site_title' %>
 <div id='login_options'>
-<%= link_to 'Log in via Facebook', new_facebook_authentication_path %>
-<%= link_to 'Log in via Twitter', new_twitter_authentication_path %>
-<%= link_to 'Log in via Foursquare', new_foursquare_authentication_path %>
+  <%= link_to image_tag('services/facebook_sign_in.png'), new_facebook_authentication_path %>
+  <%= link_to image_tag('services/twitter_sign_in.png'), new_twitter_authentication_path %>
+  <%= link_to image_tag('services/foursquare_sign_in.png'), new_foursquare_authentication_path %>
 </div>
