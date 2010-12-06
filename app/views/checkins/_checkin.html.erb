@@ -1,9 +1,11 @@
 <%= content_tag :div, :class => 'checkin clickable', :id => dom_id(checkin) do %>
     <%= timestamp = timestamp %>
+    <% cache checkin.cache_key do %>    
     <div class='body'>
         <div class='content'>
             <%= event_service_icon(checkin.event) %><%= checkin.place %>
             <%= render checkin.note || checkin.build_note %>
         </div>
     </div>
+    <% end %>
 <% end %>

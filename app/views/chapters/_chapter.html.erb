@@ -1,3 +1,5 @@
-<%= content_tag :div, :class => 'chapter clickable', :id => dom_id(chapter) do %>
-    <%= render :partial => '/chapters/chapter_header', :locals => {:chapter => chapter} %>
+<% cache chapter.cache_key do %>
+    <%= content_tag :div, :class => 'chapter clickable', :id => dom_id(chapter) do %>
+        <%= render :partial => '/chapters/chapter_header', :locals => {:chapter => chapter} %>
+    <% end %>
 <% end %>

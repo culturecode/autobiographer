@@ -1,9 +1,11 @@
 <%= content_tag :div, :class => 'checkin clickable', :id => dom_id(photo_group) do %>
     <%= timestamp = timestamp %>
+    <%= cache photo_group.cache_key do %>
     <div class='body'>
         <div class='content'>
             <%= event_service_icon(photo_group.event) %><%= render photo_group.photos %>
             <%= render photo_group.note || photo_group.build_note %>
         </div>
     </div>
+    <% end %>
 <% end %>

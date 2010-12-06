@@ -169,7 +169,7 @@ img {
   display: none;
 }
 .event .clickable:hover {
-  background: #F7F7F7;
+  background: #F0F0F0;
 }
 .event.selected .clickable {
   cursor: default;
@@ -462,7 +462,7 @@ img {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   background: #FFD;
-  border: 1px solid #EEC;
+  border: 1px solid #EDA;
   padding: 0.5em;
   font-family: 'Georgia', Times, serif;
 }
