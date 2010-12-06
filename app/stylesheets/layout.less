@@ -187,7 +187,16 @@ img{
         .border-box;
         .rounded-left-corners(@event-corner-radius);
     }
-    .timestamp.same_day{}
+    .timestamp.same_day{
+        border-top: 1px solid white;
+        margin-top: -1px;        
+    }
+}
+.event.selected{
+    .timestamp.same_day{
+        border-top: none;
+        margin-top: auto;
+    }
 }
 .event_service_icon(){
     .service_icon {

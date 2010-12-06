@@ -187,6 +187,10 @@ img {
 .event.selected .clickable:hover {
   background: white;
 }
+.event.selected .timestamp.same_day {
+  border-top: none;
+  margin-top: auto;
+}
 .event .new_chapter_link, .event .delete_chapter_link {
   top: -2em;
   font-size: 0.8em;
@@ -376,6 +380,10 @@ img {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
+.comment .timestamp.same_day {
+  border-top: 1px solid white;
+  margin-top: -1px;
+}
 .comment .service_icon {
   position: absolute;
   left: 220px;
@@ -433,6 +441,10 @@ img {
   -moz-border-radius-bottomleft: 3px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+}
+.checkin .timestamp.same_day {
+  border-top: 1px solid white;
+  margin-top: -1px;
 }
 .checkin .service_icon {
   position: absolute;
