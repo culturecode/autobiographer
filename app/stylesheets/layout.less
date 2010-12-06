@@ -33,10 +33,12 @@ img{
     text-align: center;
 }
 
-.site_menu{
-    // ELEMENTS
+.site-menu-background(){
     background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(90,90,90)), color-stop(1, rgb(51,51,51)));
-    background: -moz-linear-gradient(center bottom, rgb(90,90,90) 0%, rgb(51,51,51) 100%);
+    background: -moz-linear-gradient(center bottom, rgb(90,90,90) 0%, rgb(51,51,51) 100%);    
+}
+.site_menu{
+    .site-menu-background;
     border-bottom: 1px solid black;
     position: fixed;
     top:0;
@@ -92,6 +94,22 @@ img{
     margin: 0 auto;
     .body-width;
 }
+
+
+// STATUS BAR
+.status_bar{
+    .site-menu-background;    
+    position: fixed;
+    bottom: -30px;
+    width: 100%;
+    height: 30px;
+    color: white;
+    line-height: 30px;    
+    display: none;
+}
+
+
+// INPUTS
 
 .editable_text{
     border-bottom: 1px solid transparent;

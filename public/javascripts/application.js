@@ -34,6 +34,26 @@ Helpers = {
             'line-height': source.css('line-height')
         });
     },
+    // STATUS BAR
+    showStatusBar: function(){
+        if (!Helpers._statusBar){
+            Helpers._statusBar = $('.status_bar');            
+        }
+        if (!Helpers._statusBarVisible){
+            Helpers._statusBarVisible = true;
+            Helpers._statusBar.show();
+            Helpers._statusBar.animate({bottom : "+=30px"}, 150);
+        }
+    },
+    hideStatusBar: function(){
+        if (!Helpers._statusBar){
+            Helpers._statusBar = $('.status_bar');            
+        }
+        if (Helpers._statusBarVisible){
+            Helpers._statusBarVisible = false;
+            Helpers._statusBar.animate({bottom : "-=30px"}, 150, function(){Helpers._statusBar.hide()});            
+        }
+    },    
     // AUTOGROW
     // Causes the textarea to grow or shrink with the contents of the textarea
     autoGrowTextAreas: function(selector){

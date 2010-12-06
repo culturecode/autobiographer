@@ -35,6 +35,7 @@ $(function() {
         $('#upload_progress').data('current_file', current_file);
         
         $('#upload_text').text("Uploading photo " + current_file + " of " + file_count + "...");
+        Helpers.showStatusBar();
         up.refresh(); // Reposition Flash/Silverlight
         up.start();
     });

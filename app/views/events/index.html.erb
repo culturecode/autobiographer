@@ -1,4 +1,6 @@
-<div id="upload_progress"><span id="upload_text"></span> <span id="upload_percent"></span></div>
 <ol class='events'>
     <%= render :partial => 'events/events', :locals => {:events => @events.ascending.includes(:details)} %>
 </ol>
+<% content_for :status_bar do %>
+    <div id="upload_progress"><span id="upload_text"></span> <span id="upload_percent"></span></div>
+<% end %>

@@ -25,6 +25,9 @@
     <div class='body_content'>
         <%= yield %>
     </div>
+    <% if content_for :status_bar %>
+    <div class='status_bar'><%= yield :status_bar %></div>
+    <% end %>
     <%= javascript_include_tag :defaults, '/plupload/gears_init.js', 'http://bp.yahooapis.com/2.4.21/browserplus-min.js', '/plupload/plupload.full.min.js', 'uploader' %>
 </body>
 </html>
