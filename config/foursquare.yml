@@ -2,6 +2,9 @@ development: &defaults
   client_token: 1WGMDSXQD03NGGKY4PDMTM5QCYK20CF42L03XP10WP20A0LO
   client_secret: LBN2M1YOKHPRDXBRCHJOIHDQCADUHR4PQNN4KMIEEDINK0D0
 
+staging:
+  <<: *defaults
+
 test:
   <<: *defaults
 

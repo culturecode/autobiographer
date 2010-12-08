@@ -4,6 +4,9 @@ development: &defaults
   client_secret: 5ed35674a357fad18ec9e458bb8007cd
   perms: read_stream,user_checkins,user_photos
 
+staging:
+    <<: *defaults
+
 test:
   <<: *defaults
 

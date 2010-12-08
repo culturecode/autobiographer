@@ -2,6 +2,9 @@ development: &defaults
   client_token: icutAepU7WKSlMxdHVFmeg
   client_secret: 3aZ4HaYmqwxhGYEyIcPNNfj0U1H0mGxk93xekGbsrQ
 
+staging:
+  <<: *defaults
+
 test:
   <<: *defaults
 

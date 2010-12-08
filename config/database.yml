@@ -1,6 +1,9 @@
 development:
   adapter: postgresql
   database: autobiographer_development
+staging:
+  adapter: postgresql
+  database: autobiographer_development
 test:
   adapter: postgresql
   database: autobiographer_test

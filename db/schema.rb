@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101205014714) do
+ActiveRecord::Schema.define(:version => 20101208014849) do
 
   create_table "activities", :force => true do |t|
     t.integer  "identifier",  :limit => 8
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20101205014714) do
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "type"
-    t.integer  "identifier", :limit => 8
+    t.integer  "identifier"
     t.text     "token"
     t.text     "secret"
     t.datetime "last_sync"
@@ -36,14 +36,16 @@ ActiveRecord::Schema.define(:version => 20101205014714) do
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
   create_table "chapters", :force => true do |t|
-    t.string "title"
-    t.text   "subtitle"
+    t.string   "title"
+    t.text     "subtitle"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "checkins", :force => true do |t|
     t.text     "place"
     t.text     "comment"
-    t.integer  "identifier", :limit => 8
+    t.text     "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20101205014714) do
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "identifier", :limit => 8
+    t.text     "identifier"
   end
 
   create_table "events", :force => true do |t|
@@ -76,13 +78,12 @@ ActiveRecord::Schema.define(:version => 20101205014714) do
   end
 
   create_table "photo_groups", :force => true do |t|
-    t.integer  "identifier", :limit => 8
+    t.text     "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "photos", :force => true do |t|
-    t.integer  "identifier",     :limit => 8
     t.string   "file"
     t.integer  "photo_group_id"
     t.datetime "created_at"
