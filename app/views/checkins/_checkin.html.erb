@@ -7,7 +7,7 @@
         <% if checkin.comment.present?%>
         <%= content_tag :blockquote do %>
         <span class='ldquo'>&ldquo</span>
-        <%= autolink(checkin.comment, :html => { :target => '_blank' }) %>
+        <%= auto_link(checkin.comment, :html => { :target => '_blank' }) %>
         <span class='rdquo'>&rdquo</span>
         <% end %>
         <% end %>
