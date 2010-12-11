@@ -1,11 +1,18 @@
 <%= content_tag :div, :class => 'checkin clickable', :id => dom_id(checkin) do %>
-    <%= timestamp = timestamp %>
-    <% cache checkin.cache_key do %>    
-    <div class='body'>
-        <div class='content'>
-            <%= event_service_icon(checkin.event) %><%= checkin.place %>
-            <%= render checkin.note || checkin.build_note %>
-        </div>
+<%= timestamp = timestamp %>
+<% cache checkin.cache_key do %>    
+<div class='body'>
+    <div class='content'>
+        <%= event_service_icon(checkin.event) %>You were at <%= checkin.place %>.
+        <% if checkin.comment.present?%>
+        <%= content_tag :blockquote do %>
+        <span class='ldquo'>&ldquo</span>
+        <%= autolink(checkin.comment, :html => { :target => '_blank' } %>
+        <span class='rdquo'>&rdquo</span>
+        <% end %>
+        <% end %>
+        <%= render checkin.note || checkin.build_note %>
     </div>
-    <% end %>
+</div>
+<% end %>
 <% end %>

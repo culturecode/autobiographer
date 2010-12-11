@@ -278,6 +278,13 @@ img {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
 }
+.chapter blockquote {
+  font-style: italic;
+  margin: 0.25em;
+}
+.chapter blockquote .ldquo, .chapter blockquote .rdquo {
+  color: #888;
+}
 .chapter header {
   font-size: 1.4em;
   text-align: center;
@@ -365,6 +372,13 @@ img {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
 }
+.comment blockquote {
+  font-style: italic;
+  margin: 0.25em;
+}
+.comment blockquote .ldquo, .comment blockquote .rdquo {
+  color: #888;
+}
 .comment .timestamp {
   color: #888;
   position: absolute;
@@ -426,6 +440,13 @@ img {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
+}
+.checkin blockquote {
+  font-style: italic;
+  margin: 0.25em;
+}
+.checkin blockquote .ldquo, .checkin blockquote .rdquo {
+  color: #888;
 }
 .checkin .timestamp {
   color: #888;

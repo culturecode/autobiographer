@@ -5,7 +5,7 @@ development: &defaults
   perms: read_stream,user_checkins,user_photos
 
 staging:
-    <<: *defaults
+  <<: *defaults
 
 test:
   <<: *defaults

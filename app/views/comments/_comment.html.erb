@@ -3,7 +3,7 @@
     <% cache comment.cache_key do %>    
     <div class='body'>
         <div class='content'>
-            <%= event_service_icon(comment.event) %><%= comment.text %>
+            <%= event_service_icon(comment.event) %><%= auto_link(comment.text, :html => { :target => '_blank' }) %>
             <%= render comment.note || comment.build_note %>
         </div>
     </div>
