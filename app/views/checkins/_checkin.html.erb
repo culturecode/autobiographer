@@ -6,9 +6,9 @@
         <%= event_service_icon(checkin.event) %>You were at <%= checkin.place %>.
         <% if checkin.comment.present?%>
         <%= content_tag :blockquote do %>
-        <span class='ldquo'>&ldquo</span>
+        <span class='ldquo'>&ldquo;</span>
         <%= auto_link(checkin.comment, :html => { :target => '_blank' }) %>
-        <span class='rdquo'>&rdquo</span>
+        <span class='rdquo'>&rdquo;</span>
         <% end %>
         <% end %>
         <%= render checkin.note || checkin.build_note %>
