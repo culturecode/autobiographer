@@ -1,5 +1,5 @@
 html {
-  font-family: Helvetica;
+  font-family: Garamond, Georgia, Times, 'Times New Roman';
 }
 body {
   padding: 3em 0;
@@ -15,16 +15,23 @@ article {
 img {
   border: none;
 }
+#login_content {
+  text-align: center;
+}
 #site_title {
   font-family: 'AquilineTwo';
   display: block;
   margin: 0 auto;
   font-size: 3em;
-  text-align: center;
+}
+#site_subtitle {
+  display: block;
+  font-family: Garamond, Georgia, Times, 'Times New Roman';
+  font-size: 2em;
+  margin: 1em 0px;
 }
 #login_options {
   margin: 2em 0;
-  text-align: center;
 }
 #login_options a {
   margin-right: 1em;
@@ -37,6 +44,7 @@ img {
   top: 0;
   width: 100%;
   z-index: 500;
+  font-size: 1.3em;
 }
 .site_menu ul {
   width: 70%;
@@ -49,20 +57,20 @@ img {
   display: inline-block;
   position: relative;
 }
-.site_menu .menu_item img {
-  vertical-align: middle;
-  border: none;
-}
 .site_menu .menu_item a {
   display: inline-block;
   color: white;
-  font-size: 1em;
   padding: 0.5em;
   line-height: 22px;
   text-decoration: none;
 }
 .site_menu .menu_item a:hover {
   color: #EEE;
+}
+.site_menu .menu_item div.plupload input {
+  cursor: pointer;
+  height: 100%;
+  vertical-align: top;
 }
 .site_menu .menu_item + .menu_item {
   margin-left: 1em;
@@ -116,11 +124,18 @@ img {
   display: block;
   padding: 0.25em 0.5em;
   color: black;
+  font-size: 0.8em;
 }
 .site_menu #chapter_menu a:hover {
   color: white;
   color: white;
   background: #195ec4;
+}
+.site_menu #account_links a {
+  padding: 0px;
+}
+.site_menu #account_links a img {
+  vertical-align: top;
 }
 .body_content {
   margin: 0 auto;
@@ -208,12 +223,13 @@ img {
 }
 .event .new_chapter_link, .event .delete_chapter_link {
   top: -2em;
-  font-size: 0.8em;
+  font-size: 1.1em;
   padding: 0.5em 1em;
   position: absolute;
   text-decoration: none;
   text-shadow: 0 1px 1px white;
   font-weight: bold;
+  font-variant: small-caps;
   color: #333;
   background: #DDD;
   box-sizing: border-box;
@@ -236,7 +252,7 @@ img {
   -moz-border-radius-topright: 3px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  margin-left: 10em;
+  margin-left: 10%;
   display: none;
 }
 .event .new_chapter_link:hover, .event .delete_chapter_link:hover {
@@ -348,7 +364,7 @@ img {
 .event.selected .chapter header h3 {
   display: block;
 }
-.comment {
+.comment, .photo_group, .checkin {
   font-family: 'Georgia', Times, serif;
   position: relative;
   background: white;
@@ -361,7 +377,7 @@ img {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-.comment .body {
+.comment .body, .photo_group .body, .checkin .body {
   margin-left: 250px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -372,14 +388,19 @@ img {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
 }
-.comment blockquote {
+.comment blockquote, .photo_group blockquote, .checkin blockquote {
   font-style: italic;
   margin: 0.25em;
 }
-.comment blockquote .ldquo, .comment blockquote .rdquo {
+.comment blockquote .ldquo,
+.photo_group blockquote .ldquo,
+.checkin blockquote .ldquo,
+.comment blockquote .rdquo,
+.photo_group blockquote .rdquo,
+.checkin blockquote .rdquo {
   color: #888;
 }
-.comment .timestamp {
+.comment .timestamp, .photo_group .timestamp, .checkin .timestamp {
   color: #888;
   position: absolute;
   left: 0;
@@ -409,80 +430,11 @@ img {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-.comment .timestamp.same_day {
+.comment .timestamp.same_day, .photo_group .timestamp.same_day, .checkin .timestamp.same_day {
   border-top: 1px solid white;
   margin-top: -1px;
 }
-.comment .service_icon {
-  position: absolute;
-  left: 220px;
-}
-.checkin {
-  font-family: 'Georgia', Times, serif;
-  position: relative;
-  background: white;
-  padding: 2em;
-  border-bottom: 1px solid #CCC;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-.checkin .body {
-  margin-left: 250px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-}
-.checkin blockquote {
-  font-style: italic;
-  margin: 0.25em;
-}
-.checkin blockquote .ldquo, .checkin blockquote .rdquo {
-  color: #888;
-}
-.checkin .timestamp {
-  color: #888;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 220px;
-  height: 100%;
-  display: block;
-  padding: 2em 1em 2em 2em;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -webkit-border-top-left-radius: 3px;
-  -webkit-border-bottom-left-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  -webkit-border-top-left-radius: 3px;
-  -webkit-border-bottom-left-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-.checkin .timestamp.same_day {
-  border-top: 1px solid white;
-  margin-top: -1px;
-}
-.checkin .service_icon {
+.comment .service_icon, .photo_group .service_icon, .checkin .service_icon {
   position: absolute;
   left: 220px;
 }

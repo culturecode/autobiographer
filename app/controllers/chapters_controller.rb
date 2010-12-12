@@ -5,7 +5,7 @@ class ChaptersController < ApplicationController
 
     respond_to do |format|
       format.html{redirect_to :back}
-      format.js{ render 'events/index.js.erb' }
+      format.js { render 'events/index.js.erb' }
     end
 
   end
@@ -15,7 +15,7 @@ class ChaptersController < ApplicationController
     
     respond_to do |format|
       format.html{redirect_to :back}
-      format.js{ render 'events/index.js.erb' }
+      format.js{ render 'chapters/index.js.erb' }
     end
     
   end
@@ -27,7 +27,6 @@ class ChaptersController < ApplicationController
       format.html{redirect_to :back}
       format.js{ render 'chapters/index.js.erb' }
     end
-
   end
   
   private

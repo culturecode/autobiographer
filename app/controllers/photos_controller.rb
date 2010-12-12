@@ -20,7 +20,7 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to :back }
-      format.js { render 'events/index.js.erb' }
+      format.js { render :nothing => true }
     end
   end
 end

@@ -2,13 +2,16 @@
 @import 'dropdown_menu';
 @import 'buttons';
 
+
+@body-font: Garamond, Georgia, Times, 'Times New Roman';
+@event-font: Georgia, Times, 'Times New Roman';
 .body-width(){
     width: 70%;
     min-width: 600px;
 }
 
 html{
-    font-family: Helvetica;
+    font-family: @body-font;
 }
 body{
     padding: 3em 0;
@@ -23,16 +26,23 @@ img{
 }
 
 // ELEMENTS
+#login_content{
+    text-align: center;    
+}
 #site_title{
     font-family: 'AquilineTwo';
     display: block;
     margin: 0 auto;
     font-size: 3em;
-    text-align:center;
+}
+#site_subtitle{
+    display: block;
+    font-family: @body-font;
+    font-size: 2em;
+    margin: 1em 0px;
 }
 #login_options{
     margin: 2em 0;
-    text-align: center;
     a {
         margin-right: 1em;
     }    
@@ -49,6 +59,7 @@ img{
     top:0;
     width: 100%;
     z-index: 500;
+    font-size: 1.3em;
 
     ul{
         .body-width;
@@ -58,17 +69,11 @@ img{
     }
     .menu_item{
         display: inline-block;
-        position: relative;        
-
-        img{
-            vertical-align: middle;
-            border: none;
-        }
+        position: relative;
 
         a{
             display: inline-block;
             color: white;
-            font-size: 1em;
             padding: 0.5em;
             line-height: 22px;
             text-decoration: none;
@@ -76,6 +81,12 @@ img{
             &:hover{
                 color: #EEE;
             } 
+        }
+        // Give the pluploader click target a pointer cursor
+        div.plupload input{
+            cursor: pointer;
+            height: 100%;
+            vertical-align: top;
         }
     }
     .menu_item + .menu_item{
@@ -91,7 +102,16 @@ img{
     }
     #chapter_menu{
         .dropdown_menu;
-        a{ .dropdown_menu_item; }
+        a{
+            .dropdown_menu_item;
+            font-size: 0.8em;
+        }
+    }
+    #account_links a{
+        padding: 0px;
+        img{
+            vertical-align: top;
+        }        
     }
 }
 
@@ -237,12 +257,13 @@ img{
 
 .event_top_tab(){
     top: -2em;
-    font-size: 0.8em;
+    font-size: 1.1em;
     padding: 0.5em 1em;
     position: absolute;
     text-decoration: none;
     text-shadow: 0 1px 1px white;
     font-weight: bold;
+    font-variant: small-caps;
     color: #333;
     background: #DDD;
     .border-box;
@@ -254,7 +275,7 @@ img{
 .event{
     .new_chapter_link, .delete_chapter_link{
         .event_top_tab;
-        margin-left: 10em;
+        margin-left: 10%;
         display: none;
     }
     // Make the top tabs appear
@@ -328,15 +349,8 @@ img{
 }
 
 
-// COMMENT
-.comment{
-    .event_block;
-    .event_timestamp;
-    .event_service_icon;
-}
-
-// CHECKIN
-.checkin{
+// COMMENT, PHOTOGROUP, CHECKIN
+.comment, .photo_group, .checkin{
     .event_block;
     .event_timestamp;
     .event_service_icon;

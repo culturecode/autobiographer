@@ -212,8 +212,13 @@ $(document).ready(function(){
         event.preventDefault();
         $(this).toggleClass('open');
         $('#chapter_menu').toggle();
-
     });
+    
+    // Hide remove the chapter heading from the dom when the user deletes a chapter
+    $('.delete_chapter_link').live('click', function(event){
+        $(this).parents('.event').remove();
+        Helpers.hideOverlay();
+    });        
 }());
 
 // NOTES
@@ -234,6 +239,23 @@ $(document).ready(function(){
         });
     });    
 }());
+
+// PHOTOS
+(function(){
+    // Remove the photo from the dom when the user clicks the delete photo link
+    // Also remove the event from the dom if there are no other photos in the photo_group
+    $(".delete_photo_link").live('click', function(event){
+        var link = $(this);
+        if (link.parents('.photo_group').find('.photo').length == 1){
+            link.parents('.event').remove();
+            Helpers.hideOverlay();
+            event.stopPropagation(); // Prevent the event from receiving a click and turning the overlay on again.
+        } else {
+            link.parents('.photo').remove();            
+        }
+    });
+}());
+
 
 // OUTSIDE CLICKS
 (function(){
