@@ -1,4 +1,4 @@
 <% events.each_with_index do |event, index| %>
-    <%= render event, :locals => {:options => {:timestamp => event_list_timestamp(event, events[index-1])}}%>
+    <%= render :partial => '/events/event', :locals => {:event => event, :options => {:timestamp => event_list_timestamp(event, events[index-1])}}%>
 <% end%>    
 
