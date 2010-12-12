@@ -6,7 +6,7 @@ $(function() {
     multipart_params[csrf_param] = csrf_token;
 
     var uploader = new plupload.Uploader({
-        runtimes : 'html5,flash,silverlight,browserplus',
+        runtimes : 'html5,flash,silverlight',
         browse_button : 'pickfiles',
         drop_element: 'dropfiles',
         container : 'upload_link',
