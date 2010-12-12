@@ -93,10 +93,36 @@ Helpers = {
         // Grow the text area if it needs to be larger than the minimum
         var sizerHeight = $(textarea._autogrowSizer).outerHeight() + 30;
         if (sizerHeight > textarea._autogrowMin ){
-            textarea.style.height = sizerHeight + 'px'
+            textarea.style.height = sizerHeight + 'px';
         } else {
             textarea.style.height = '';
         }
+    },
+    
+    // EVENT INSERTION
+    insertEvent: function(eventHTML){
+        var newEvent = $(eventHTML)[0];
+        var timestamp = newEvent.getAttribute('data-timestamp');
+        var offset = parseInt(newEvent.getAttribute('data-offset'));
+        var events = $('.event');
+        
+        // If there are no events just insert it into the events list
+        // Else if there are events, find where it should go
+        if (events.length == 0){
+            $('.events').append(newEvent)
+        } else {
+            events.each(function(index, event){
+                var eventTimestamp = event.getAttribute('data-timestamp');
+                var eventOffset = parseInt(event.getAttribute('data-offset'));
+                
+                // ASSUMPTIONS: Events are interated earliest to latest
+                // If the event has the same timestamp and a greater offset Or if the event has a greater timestamp, we should insert before it
+                if ((eventTimestamp == timestamp && eventOffset > offset) || eventTimestamp > timestamp){
+                    $(event).before(newEvent);
+                    return false;
+                }
+            });            
+        }        
     },
     
     // EVENT OVERLAY

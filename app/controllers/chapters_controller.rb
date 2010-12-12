@@ -1,11 +1,12 @@
 class ChaptersController < ApplicationController
   before_filter :find_chapter, :only => [:update, :destroy]
   def create
-    Chapter.create!(:user => current_user, :title => "New Chapter", :insert_before_event => params[:event_id])
+    @chapter = Chapter.new(:user => current_user, :title => "New Chapter", :insert_before_event => params[:event_id])
+    @chapter.save!
 
     respond_to do |format|
       format.html{redirect_to :back}
-      format.js { render 'events/index.js.erb' }
+      format.js
     end
 
   end

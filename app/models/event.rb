@@ -13,12 +13,12 @@ class Event < ActiveRecord::Base
   
   def self.increment_offsets(events)
     return if events.empty?
-    update_all("offset = offset + 1", :id => events)
+    update_all('"offset" = "offset" + 1', :id => events)
   end
 
   def self.decrement_offsets(events)
     return if events.empty?
-    update_all("offset = offset - 1", :id => events)
+    update_all('"offset" = "offset" - 1', :id => events)
   end
   
   # Inserts the current event before the given event
