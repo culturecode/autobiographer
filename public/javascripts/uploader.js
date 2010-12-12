@@ -1,4 +1,4 @@
-$(function() {
+$(function() {    
     var csrf_param = $('meta[name=csrf-param]').attr('content');
     var csrf_token = $('meta[name=csrf-token]').attr('content');
 
@@ -6,7 +6,7 @@ $(function() {
     multipart_params[csrf_param] = csrf_token;
 
     var uploader = new plupload.Uploader({
-        runtimes : 'html5,flash,silverlight,browserplus',
+        runtimes : 'html5,flash,silverlight',
         browse_button : 'pickfiles',
         drop_element: 'dropfiles',
         container : 'upload_link',
@@ -51,12 +51,24 @@ $(function() {
         var file_count = $('#upload_progress').data('file_count');
         var current_file = $('#upload_progress').data('current_file') + 1;
         
+        $('#upload_progress').data('current_file', current_file);
+        
         if (current_file > file_count) {
             window.location.reload();   
         } else {
-            $('#upload_progress').data('current_file', current_file);
             $('#upload_text').text("Uploading photo " + current_file + " of " + file_count + "...");
             $('#upload_percent').text("0%");
         }
     });
+    
+    window.onbeforeunload = warnIfPhotosUploading;
+
+    function warnIfPhotosUploading() {
+        var file_count = $('#upload_progress').data('file_count') || 0;
+        var current_file = $('#upload_progress').data('current_file') || 1;
+        
+        if (current_file <= file_count) {
+            return "Your photos are still uploading. Leaving this page will cancel the upload.";
+        }    
+    }
 });
