@@ -348,3 +348,23 @@ $('a[href*="#"]').live('click', function(event){
         }
     });
 }());
+
+// USERVOICE FEEDBACK
+var uservoiceOptions = {
+    key: 'autobiographer',
+    host: 'autobiographer.uservoice.com', 
+    forum: '90939',
+    alignment: 'left',
+    background_color:'#bd3131', 
+    text_color: 'white',
+    hover_color: '#0066CC',
+    lang: 'en',
+    showTab: true
+  };
+  function _loadUserVoice() {
+    var s = document.createElement('script');
+    s.src = ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js";
+    document.getElementsByTagName('head')[0].appendChild(s);
+  }
+  _loadSuper = window.onload;
+  window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
