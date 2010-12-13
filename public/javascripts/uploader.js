@@ -71,4 +71,19 @@ $(function() {
             return "Your photos are still uploading. Leaving this page will cancel the upload.";
         }    
     }
+    
+    setInterval(function() {
+        if (!window.dragging) {
+            $('#drop_notice').hide();
+        } else {
+            window.dragging = false;
+        }
+    }, 500);
+    
+    $('#dropfiles').bind('dragover', function() {
+        if (!window.dragging) {
+            $('#drop_notice').show();
+            window.dragging = true;
+        }
+    });
 });
