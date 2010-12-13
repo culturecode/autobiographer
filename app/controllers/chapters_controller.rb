@@ -16,7 +16,7 @@ class ChaptersController < ApplicationController
     
     respond_to do |format|
       format.html{redirect_to :back}
-      format.js{ render 'chapters/index.js.erb' }
+      format.js
     end
     
   end
