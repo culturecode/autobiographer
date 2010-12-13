@@ -539,3 +539,6 @@ img {
 .event.selected .photo .delete_photo_link {
   visibility: visible;
 }
+.fake_placeholder {
+  color: #AAA !important;
+}

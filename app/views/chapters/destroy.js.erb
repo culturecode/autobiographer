@@ -1,0 +1,5 @@
+<%# The chapter number changes on all subsequent chapters, so update them %>
+<% for chapter in @chapter.after %>
+    Helpers.insertEvent("<%= escape_javascript(render(chapter.event)) %>")
+<% end %>
+<%= render :template => '/chapters/index.js' %>

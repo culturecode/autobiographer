@@ -1,3 +1,6 @@
-Helpers.insertEvent("<%= escape_javascript(render(@chapter.event)) %>")
+<%# The chapter number changes on this and all subsequent chapters, so update them %>
+<% for chapter in ([@chapter] + @chapter.after)   %>
+    Helpers.insertEvent("<%= escape_javascript(render(chapter.event)) %>")
+<% end %>
 Helpers.hideOverlay();
 <%= render :template => '/chapters/index.js' %>

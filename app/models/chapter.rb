@@ -2,10 +2,15 @@ class Chapter < ActiveRecord::Base
 
   include TimelineDetails
 
-  scope :ascending, {:order => 'events.timestamp ASC', :joins => :event}
-  scope :descending, {:order => 'events.timestamp DESC', :joins => :event}
+  scope :ascending, {:order => 'events.timestamp, events."offset" ASC', :joins => :event}
+  scope :descending, {:order => 'events.timestamp, events."offset" DESC', :joins => :event}
   
   validates_presence_of :title
+  
+  # Returns the timestamp of the latest chapter updated
+  def self.updated_at
+    maximum(:updated_at)
+  end
   
   # Returns the next Chapter
   def next
@@ -19,12 +24,12 @@ class Chapter < ActiveRecord::Base
   
   # Returns all chapters before this one
   def before
-    event.user.chapters.where("events.timestamp < ?", beginning).joins(:event)
+    event.user.chapters.where('events.timestamp < ? OR (events.timestamp = ? AND events."offset" < ?)', beginning, beginning, event.offset).joins(:event)
   end
   
   # Returns all chapters after this one
   def after
-    event.user.chapters.where("events.timestamp > ?", beginning).joins(:event)
+    event.user.chapters.where('events.timestamp > ? OR (events.timestamp = ? AND events."offset" > ?)', beginning, beginning, event.offset).joins(:event)
   end
 
   # Returns the timestamp of the beginning of this chapter

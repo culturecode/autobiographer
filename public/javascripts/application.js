@@ -1,11 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
-// DOM READY FUNCTION CALLS
-$(document).ready(function(){
-//    Helpers.autoGrowTextAreas();
-});
-
 // HELPERS
 Helpers = {
     scrollToElement: function(element){
@@ -100,24 +95,32 @@ Helpers = {
     },
     
     // EVENT INSERTION
+
+    // Inserts the event into the dom at the appropriate place in the timeline.
+    // If the timeline has an event with the same id, the event is replaced with the new one.
+    // ASSUMPTIONS: Events are interated earliest to latest
     insertEvent: function(eventHTML){
         var newEvent = $(eventHTML)[0];
-        var timestamp = newEvent.getAttribute('data-timestamp');
-        var offset = parseInt(newEvent.getAttribute('data-offset'));
-        var events = $('.event');
+        var events = $('.event')
         
         // If there are no events just insert it into the events list
         // Else if there are events, find where it should go
         if (events.length == 0){
             $('.events').append(newEvent)
         } else {
+            var timestamp = newEvent.getAttribute('data-timestamp');
+            var offset = parseInt(newEvent.getAttribute('data-offset'));
+            
             events.each(function(index, event){
                 var eventTimestamp = event.getAttribute('data-timestamp');
                 var eventOffset = parseInt(event.getAttribute('data-offset'));
                 
-                // ASSUMPTIONS: Events are interated earliest to latest
-                // If the event has the same timestamp and a greater offset Or if the event has a greater timestamp, we should insert before it
-                if ((eventTimestamp == timestamp && eventOffset > offset) || eventTimestamp > timestamp){
+                // If the event has the same timestamp and the same offset, replace the event with the new one
+                // Else if the event has the same timestamp and a greater offset Or if the event has a greater timestamp, we should insert before it
+                if (event.id == newEvent.id) {
+                    $(event).replaceWith(newEvent);
+                    return false;
+                } else if ((eventTimestamp == timestamp && eventOffset > offset) || eventTimestamp > timestamp){
                     $(event).before(newEvent);
                     return false;
                 }
@@ -147,30 +150,74 @@ Helpers = {
         Helpers.overlay.css({'height':$(window.document.body).outerHeight() + 'px'});
     }
 }
+
+
+// DOM READY FUNCTION CALLS
 $(document).ready(function(){
+//    Helpers.autoGrowTextAreas();
+
+    // OVERLAY EVENT HANDLERS
     $(window.document.body).append(Helpers.overlay);
     Helpers.overlay.click(Helpers.hideOverlay);
-    
+
     // Keep the Overlay covering the document even if the window is resized
     $(window).resize(function(){
         if (Helpers._overlayVisible){
             Helpers._resizeOverlay();
         }
     })
+
+    // FAKE PLACEHOLDERS
+    if (!('placeholder' in document.createElement('input'))){
+        var selector = 'input[placeholder], textarea[placeholder]'; // Selector for elements to generate placeholders
+        var showPlaceholder = function(input){
+            input.value = input.getAttribute('placeholder');
+            $(input).addClass('fake_placeholder');            
+        }
+        var hidePlaceholder = function(input){
+            input.value =  '';
+            $(input).removeClass('fake_placeholder');            
+        }        
+        // Initialize the placeholders
+        $(selector).each(function(index, input){
+            if (input.value === ''){
+                showPlaceholder(input);
+            }
+        })
+        // Hide placeholder when the element gains focus
+        $(selector).live('focus', function(event){
+            if (this.value == this.getAttribute('placeholder')){
+                hidePlaceholder(this);
+            }
+        });
+        // Show placeholder if the element is blurred and the input is empty
+        $(selector).live('blur', function(event){
+            var input = this;
+            if (input.value === ''){
+                // Wait a moment so any onblur event handlers can fire before we change the
+                // text back to the placeholder text in case we submit the value on blur
+                setTimeout(function(){showPlaceholder(input)}, 100);
+            }
+        });        
+        // Disable any elements with a fake placeholder if they are being submitted
+        $('form').live('submit', function(event){
+            $(this).find('.fake_placeholder').each(function(index, input){
+                hidePlaceholder(input);
+            })
+        });
+    }
 });
 
-// EVENT HANDLERS
-
-    // SMOOTH SCROLLING
-    // Make all anchor links on the page scroll smoothly
-    $('a[href*="#"]').live('click', function(event){
-        var target = this.href.replace(/.+?#/,'');
-        targetElement = $('[name="' + target + '"]')
-        if (targetElement){
-            event.preventDefault();
-            Helpers.scrollToElement(targetElement);
-        }
-    });
+// SMOOTH SCROLLING
+// Make all anchor links on the page scroll smoothly
+$('a[href*="#"]').live('click', function(event){
+    var target = this.href.replace(/.+?#/,'');
+    targetElement = $('[name="' + target + '"]')
+    if (targetElement){
+        event.preventDefault();
+        Helpers.scrollToElement(targetElement);
+    }
+});
 
 // EVENTS
 (function(){        
@@ -189,19 +236,27 @@ $(document).ready(function(){
     var getSubtitleInput = function(titleInput){
         return $(titleInput).closest('header').find('h3 .editable_chapter_heading')[0]
     }
-
-    // Make all chapter headings editable
-    $(".editable_chapter_heading").live('change', function(event){
-        if (this.value == '')
-            return;
-
+    
+    var updateChapter = function(chapter_id, attribute, value){
         var data = {}
-        data[this.name] = this.value
+        data[attribute] = value
         $.ajax({
-            url: "chapters/" + this.getAttribute('data-chapter-id') + ".js",
+            url: "chapters/" + chapter_id + ".js",
             data: data,
             type: 'PUT'
-        });
+        });        
+    }
+
+    // Make all chapter titles editable, but ignore the update if the chapter title is empty
+    $("h2 .editable_chapter_heading").live('change', function(event){
+        if (this.value !== ''){
+            updateChapter(this.getAttribute('data-chapter-id'), this.name, this.value);
+        }
+    });
+
+    // Make all chapter subtitles editable
+    $("h3 .editable_chapter_heading").live('change', function(event){
+        updateChapter(this.getAttribute('data-chapter-id'), this.name, this.value);
     });
 
     // Track when the subtitle gains focus
@@ -293,3 +348,23 @@ $(document).ready(function(){
         }
     });
 }());
+
+// USERVOICE FEEDBACK
+var uservoiceOptions = {
+    key: 'autobiographer',
+    host: 'autobiographer.uservoice.com', 
+    forum: '90939',
+    alignment: 'left',
+    background_color:'#bd3131', 
+    text_color: 'white',
+    hover_color: '#0066CC',
+    lang: 'en',
+    showTab: true
+  };
+  function _loadUserVoice() {
+    var s = document.createElement('script');
+    s.src = ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js";
+    document.getElementsByTagName('head')[0].appendChild(s);
+  }
+  _loadSuper = window.onload;
+  window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };

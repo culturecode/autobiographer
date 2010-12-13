@@ -1,4 +1,5 @@
-<% cache chapter.cache_key do %>
+<%# The chapter is affected by changes to the chapter itself, but is affected also affected by how many chapters come before it %>
+<% cache "#{chapter.cache_key}_#{current_user.chapters.updated_at.to_f}" do %>
     <%= content_tag :div, :class => 'chapter clickable', :id => dom_id(chapter) do %>
         <%= render :partial => '/chapters/chapter_header', :locals => {:chapter => chapter} %>
     <% end %>
