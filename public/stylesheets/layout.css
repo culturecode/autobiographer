@@ -212,7 +212,7 @@ img {
 }
 .event.selected .clickable {
   cursor: default;
-  z-index: 503;
+  z-index: 252;
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px;
@@ -268,12 +268,12 @@ img {
   background: #EEE;
 }
 .event.selected .new_chapter_link, .event.selected .delete_chapter_link {
-  z-index: 502;
+  z-index: 251;
   display: block;
 }
 .event_overlay {
   position: absolute;
-  z-index: 501;
+  z-index: 250;
   background-color: black;
   opacity: 0.5;
   width: 100%;
