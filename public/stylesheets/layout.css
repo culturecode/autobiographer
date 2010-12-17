@@ -203,7 +203,7 @@ img {
 }
 .event.selected .clickable {
   cursor: default;
-  z-index: 4;
+  z-index: 503;
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px;
@@ -259,13 +259,14 @@ img {
   background: #EEE;
 }
 .event.selected .new_chapter_link, .event.selected .delete_chapter_link {
-  z-index: 3;
+  z-index: 502;
   display: block;
 }
 .event_overlay {
   position: absolute;
-  z-index: event-overlay-z-index;
-  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 501;
+  background-color: black;
+  opacity: 0.5;
   width: 100%;
   top: 0;
   left: 0;
@@ -479,7 +480,7 @@ img {
   display: block;
 }
 .photo {
-  width: 210px;
+  width: 214px;
   text-align: center;
   position: relative;
   display: inline-block;
@@ -496,14 +497,14 @@ img {
   visibility: hidden;
 }
 .photo .delete_photo_link > img {
-  background: url("/images/buttons/buttons.png") -40px 0;
+  background: url("/images/buttons/buttons-red.png") -40px 0;
   cursor: pointer;
   height: 30px;
   width: 30px;
   display: inline-block;
 }
-.photo > img {
-  padding: 2px;
+.photo .thumbnail img {
+  padding: 4px;
   background: white;
   margin: 2px;
   border: 1px solid #E0E0E0;
@@ -514,7 +515,7 @@ img {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  padding: 2px;
+  padding: 4px;
   background: white;
   margin: 2px;
   border: 1px solid #E0E0E0;

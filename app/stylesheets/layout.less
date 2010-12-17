@@ -51,13 +51,14 @@ img{
     background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(90,90,90)), color-stop(1, rgb(51,51,51)));
     background: -moz-linear-gradient(center bottom, rgb(90,90,90) 0%, rgb(51,51,51) 100%);    
 }
+@site-menu-z-index: 500;
 .site_menu{
     .site-menu-background;
     border-bottom: 1px solid black;
     position: fixed;
     top:0;
     width: 100%;
-    z-index: 500;
+    z-index: @site-menu-z-index;
     font-size: 1.3em;
 
     ul{
@@ -286,11 +287,12 @@ img{
     }   
 }
 
-@event-overlay-z-index: 2;
+@event-overlay-z-index: @site-menu-z-index + 1;
 .event_overlay{
     position: absolute;
-    z-index: event-overlay-z-index;
-    background-color: rgba(0,0,0,0.5);
+    z-index: @event-overlay-z-index;
+    background-color: black;
+    opacity: 0.5;
     width: 100%;
     top:0;
     left:0;
@@ -386,7 +388,7 @@ img{
 
 // PHOTO
 .photo {
-    width: 210px;
+    width: 214px;
     text-align: center;
     position: relative;
     display: inline-block;
@@ -404,8 +406,8 @@ img{
         z-index: 1;
         visibility:hidden;
     }
-    > img{
-        .thumbnail-border;
+    .thumbnail img{
+        .thumbnail-border(4px);
         vertical-align: middle;
     }
 }

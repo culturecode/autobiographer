@@ -206,6 +206,17 @@ $(document).ready(function(){
             })
         });
     }
+
+    // FANCYBOX ON PHOTOGROUPS
+	$(".photo .thumbnail").fancybox({
+		'transitionIn'	:	'fade',
+		'transitionOut'	:	'fade',
+		'speedIn'		:	200, 
+		'speedOut'		:	200,
+		'overlayColor'  :   'black',
+		'overlayOpacity':   0.5,
+		'overlayShow'	:	true
+	});    
 });
 
 // SMOOTH SCROLLING
@@ -222,10 +233,13 @@ $('a[href*="#"]').live('click', function(event){
 // EVENTS
 (function(){        
     $('.event .clickable').live('click', function(event){
-        var eventElement = $(this).parent('.event');
-        eventElement.addClass('selected');
-        Helpers.showOverlay();
-        Helpers.currentlySelected = eventElement;
+        // Select the event if the user clicks on an event (but not an image in an event)
+        if (event.target.nodeName != 'IMG'){
+            var eventElement = $(this).parent('.event');
+            eventElement.addClass('selected');
+            Helpers.showOverlay();
+            Helpers.currentlySelected = eventElement;
+        }
     });    
 }());
 
