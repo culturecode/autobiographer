@@ -5,12 +5,13 @@ class Event < ActiveRecord::Base
   belongs_to :details, :polymorphic => true, :dependent => :destroy  
   belongs_to :chapter, :class_name => "Chapter", :foreign_key => "details_id"
   belongs_to :photo_group, :class_name => "PhotoGroup", :foreign_key => "details_id"
-    
+      
   validates_presence_of :timestamp, :user_id, :details_id, :details_type
   
+  default_scope where(:hidden => false)
   scope :ascending, {:order => 'events.timestamp ASC, events.offset ASC'}
   scope :descending, {:order => 'events.timestamp DESC, events.offset DESC'}
-  
+    
   def self.increment_offsets(events)
     return if events.empty?
     update_all('"offset" = "offset" + 1', :id => events)
@@ -72,4 +73,29 @@ class Event < ActiveRecord::Base
   def evening?
     17 <= self.timestamp.localtime.hour && self.timestamp.localtime.hour < 24
   end
+    
+  # Returns the next event
+  def next
+    after.ascending.first
+  end
+
+  # Returns the previous event
+  def previous
+    before.ascending.last
+  end
+  
+  # Returns all events before this one
+  def before
+    user.events.where('timestamp < ? OR (timestamp = ? AND "offset" < ?)', self.timestamp, self.timestamp, offset)
+  end
+  
+  # Returns all events after this one
+  def after
+    user.events.where('timestamp > ? OR (timestamp = ? AND "offset" > ?)', self.timestamp, self.timestamp, offset)
+  end
+  
+  # Returns the event number (1 indexed)
+  def number
+    before.count + 1
+  end  
 end

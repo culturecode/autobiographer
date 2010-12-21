@@ -1,6 +1,7 @@
 <ol class='events'>
-    <%= render :partial => 'events/events', :locals => {:events => @events.ascending.includes(:details)} %>
+    <%= render :partial => 'events/events', :locals => {:events => @events} %>
 </ol>
+<%= will_paginate @events, :previous_label => '← Older', :next_label => 'Newer →' %>
 <% content_for :status_bar do %>
     <div id="upload_progress"><span id="upload_text"></span> <span id="upload_percent"></span></div>
 <% end %>

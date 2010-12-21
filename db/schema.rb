@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101208014849) do
+ActiveRecord::Schema.define(:version => 20101221055618) do
 
   create_table "activities", :force => true do |t|
     t.integer  "identifier",  :limit => 8
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20101208014849) do
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "type"
-    t.integer  "identifier", :limit => 8
+    t.integer  "identifier"
     t.text     "token"
     t.text     "secret"
     t.datetime "last_sync"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20101208014849) do
   create_table "checkins", :force => true do |t|
     t.text     "place"
     t.text     "comment"
-    t.integer  "identifier", :limit => 8
+    t.text     "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,16 +54,26 @@ ActiveRecord::Schema.define(:version => 20101208014849) do
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "identifier", :limit => 8
+    t.text     "identifier"
+  end
+
+  create_table "discussions", :force => true do |t|
+    t.text     "subject"
+    t.text     "messages"
+    t.datetime "created_time"
+    t.integer  "identifier",   :limit => 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", :force => true do |t|
     t.datetime "timestamp"
-    t.integer  "offset",            :default => 0, :null => false
+    t.integer  "offset",            :default => 0,     :null => false
     t.integer  "details_id"
     t.string   "details_type"
     t.integer  "user_id"
     t.integer  "authentication_id"
+    t.boolean  "hidden",            :default => false, :null => false
   end
 
   add_index "events", ["authentication_id"], :name => "index_events_on_authentication_id"
@@ -78,13 +88,12 @@ ActiveRecord::Schema.define(:version => 20101208014849) do
   end
 
   create_table "photo_groups", :force => true do |t|
-    t.integer  "identifier", :limit => 8
+    t.text     "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "photos", :force => true do |t|
-    t.integer  "identifier",     :limit => 8
     t.string   "file"
     t.integer  "photo_group_id"
     t.datetime "created_at"

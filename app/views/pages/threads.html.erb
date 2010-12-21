@@ -1,0 +1,8 @@
+<%  output = "".html_safe
+    fb_auth = current_user.authentications.find_by_type('FacebookAuthentication')
+    fb_auth.send(:facebook_user).inbox.each do |thread|
+        thread.messages.each do |message|
+            output << message.message.html_safe + "<hr/>".html_safe
+        end
+    end %>
+<%= output %>

@@ -40,12 +40,9 @@ module EventsHelper
     link_to('Start a new chapter', split_chapter_path(:event_id => event.id), :remote => true, :class => 'new_chapter_link')
   end
   
-  def event_class(event)
-    case event.details
-    when Chapter
-      'chapter'
-    else
-      'event'
-    end
+  def events_path_with_page(event)
+    page = (event.number / 100) + 1
+    events_path(:page => page, :anchor => dom_id(event))
   end
+  
 end

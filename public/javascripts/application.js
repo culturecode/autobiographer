@@ -223,8 +223,8 @@ $(document).ready(function(){
 // Make all anchor links on the page scroll smoothly
 $('a[href*="#"]').live('click', function(event){
     var target = this.href.replace(/.+?#/,'');
-    targetElement = $('[name="' + target + '"]')
-    if (targetElement){
+    targetElement = $('#' + target)
+    if (targetElement.length > 0){
         event.preventDefault();
         Helpers.scrollToElement(targetElement);
     }
@@ -240,7 +240,12 @@ $('a[href*="#"]').live('click', function(event){
             Helpers.showOverlay();
             Helpers.currentlySelected = eventElement;
         }
-    });    
+    });
+    // Remove the chapter from the DOM when the event is hidden
+    $('.hide_event_link').live('click', function(event){
+        $(this).parents('.event').remove();
+        Helpers.hideOverlay();
+    });                
 }());
 
 

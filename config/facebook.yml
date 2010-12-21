@@ -2,7 +2,7 @@ development: &defaults
   app_id: 166784103361158
   client_id: f17ee0032557d0a83da323841214dbfd
   client_secret: 5ed35674a357fad18ec9e458bb8007cd
-  perms: read_stream,user_checkins,user_photos
+  perms: read_stream,user_checkins,user_photos,read_mailbox
 
 staging:
   <<: *defaults
@@ -14,4 +14,4 @@ production:
   app_id: 174949782521803
   client_id: 7d3d7aea5f3fa8011b2fea0294257133
   client_secret: 558ee62beac6d6cde77000dae9cee0f6
-  perms: read_stream,user_checkins,user_photos
+  perms: read_stream,user_checkins,user_photos,read_mailbox

@@ -1,0 +1,18 @@
+<%= content_tag :div, :class => 'discussion clickable', :id => dom_id(discussion) do %>
+    <%= timestamp = timestamp %>
+    <% cache discussion.cache_key do %>    
+    <div class='body'>
+        <div class='content'>
+            <%= event_service_icon(discussion.event) %>
+            <%= content_tag :p, discussion.subject if discussion.subject %>
+            <% for message in discussion.messages %>
+                <% content_tag :p do %>
+                    <%= simple_format message[:message] %>
+                    <%= content_tag :span, "- #{message[:from]}", :class => 'byline' %>
+                <% end %>
+            <% end %>
+            <%= render discussion.note || discussion.build_note %>
+        </div>
+    </div>
+    <% end %>
+<% end %>

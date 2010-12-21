@@ -4,7 +4,7 @@ gem 'rails', '3.0.3'
 gem 'will_paginate', '>= 3.0.pre'
 gem 'jquery-rails'
 gem 'oauth'
-gem 'fb_graph'
+gem 'fb_graph', :path => "~/culturecode/internal/fb_graph" #:git => 'git://github.com/culturecode/fb_graph.git'
 gem 'twitter'
 gem 'linguistics' # Converts numbers to words 1 => "one"
 

@@ -14,6 +14,7 @@ Autobiographer::Application.routes.draw do
 
   resources :events do
     get :sync, :on => :collection
+    get :hide, :on => :member
   end
   root :to => 'events#index'
   

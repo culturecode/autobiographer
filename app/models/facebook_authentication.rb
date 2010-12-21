@@ -20,6 +20,14 @@ class FacebookAuthentication < Authentication
         Activity.create!(:name => event.name, :place => event.place, :start_time => event.start_time, :end_time => event.end_time, :rsvp_status => event.rsvp_status, :identifier => event.identifier, :authentication => self, :timestamp => event.start_time)
       end
     end
+    
+    facebook_user.inbox(options).each do |thread|
+      ActiveRecord::Base.transaction do
+        messages = [{:message => thread.message, :from => thread.from.name}]
+        messages.concat thread.messages.collect{|message| {:message => message.message, :from => message.from.name}}
+        Discussion.create!(:subject => thread.subject, :messages => messages, :identifier => thread.identifier, :authentication => self, :timestamp => thread.updated_time)
+      end
+    end    
   end
   
   def self.authorize_url(*args)

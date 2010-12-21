@@ -14,7 +14,7 @@
                 <% if current_user.present? %>                 
                 <li class='menu_item' id='chapters_link'>
                     <%= link_to 'Chapters', chapters_path, :id => 'chapter_index' %>
-                    <%= render :partial => '/chapters/chapter_menu', :locals => {:chapters => current_user.chapters} %>
+                    <%= render :partial => '/chapters/chapter_menu', :locals => {:chapters => current_user.chapters.includes(:event)} %>
                 </li>
                 <li class='menu_item' id='upload_link'><a id="pickfiles" href="#">Upload Photos</a></li>
                 <li class='menu_item' id='account_links'><%= facebook_link %> <%= twitter_link %> <%= foursquare_link %> <%= link_to "Refresh", sync_events_path %></li>

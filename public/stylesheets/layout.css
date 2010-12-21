@@ -230,46 +230,50 @@ img {
   border-top: none;
   margin-top: auto;
 }
-.event .new_chapter_link, .event .delete_chapter_link {
-  top: -2em;
-  font-size: 1.1em;
-  padding: 0.5em 1em;
+.event .tabs {
+  bottom: 100%;
   position: absolute;
+  display: none;
+  padding: 0 0.5em;
+}
+.event .tabs a {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  font-size: 1.1em;
   text-decoration: none;
   text-shadow: 0 1px 1px white;
   font-weight: bold;
   font-variant: small-caps;
   color: #333;
   background: #DDD;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -webkit-border-top-left-radius: 3px;
-  -webkit-border-top-right-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  -webkit-border-top-left-radius: 3px;
-  -webkit-border-top-right-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  margin-left: 10%;
-  display: none;
+  margin: 0 0.5em;
+  padding: 0.5em 1em;
+  display: inline-block;
 }
-.event .new_chapter_link:hover, .event .delete_chapter_link:hover {
+.event .tabs a:hover {
   background: #EEE;
 }
-.event.selected .new_chapter_link, .event.selected .delete_chapter_link {
-  z-index: 251;
+.event.selected .tabs {
   display: block;
+  z-index: 251;
 }
 .event_overlay {
   position: absolute;
@@ -279,6 +283,32 @@ img {
   width: 100%;
   top: 0;
   left: 0;
+}
+.pagination {
+  text-align: center;
+  font-size: 1.5em;
+  line-height: 2em;
+  position: relative;
+  margin: 1em 0;
+}
+.pagination a {
+  text-decoration: none;
+}
+.pagination a, .pagination .previous_page, .pagination .next_page {
+  display: none;
+}
+.pagination a.previous_page, .pagination a.next_page {
+  position: absolute;
+  display: inline;
+}
+.pagination .previous_page {
+  left: 0;
+}
+.pagination .next_page {
+  right: 0;
+}
+.pagination em {
+  font-size: 2em;
 }
 .chapter {
   font-family: 'Georgia', Times, serif;
@@ -374,7 +404,10 @@ img {
 .event.selected .chapter header h3 {
   display: block;
 }
-.comment, .photo_group, .checkin {
+.comment,
+.photo_group,
+.checkin,
+.discussion {
   font-family: 'Georgia', Times, serif;
   position: relative;
   background: white;
@@ -387,7 +420,10 @@ img {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-.comment .body, .photo_group .body, .checkin .body {
+.comment .body,
+.photo_group .body,
+.checkin .body,
+.discussion .body {
   margin-left: 250px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -398,19 +434,27 @@ img {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
 }
-.comment blockquote, .photo_group blockquote, .checkin blockquote {
+.comment blockquote,
+.photo_group blockquote,
+.checkin blockquote,
+.discussion blockquote {
   font-style: italic;
   margin: 0.25em;
 }
 .comment blockquote .ldquo,
 .photo_group blockquote .ldquo,
 .checkin blockquote .ldquo,
+.discussion blockquote .ldquo,
 .comment blockquote .rdquo,
 .photo_group blockquote .rdquo,
-.checkin blockquote .rdquo {
+.checkin blockquote .rdquo,
+.discussion blockquote .rdquo {
   color: #888;
 }
-.comment .timestamp, .photo_group .timestamp, .checkin .timestamp {
+.comment .timestamp,
+.photo_group .timestamp,
+.checkin .timestamp,
+.discussion .timestamp {
   color: #888;
   position: absolute;
   left: 0;
@@ -440,13 +484,27 @@ img {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-.comment .timestamp.same_day, .photo_group .timestamp.same_day, .checkin .timestamp.same_day {
+.comment .timestamp.same_day,
+.photo_group .timestamp.same_day,
+.checkin .timestamp.same_day,
+.discussion .timestamp.same_day {
   border-top: 1px solid white;
   margin-top: -1px;
 }
-.comment .service_icon, .photo_group .service_icon, .checkin .service_icon {
+.comment .service_icon,
+.photo_group .service_icon,
+.checkin .service_icon,
+.discussion .service_icon {
   position: absolute;
   left: 220px;
+}
+.discussion p {
+  margin-top: 0;
+}
+.discussion .byline {
+  color: #888;
+  display: block;
+  margin: 0.5em 0;
 }
 .note {
   position: relative;

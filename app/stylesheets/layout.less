@@ -265,35 +265,34 @@ img{
     }    
 }
 
-.event_top_tab(){
-    top: -2em;
-    font-size: 1.1em;
-    padding: 0.5em 1em;
-    position: absolute;
-    text-decoration: none;
-    text-shadow: 0 1px 1px white;
-    font-weight: bold;
-    font-variant: small-caps;
-    color: #333;
-    background: #DDD;
-    .border-box;
-    .rounded-top-corners(@event-corner-radius);
-    &:hover{
-        background: #EEE;
-    }    
-}
 .event{
-    .new_chapter_link, .delete_chapter_link{
-        .event_top_tab;
-        margin-left: 10%;
+    .tabs{
+        bottom: 100%;
+        position: absolute;
         display: none;
+        padding: 0 0.5em;
+        a{
+            .border-box;
+            .rounded-top-corners(@event-corner-radius);
+            font-size: 1.1em;
+            text-decoration: none;
+            text-shadow: 0 1px 1px white;
+            font-weight: bold;
+            font-variant: small-caps;
+            color: #333;
+            background: #DDD;
+            margin: 0 0.5em;
+            padding: 0.5em 1em;
+            display: inline-block;
+            &:hover{
+                background: #EEE;
+            }                
+        }
     }
     // Make the top tabs appear
-    &.selected{
-        .new_chapter_link, .delete_chapter_link{
-            z-index: @event-overlay-z-index + 1;
-            display:block;
-        }
+    &.selected .tabs{
+        display: block;
+        z-index: @event-overlay-z-index + 1;
     }   
 }
 
@@ -307,6 +306,34 @@ img{
     top:0;
     left:0;
 }
+.pagination{
+    text-align:center;
+    font-size: 1.5em;
+    line-height: 2em;
+    position: relative;
+    margin: 1em 0;
+    
+    a{
+        text-decoration: none;
+    }
+    a, .previous_page, .next_page{
+        display:none;
+    }
+    a.previous_page, a.next_page{
+        position: absolute;
+        display:inline;
+    }
+    .previous_page{
+        left: 0;
+    }
+    .next_page{
+        right: 0;
+    }
+    em{
+        font-size: 2em;
+    }
+}
+
 // DETAILS
 
 .chapter{
@@ -360,11 +387,22 @@ img{
 }
 
 
-// COMMENT, PHOTOGROUP, CHECKIN
-.comment, .photo_group, .checkin{
+// COMMENT, PHOTOGROUP, CHECKIN, DISCUSSION
+.comment, .photo_group, .checkin, .discussion{
     .event_block;
     .event_timestamp;
     .event_service_icon;
+}
+
+.discussion{
+    p{
+        margin-top: 0;
+    }
+    .byline{
+        color: #888;
+        display: block;
+        margin: 0.5em 0;
+    }
 }
 
 // NOTE
