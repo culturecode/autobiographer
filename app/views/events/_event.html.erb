@@ -5,7 +5,7 @@
         <%= link_to 'Join with previous Chapter', chapter_path(event.details), :method => :delete, :remote => true, :confirm => 'Are you sure?', :class => 'delete_chapter_link' unless event.details.first? %>
     <% else %>
         <%= event_new_chapter_link(event) %>
-        <%= link_to 'Hide event', hide_event_path(event), :remote => true, :class => 'hide_event_link' %>
+        <%= link_to 'Hide event', hide_event_path(event), :remote => true, :confirm => 'Are you sure?', :class => 'hide_event_link' %>
     <% end %>
     </div>
     <%= render :partial => event.details, :locals => {:timestamp => options[:timestamp] } %>

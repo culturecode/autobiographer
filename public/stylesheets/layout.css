@@ -15,6 +15,13 @@ article {
 img {
   border: none;
 }
+a {
+  color: #195ec4;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 #login_content {
   text-align: center;
 }
@@ -293,22 +300,32 @@ img {
 }
 .pagination a {
   text-decoration: none;
-}
-.pagination a, .pagination .previous_page, .pagination .next_page {
   display: none;
 }
-.pagination a.previous_page, .pagination a.next_page {
-  position: absolute;
-  display: inline;
+.pagination .previous_page, .pagination .next_page {
+  color: #AAA;
+  display: inline-block;
+  width: 4em;
 }
-.pagination .previous_page {
-  left: 0;
+.pagination a.previous_page {
+  color: #195ec4;
+  text-decoration: none;
+  text-align: right;
 }
-.pagination .next_page {
-  right: 0;
+.pagination a.previous_page:hover {
+  text-decoration: underline;
+}
+.pagination a.next_page {
+  color: #195ec4;
+  text-decoration: none;
+  text-align: left;
+}
+.pagination a.next_page:hover {
+  text-decoration: underline;
 }
 .pagination em {
   font-size: 2em;
+  margin: 0 1em;
 }
 .chapter {
   font-family: 'Georgia', Times, serif;

@@ -5,6 +5,14 @@
 
 @body-font: Garamond, Georgia, Times, 'Times New Roman';
 @event-font: Georgia, Times, 'Times New Roman';
+@link-color: #195EC4;
+.link(){
+    color: @link-color;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
+}
 .body-width(){
     width: 70%;
     min-width: 600px;
@@ -23,6 +31,9 @@ header, nav, section, article{
 }
 img{
     border: none;
+}
+a{
+    .link;
 }
 
 // ELEMENTS
@@ -315,22 +326,24 @@ img{
     
     a{
         text-decoration: none;
-    }
-    a, .previous_page, .next_page{
         display:none;
     }
-    a.previous_page, a.next_page{
-        position: absolute;
-        display:inline;
+    .previous_page, .next_page{
+        color: #AAA;
+        display:inline-block;
+        width: 4em;
     }
-    .previous_page{
-        left: 0;
+    a.previous_page{
+        .link;
+        text-align:right;
     }
-    .next_page{
-        right: 0;
+    a.next_page{
+        .link;
+        text-align:left;
     }
     em{
         font-size: 2em;
+        margin: 0 1em;
     }
 }
 
